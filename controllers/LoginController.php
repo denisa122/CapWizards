@@ -38,13 +38,15 @@ if ($action == "login")
     }
 } else if ($action == "register") //add first name, last name here since we have it on the form
 {
+    $firstName = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
     $userName = $_POST["userName"];
     $userEmail = $_POST["userEmail"];
     $password = $_POST["password"];
 
-    if(isset($userName) && isset($userEmail) && isset($password))
+    if(isset($firstName) && isset($lastName) && isset($userName) && isset($userEmail) && isset($password))
     {
-        $registerSuccess = $loginModel -> register($userName, $userEmail, $password);
+        $registerSuccess = $loginModel -> register($firstName, $lastName, $userName, $userEmail, $password);
 
         if($registerSuccess)
         {

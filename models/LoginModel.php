@@ -49,7 +49,7 @@ class LoginModel extends BaseModel
 
     }
 
-    function register($userName, $userEmail, $password)
+    function register($firstName, $lastName, $userName, $userEmail, $password)
     {
         try 
         {
@@ -72,8 +72,10 @@ class LoginModel extends BaseModel
             } else {
                 $passwordHashed = password_hash($password, PASSWORD_DEFAULT);
 
-                $query = "INSERT INTO customer (email, userName, password) VALUES (:email, :userName, :password)";
+                $query = "INSERT INTO customer (firstName, lastName, email, userName, password) VALUES (:first, :last, :email, :userName, :password)";
                 $stmt = $cxn -> prepare($query);
+                $stmt -> bindParam(':first', $firstName);
+                $stmt -> bindParam(':last', $lastName);
                 $stmt -> bindParam(':email', $userEmail);
                 $stmt -> bindParam(':userName', $userName);
                 $stmt -> bindParam(':password', $passwordHashed);

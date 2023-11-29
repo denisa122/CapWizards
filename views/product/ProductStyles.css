@@ -1,0 +1,55 @@
+.product-info-section {
+   padding: 0 0 150px 0;
+}
+
+.recommended-section {
+   padding: 0 150px;
+}
+
+.categories-header {
+   padding: 50px 0;
+}
+
+.subcategories-navigation {
+   padding-bottom: 150px;
+}
+
+.subcategories-red,
+.subcategories-pink,
+.subcategories-blue,
+.subcategories-yellow {
+   padding: 30px 0;
+}
+
+.subcategories-red {
+   background-color: var(--custom-red);
+}
+
+.subcategories-pink {
+   background-color: var(--custom-pink);
+}
+
+.subcategories-blue {
+   background-color: var(--custom-blue);
+}
+
+.subcategories-yellow {
+   background-color: var(--custom-yellow);
+}
+
+.link-bage {
+   color: var(--custom-bage);
+}
+
+
+
+
+.tabs-a {
+   color: #000;
+}
+
+.tabs-a:hover {
+   color: #000;
+}
+
+

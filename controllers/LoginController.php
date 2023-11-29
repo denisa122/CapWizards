@@ -36,7 +36,7 @@ if ($action == "login")
         header("Location: http://localhost/CapWizards/Login"); //TODO change to an appropriate error
         exit();
     }
-} else if ($action == "register")
+} else if ($action == "register") //add first name, last name here since we have it on the form
 {
     $userName = $_POST["userName"];
     $userEmail = $_POST["userEmail"];
@@ -48,7 +48,6 @@ if ($action == "login")
 
         if($registerSuccess)
         {
-            //Successful registration
             header("Location: http://localhost/CapWizards/Login");
             exit();
         } else {

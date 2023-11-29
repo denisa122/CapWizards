@@ -1,0 +1,26 @@
+.cart-item-section {
+    padding: 0 150px;
+}
+
+.cart-product {
+    padding: 50px 100px;
+    margin-bottom: 50px;
+    border: #000 solid 2px;
+    border-radius: 15px;
+}
+
+.col1-p {
+    padding: 50px 0;
+}
+
+.col2-p {
+    padding: 80px 0;
+}
+
+.col3-p {
+    padding: 90px 0;
+}
+
+.btn-checkout {
+    padding: 10px 150px;
+}

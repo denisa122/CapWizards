@@ -1,0 +1,41 @@
+.compDescr-box {
+    width: 800px;
+    height: 150px;
+}
+
+.news-box {
+    width: 450px;
+    height: 200px;
+}
+
+.S-C-buttons-p {
+    padding: 60px 0;
+}
+
+.S-C-buttons {
+    margin-right: 15px;
+    padding: 5px 10px;
+    border: #000 solid 2px;
+     border-radius: 15px;
+}
+
+.input-T-width {
+    width: 450px;
+}
+
+.email-m {
+    margin-right: 30px;
+}
+
+.input-rounded {
+    border-radius: 15px;
+}
+
+.textarea-descr {
+    width: 237px;
+    height: 100px;
+}
+
+.dailyOffers-section-admin {
+    padding: 0 150px;
+}

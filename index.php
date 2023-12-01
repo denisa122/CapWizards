@@ -25,21 +25,50 @@ route('/CapWizards/ShoppingCart', function () {
     require "views/order/CartOverview.php";
 });
 
-route('/CapWizards/Products/Category', function () {
-    require "views/product/ProductsPageSpecificCategory.php";
+
+// Product pages for each category and subcategory
+
+// Alcoholic products
+
+route('/CapWizards/Products/Alcoholic', function () {
+    require "views/product/AllAlcoholic.php";
 });
 
-route('/CapWizards/Products/Category/Subcategory', function () {
-    require "views/product/ProductsPageSpecificSubcategory.php";
+route('/CapWizards/Products/Alcoholic/Cider', function () {
+    require "views/product/AlcoholicCider.php";
 });
 
-route('/CapWizards/Admin/Products', function () {
-    require "views/product/ProductsPageSpecificSubcategoryAdmin.php";
+route('/CapWizards/Products/Alcoholic/Beer', function () {
+    require "views/product/AlcoholicBeer.php";
 });
 
-route('/CapWizards/Products/Product', function () {
-    require "views/product/SingleProduct.php";
+route('/CapWizards/Products/Alcoholic/Shaker', function () {
+    require "views/product/AlcoholicShaker.php";
 });
+
+route('/CapWizards/Products/Alcoholic/Wine', function () {
+    require "views/product/AlcoholicWine.php";
+});
+
+// Non-alcoholic products
+
+route('/CapWizards/Products/Non-alcoholic', function () {
+    require "views/product/AllNonAlcoholic.php";
+});
+
+route('/CapWizards/Products/Non-alcoholic/Soda', function () {
+    require "views/product/NonAlcoholicSoda.php";
+});
+
+route('/CapWizards/Products/Non-alcoholic/Soft-drink', function () {
+    require "views/product/NonAlcoholicSoftDrink.php";
+});
+
+route('/CapWizards/Products/Non-alcoholic/Water', function () {
+    require "views/product/NonAlcoholicWater.php";
+});
+
+
 
 
 $action = $_SERVER['REQUEST_URI'];

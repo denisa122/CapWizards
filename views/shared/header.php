@@ -10,68 +10,45 @@
     <body>
          <!-- Header -->
          <header>
-            <nav class="d-flex justify-content-between">
-            <!-- Alcoholic -->
-            <div class="d-flex">
-                <div class="dropdown d-flex gap-30">
-                        <h2 class="dropdown h2-small gap-5" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Alcoholic</h2>
-                        <img src="/assets/svg/arrow.svg" alt="Arrow icon">
-                    <div class="dropdown-menu border-0 rounded-0 p-0 " aria-labelledby="dropdownMenu">
-                        <div class="d-flex">
-                            <a href="" class="dropdown-item text-center p-0">
-                                <div class="menu-red"> 
-                                    <img src="/assets/svg/cider.svg" alt="Cider icon">
-                                    <h2 class="h2-small h2-bage">Cider</h2>
-                                </div>
-                            </a>
-                            <a href="" class="dropdown-item text-center p-0">
-                                <div class="menu-yellow">
-                                    <img src="/assets/svg/beer-bage.svg" alt="Beer icon">
-                                    <h2 class="h2-small h2-bage">Beer</h2>
-                                </div>
-                            </a>
-                            <a href="" class="dropdown-item text-center p-0">
-                                <div class="menu-blue"> 
-                                    <img src="/assets/svg/mixer.svg" alt="Shaker icon">
-                                    <h2 class="h2-small h2-bage">Shaker</h2>
-                                </div>
-                            </a>
-                            <a href="" class="dropdown-item text-center p-0">
-                                <div class="menu-pink"> 
-                                    <img class="margin-5" src="/assets/svg/vine.svg" alt="Wine icon">
-                                    <h2 class="h2-small h2-bage">Wine</h2>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            <!-- Non-alcoholic -->
-                <div class="dropdown d-flex">
-                    <h2 class="dropdown h2-small gap-5" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Non-Alcoholic</h2>
-                    <img src="/Assets/svg/arrow.svg" alt="Arrow icon">
-                <div class="dropdown-menu border-0 rounded-0 p-0 " aria-labelledby="dropdownMenu">
-                    <div class="d-flex">
-                        <a class="dropdown-item text-center p-0">
-                            <div class="menu-red"> 
-                                <img src="/Assets/svg/cider.svg" alt="Soda icon">
-                                <h2 class="h2-small h2-bage">Soda</h2>
-                            </div>
-                        </a>
-                        <a href="" class="dropdown-item text-center p-0">
-                            <div class="menu-yellow">
-                                <img src="/Assets/svg/beer-bage.svg" alt="Soft drink icon">
-                                <h2 class="h2-small h2-bage">Soft drink</h2>
-                            </div>
-                        </a>
-                        <a class="dropdown-item text-center p-0">
-                            <div class="menu-blue"> 
-                                <img src="/Assets/svg/mixer.svg" alt="Water icon">
-                                <h2 class="h2-small h2-bage">Water</h2>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            </div>
-            </nav>
+         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Alcoholic
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="http://localhost/CapWizards/Products/Alcoholic">All</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="http://localhost/CapWizards/Products/Alcoholic/Cider">Cider</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="http://localhost/CapWizards/Products/Alcoholic/Beer">Beer</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="http://localhost/CapWizards/Products/Alcoholic/Shaker">Shaker</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="http://localhost/CapWizards/Products/Alcoholic/Wine">Wine</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Non-alcoholic
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="http://localhost/CapWizards/Products/Non-alcoholic">All</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="http://localhost/CapWizards/Products/Non-alcoholic/Soda">Soda</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="http://localhost/CapWizards/Products/Non-alcoholic/Soft-drink">Soft drink</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="http://localhost/CapWizards/Products/Non-alcoholic/Water">Water</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>  
 </header>

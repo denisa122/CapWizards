@@ -24,11 +24,11 @@ $productModel = new ProductModel();
         </a>
         <a class="col subcategories-yellow text-decoration-none" href="http://localhost/CapWizards/Products/Non-alcoholic/Soft drink">
             <img src="" alt="Soft drink icon">
-            <h2 class="h2-bage">Soft drink</h2>
+            <h2 class="h2-bage">Soft drink</h2> <!-- We don;t have an icon for this -->
         </a>
         <a class="col subcategories-blue text-decoration-none" href="http://localhost/CapWizards/Products/Non-alcoholic/Water">
             <img src="" alt="Water icon">
-            <h2 class="h2-bage">Water</h2>
+            <h2 class="h2-bage">Water</h2> <!-- We don;t have an icon for this -->
         </a>
         </section>
 

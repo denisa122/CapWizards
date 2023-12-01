@@ -57,4 +57,6 @@ mail($recipient, $subject, $message, $header, "From:" . $email)
 or die("Error!");
 
 echo"<script>alert('Message sent successfully!');</script>";
+
+// window.location.href='index.php';
 ?>

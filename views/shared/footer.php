@@ -28,15 +28,15 @@
         <div class="col">
         <form method="post" action="./contactForm.php">
             <div class="row margin-15">
-                <input class="input-color input-size-s gap-15" type="text"  name="firstName" placeholder="First name">
-                <input class="input-color input-size-s" type="text"  name="lastName" placeholder="Last name">
+                <input class="input-color input-size-s gap-15" type="text"  name="firstName" placeholder="First name" required>
+                <input class="input-color input-size-s" type="text"  name="lastName" placeholder="Last name" required>
             </div>
             <div class="row margin-15">
-                <input class="input-color input-size-s gap-15" type="email"  name="email" placeholder="Email">
-                <input class="input-color input-size-s" type="text"  name="subject" placeholder="Subject">
+                <input class="input-color input-size-s gap-15" type="email"  name="email" placeholder="Email" required>
+                <input class="input-color input-size-s" type="text"  name="subject" placeholder="Subject" required>
             </div>
                 
-            <textarea class="input-color row margin-15 input-size-b" name="Message" placeholder="Message..."></textarea>
+            <textarea class="input-color row margin-15 input-size-b" name="Message" placeholder="Message..." required></textarea>
             <div class="row text-center form-button-wrapper"><input class="big-button form-button" type="submit"  name="submit" placeholder="Get in touch"></div>
         </form>
         </div>

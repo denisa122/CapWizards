@@ -154,13 +154,19 @@ INSERT INTO Subcategory (subcategoryID, subcategoryName) VALUES
 (NULL, "Cider"),
 (NULL, "Beer"),
 (NULL, "Shaker"),
-(NULL, "Vine");
+(NULL, "Wine"),
+(NULL, "Soda"),
+(NULL, "Soft drink"),
+(NULL, "Water");
 
 INSERT INTO CategorySubcategory (categoryID, subcategoryID) VALUES 
 (1, 1),
 (1, 2),
 (1, 3),
-(1, 4);
+(1, 4),
+(2, 5),
+(2, 6),
+(2, 7);
 
 INSERT INTO Product (productID, productName, productDescription, price, size, brand, color, availability, imgUrl, altTxt, material, FK_categoryID, FK_subcategoryID) VALUES
 (NULL, "Coca-Cola Original", "Coca-Cola Original bottle cap crafted with precision and attention to every detail. Characteristic red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Coca Cola", "Red", "1", "/Assets/img/coca-cola/Coca-cola_oryginal.png", "coca-cola original red bottle cap", "metal", "2", NULL),

@@ -1,12 +1,12 @@
 <?php
-require("./views/shared/header.php") 
+require("./views/shared/header.php");
 ?>
 
 <!-- Main -->
 <main class="pt-0">
     <!-- Categories header -->
     <section class="text-center categories-header">
-        <h1 class="h1-black">Alcoholic</h1>
+        <h1 class="h1-black">alcoholic</h1>
     </section>
 
     <!-- Subcategories navigation -->
@@ -30,8 +30,44 @@ require("./views/shared/header.php")
         </section>
 
     <!-- Product grid -->
+
+    <?php foreach ($alcoholicProducts as $product): ?>
+        <article>
+            <a class="text-decoration-none product-card" href="">
+                <img class="img-150 margin-30" src="<?php echo $product['imgUrl']; ?>">
+                <h2 class="h2-black margin-15"><?php echo $product['productName']; ?></h2>
+                <p class="margin-15">
+                 <?php echo $product['productDescription']; ?> 
+                </p>
+            </a>
+            <div class="d-flex justify-content-center">
+                <p class="font-weight-bold gap-50"><?php echo $product['price']; ?></p>
+
+                <a href=""><img src="/Assets/svg/plus.svg" alt="Add to cart button"></a>
+            </div>
+        </article>
+    <?php endforeach; ?> 
+
     <section class="side-padding text-center">
         <div class="d-flex justify-content-center justify-content-between margin-100">
+        <?php foreach ($products as $product): ?>
+        <article>
+            <a class="text-decoration-none product-card" href="">
+                <img class="img-150 margin-30" src="<?php echo $product['imgUrl']; ?>">
+                <h2 class="h2-black margin-15"><?php echo $product['productName']; ?></h2>
+                <p class="margin-15">
+                 <?php echo $product['productDescription']; ?> 
+                </p>
+            </a>
+            <div class="d-flex justify-content-center">
+                <p class="font-weight-bold gap-50"><?php echo $product['price']; ?></p>
+
+                <a href=""><img src="/Assets/svg/plus.svg" alt="Add to cart button"></a>
+            </div>
+        </article>
+    <?php endforeach; ?>
+        </div>
+        <!-- <div class="d-flex justify-content-center justify-content-between margin-100">
             <article class="product-w"> 
                 <a class="text-decoration-none product-card" href="">
                     <img class="img-150 margin-30" src="/Assets/img/breezer/Breezer_oryginal.png">
@@ -123,53 +159,7 @@ require("./views/shared/header.php")
                     </div>   
             </article>
         </div>
-        <div class="d-flex justify-content-center justify-content-between margin-100">
-            <article class="product-w"> 
-                <a class="text-decoration-none product-card" href="">
-                    <img class="img-150 margin-30" src="/Assets/img/breezer/Breezer_oryginal.png">
-                    <h2 class="h2-black margin-15">Product name</h2>
-                    <p class="margin-15">
-                         Rutrum convallis lacus id a vulputate vitae commodo fames. 
-                    </p>
-                </a>
-                    <div class="d-flex justify-content-center">
-                        <p class="font-weight-bold gap-50">100 DKK</p>
-                 
-                        <a href=""><img src="/Assets/svg/plus.svg" alt="Add to cart button"></a>
-                    </div>   
-            </article>
-          
-            <article class="product-w"> 
-                <a class="text-decoration-none product-card" href="">
-                    <img class="img-150 margin-30" src="/Assets/img/breezer/Breezer_oryginal.png">
-                    <h2 class="h2-black margin-15">Product name</h2>
-                    <p class="margin-15">
-                         Rutrum convallis lacus id a vulputate vitae commodo fames. 
-                    </p>
-                </a>
-                    <div class="d-flex justify-content-center">
-                        <p class="font-weight-bold gap-50">100 DKK</p>
-                 
-                        <a href=""><img src="/Assets/svg/plus.svg" alt="Add to cart button"></a>
-                    </div>   
-            </article>
-
-            <article class="product-w"> 
-                <a class="text-decoration-none product-card" href="">
-                    <img class="img-150 margin-30" src="/Assets/img/breezer/Breezer_oryginal.png">
-                    <h2 class="h2-black margin-15">Product name</h2>
-                    <p class="margin-15">
-                         Rutrum convallis lacus id a vulputate vitae commodo fames. 
-                    </p>
-                </a>
-                    <div class="d-flex justify-content-center">
-                        <p class="font-weight-bold gap-50">100 DKK</p>
-                 
-                        <a href=""><img src="/Assets/svg/plus.svg" alt="Add to cart button"></a>
-                    </div>   
-            </article>
-        </div>
-    </div>
+    </div> -->
     <div class="text-center "><a class="small-button-yellow">Load more</a></div>
     </section>
 </main>

@@ -4,7 +4,7 @@
         <!-- opening hours -->
         <article class="margin-50">
             <h2 class="h2-small">We are open 24/7</h2>
-        </article> -->
+        </article> 
         <!-- Contact information -->
          <article>
             <h2 class="h2-small margin-30">Do (not) hesitate to contact our team of Mystic Scaly Spellwavers with any questions and other matters :D</h2>
@@ -26,7 +26,7 @@
     <section class="col">
         <h2 class="h2-yellow margin-15">Contact us</h2>
         <div class="col">
-        <form action="">
+        <form method="post" action="./contactForm.php">
             <div class="row margin-15">
                 <input class="input-color input-size-s gap-15" type="text"  name="firstName" placeholder="First name">
                 <input class="input-color input-size-s" type="text"  name="lastName" placeholder="Last name">
@@ -37,7 +37,7 @@
             </div>
                 
             <textarea class="input-color row margin-15 input-size-b" name="Message" placeholder="Message..."></textarea>
-            <div class="row text-center form-button-wrapper"><a class="big-button form-button">Get in touch</a></div>
+            <div class="row text-center form-button-wrapper"><input class="big-button form-button" type="submit"  name="submit" placeholder="Get in touch"></div>
         </form>
         </div>
     </section>

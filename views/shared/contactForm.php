@@ -1,6 +1,5 @@
 <?php
 
-
 $name = $_POST["firstName"];
 $surname = $_POST["lastName"];
 $email = $_POST["email"];
@@ -44,9 +43,6 @@ if (isset($_POST['submit'])) {
       $data = htmlspecialchars($data);
       return $data;
     }
-
-    
-$name = $email = $surname = $subject= $message= "";
 
 $header = "From:".$name."<".$email.">\r\n";
 

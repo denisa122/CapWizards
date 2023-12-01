@@ -48,6 +48,11 @@
           <a class="dropdown-item" href="http://localhost/CapWizards/Products/Non-alcoholic/Water">Water</a>
         </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost/CapWizards" style="margin-left: 720px !important;"> <!-- Change this to a better option to center the logo-->
+          LOGO
+        </a>
+      </li>
     </ul>
   </div>
 </nav>  

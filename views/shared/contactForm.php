@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
       return;
     } else {
       if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-        echo "Only letters and white space allowed";
+        echo "<script>alert('Only letters and white space allowed');</script>";
         return;
       }
     }
@@ -36,6 +36,11 @@ if (isset($_POST['submit'])) {
         }
       }
     }
+        if (empty($name) || empty($surname) || empty($email) || empty($subject) || empty($message)) {
+          echo "<script>alert('All fields are required.');</script>";
+      } else {
+          echo "<script>alert('Message sent successfully!');</script>";
+      }
 
     function test_input($data) {
       $data = trim($data);
@@ -51,5 +56,5 @@ $recipient = "monika.sz320@gmail.com";
 mail($recipient, $subject, $message, $header, "From:" . $email) 
 or die("Error!");
 
-echo"Message send!";
+echo"<script>alert('Message sent successfully!');</script>";
 ?>

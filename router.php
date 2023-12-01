@@ -32,5 +32,25 @@ function dispatch($action)
     $action = trim($action, '/');
     $callback = $routes[$action];
 
-    echo call_user_func($callback);
+    if ($callback) {
+        echo call_user_func($callback);
+    } else {
+        // Handle 404 or not found case
+        echo "Page not found";
+    }
 }
+
+route('CapWizards/contactForm.php', function () {
+    // Check if the form is submitted
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        // Handle form submission
+        $name = $_POST["firstName"];
+        $surname = $_POST["lastName"];
+        $email = $_POST["email"];
+        $subject = $_POST["subject"];
+        $message = $_POST["Message"];
+    } 
+    include './views/shared/contactForm.php';
+});
+
+dispatch($_SERVER['REQUEST_URI']);

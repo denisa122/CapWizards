@@ -1,9 +1,18 @@
+<?php 
+
+require_once "./models/CompanyModel.php";
+
+use models\OpeningHModel;
+
+$openingHModel = new OpeningHModel();
+?>
+
 <footer>
     <div class="row footer-grid">
     <section class="col section-padding "> 
         <!-- opening hours -->
         <article class="margin-50">
-            <h2 class="h2-small">We are open 24/7</h2>
+            <?php $openingHModel -> getOpeningH(1) ?>
         </article> 
         <!-- Contact information -->
          <article>

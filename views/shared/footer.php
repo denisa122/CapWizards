@@ -1,35 +1,17 @@
 <?php 
 
 require_once "./models/CompanyModel.php";
+require_once "./models/FooterModel.php";
 
-use models\OpeningHModel;
+use models\FooterModel;
 
-$openingHModel = new OpeningHModel();
+$FooterInfoModel = new FooterModel();
 ?>
 
 <footer>
     <div class="row footer-grid">
     <section class="col section-padding "> 
-        <!-- opening hours -->
-        <article class="margin-50">
-            <?php $openingHModel -> getOpeningH(1) ?>
-        </article> 
-        <!-- Contact information -->
-         <article>
-            <h2 class="h2-small margin-30">Do (not) hesitate to contact our team of Mystic Scaly Spellwavers with any questions and other matters :D</h2>
-            <table>
-                <tr>
-                    <td class="table-i-width">Email:</td>
-                    <td>capwizzards@lizards.com</td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <td class="table-i-width">Phone number:</td>
-                    <td>000900</td>
-                </tr>
-            </table>
-        </article>
+        <?php $FooterInfoModel -> getFooterInfo(1) ?>
     </section> 
     <!-- Contact us form -->
     <section class="col">

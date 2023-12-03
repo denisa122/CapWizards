@@ -1,7 +1,7 @@
 <?php
 require("./views/shared/header.php");
 require_once "./models/NewsModel.php";
-require_once "./models/CompanyModel.php";
+require_once "./models/CompDescriptionModel.php";
 
 use models\NewsModel;
 use  models\DescriptionModel;

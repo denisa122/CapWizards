@@ -46,46 +46,5 @@ class DescriptionModel extends BaseModel
 
 }
 
-class OpeningHModel extends BaseModel 
-{
-
-    function __construct()
-    {
-        
-    }
-
-    function getOpeningH($companyID)
-    {
-        try {
-            $cxn = parent::connectToDB();
-
-            $query = "SELECT openingHours FROM Company WHERE companyID = :companyID";
-            $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":companyID", $companyID);
-
-            $stmt -> execute();
-            $result =  $stmt -> fetchAll(\PDO::FETCH_OBJ);
-            
-            foreach ($result as $row)
-            {
-                print($this->openingHTemplate($row));
-            }
-
-        } catch(\PDOException $e) {
-            echo $e -> getMessage();
-        }
-    }
-
-    function openingHTemplate($row)
-    {
-        return $template = "
-
-        <tr>
-        ".$row -> openingHours."
-        </tr>";
-    }
-
-}
-
 
 

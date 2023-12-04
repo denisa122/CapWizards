@@ -1,6 +1,4 @@
 <?php 
-
-require_once "./models/CompanyModel.php";
 require_once "./models/FooterModel.php";
 
 use models\FooterModel;

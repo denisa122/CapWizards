@@ -42,17 +42,4 @@ function dispatch($action)
 //     }
 // }
 
-// route('CapWizards/contactForm.php', function () {
-//     // Check if the form is submitted
-//     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-//         // Handle form submission
-//         $name = $_POST["firstName"];
-//         $surname = $_POST["lastName"];
-//         $email = $_POST["email"];
-//         $subject = $_POST["subject"];
-//         $message = $_POST["Message"];
-//     } 
-//     include './views/shared/contactForm.php';
-// });
-
 // dispatch($_SERVER['REQUEST_URI']);

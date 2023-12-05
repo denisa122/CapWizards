@@ -50,6 +50,10 @@ route('/CapWizards/Products/Alcoholic/Wine', function () {
     require "views/product/AlcoholicWine.php";
 });
 
+route('/CapWizards/Products/Alcoholic/Wine', function () {
+    require "views/product/SingleProduct.php";
+});
+
 // Non-alcoholic products
 
 route('/CapWizards/Products/Non-alcoholic', function () {

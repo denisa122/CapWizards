@@ -15,14 +15,14 @@ class SingleProductModel extends BaseModel
         
     }
 
-    function getDescription($_GET['productID'])
+    function getSingleProduct($productID)
     {
         try {
             $cxn = parent::connectToDB();
 
-            $query = "SELECT * FROM Product WHERE companyID = :companyID";
+            $query = "SELECT * FROM Product WHERE productID = :productID";
             $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":companyID", $companyID);
+            $stmt -> bindParam(":productID", $productID);
 
             $stmt -> execute();
             $result =  $stmt -> fetchAll(\PDO::FETCH_OBJ);
@@ -85,12 +85,6 @@ class SingleProductModel extends BaseModel
                                 <tr>
                                     <td class=table-i-width>Material:</td>
                                     <td> ".$row -> material ."</td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td class=table-i-width>Condition:</td>
-                                    <td>".$row -> condition ." </td>
                                 </tr>
                             </table>
                         </div>

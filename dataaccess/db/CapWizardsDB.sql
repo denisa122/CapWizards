@@ -11,7 +11,7 @@ CREATE TABLE Company (
     email VARCHAR(100),
     openingHours VARCHAR(100),
     phoneNumber VARCHAR(80),
-    compDescription VARCHAR(255)
+    compDescription VARCHAR(500)
 )ENGINE = InnoDB;
 
 CREATE TABLE News (

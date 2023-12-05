@@ -2,12 +2,15 @@
 require("./views/shared/header.php");
 require_once "./models/NewsModel.php";
 require_once "./models/CompDescriptionModel.php";
+require_once "./models/SpecialOffersModel.php";
 
 use models\NewsModel;
 use  models\DescriptionModel;
+use  models\SpecialOffersModel;
 
 $newsModel = new NewsModel();
 $descriptionModel = new DescriptionModel();
+$specialOffersModel = new SpecialOffersModel();
 
 ?>
 
@@ -38,51 +41,18 @@ $descriptionModel = new DescriptionModel();
 
     <!--Daily offers-->
     <section class="dailyOffers-section text-center">
-        <h1 class="h1-black margin-50">Daily offers</h1>
+        <h1 class="h1-black margin-50">Special offers</h1>
         <div class="d-flex justify-content-center justify-content-between">
             <article class="product-w"> 
-                <a class="text-decoration-none product-card" href="">
-                    <img class="img-150 margin-30" src="/Assets/img/breezer/Breezer_oryginal.png">
-                    <h2 class="h2-black margin-15">Product name</h2>
-                    <p class="margin-15">
-                         Rutrum convallis lacus id a vulputate vitae commodo fames. 
-                    </p>
-                </a>
-                    <div class="d-flex justify-content-center">
-                        <p class="font-weight-bold gap-50">100 DKK</p>
-                 
-                        <a href=""><img src="/Assets/svg/plus.svg" alt="Add to cart button"></a>
-                    </div>   
+            <?php $specialOffersModel -> getSpecialOffers(10) ?>
             </article>
-          
+                
             <article class="product-w"> 
-                <a class="text-decoration-none product-card" href="">
-                    <img class="img-150 margin-30" src="/Assets/img/breezer/Breezer_oryginal.png">
-                    <h2 class="h2-black margin-15">Product name</h2>
-                    <p class="margin-15">
-                         Rutrum convallis lacus id a vulputate vitae commodo fames. 
-                    </p>
-                </a>
-                    <div class="d-flex justify-content-center">
-                        <p class="font-weight-bold gap-50">100 DKK</p>
-                 
-                        <a href=""><img src="/Assets/svg/plus.svg" alt="Add to cart button"></a>
-                    </div>   
+            <?php $specialOffersModel -> getSpecialOffers(5) ?>
             </article>
-
+                
             <article class="product-w"> 
-                <a class="text-decoration-none product-card" href="">
-                    <img class="img-150 margin-30" src="/Assets/img/breezer/Breezer_oryginal.png">
-                    <h2 class="h2-black margin-15">Product name</h2>
-                    <p class="margin-15">
-                         Rutrum convallis lacus id a vulputate vitae commodo fames. 
-                    </p>
-                </a>
-                    <div class="d-flex justify-content-center">
-                        <p class="font-weight-bold gap-50">100 DKK</p>
-                 
-                        <a href=""><img src="/Assets/svg/plus.svg" alt="Add to cart button"></a>
-                    </div>   
+                <?php $specialOffersModel -> getSpecialOffers(17) ?>  
             </article>
         </div>
     </section>

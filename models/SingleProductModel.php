@@ -52,7 +52,7 @@ class SingleProductModel extends BaseModel
                     <div class=col-7>
                     <ul class=nav id=myTab role=tablist>
                         <li class=margin-15 gap-15 role=presentation>
-                          <a class=active text-decoration-none h2-small tabs-a href=#description id=descr-tab data-toggle=tab data-target=#description aria-controls=description aria-selected=true>Description</a>
+                          <a class='active text-decoration-none h2-small tabs-a href=#description id=descr-tab data-toggle=tab data-target=#description aria-controls=description aria-selected=true'>Description</a>
                         </li>
                         <li class= role=presentation>
                           <a class=text-decoration-none h2-small tabs-a  href=#specification id=specification-tab  data-toggle=tab data-target=#specification aria-controls=specification aria-selected=false>Specification</a>
@@ -94,7 +94,7 @@ class SingleProductModel extends BaseModel
                 <!-- Right side -->
                     <div class=col-4>
                         <div class=row margin-15>
-                            <h2>".$row -> price."</h2>
+                            <h2>".$row -> price." DKK</h2>
                         </div>
                         <div class=row margin-15>
                             <button class=c-variations></button>

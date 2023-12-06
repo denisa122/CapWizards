@@ -87,16 +87,16 @@ route('/CapWizards/Admin/Update-news', function () {
 
 route('/CapWizards/Admin/Update-description', function () {
     // Extract the newsID from the query parameters
-    $newsID = isset($_GET['companyID']) ? $_GET['companyID'] : null;
+    $companyID = isset($_GET['companyID']) ? $_GET['companyID'] : null;
     
     require "views/admin/UpdateCompanyDescription.php";
 });
 
-route('/CapWizards/Admin/Update-opening-hours', function () {
+route('/CapWizards/Admin/Update-extra-info', function () {
     // Extract the newsID from the query parameters
-    $newsID = isset($_GET['companyID']) ? $_GET['companyID'] : null;
+    $companyID = isset($_GET['companyID']) ? $_GET['companyID'] : null;
     
-    require "views/admin/UpdateOpeningHours.php";
+    require "views/admin/UpdateExtraCompanyInfo.php";
 });
 
 // Contact form

@@ -23,19 +23,12 @@ $FooterInfoModel = new FooterModel();
             </div>
         </section>
 
-    <!-- Opening hours -->
+    <!-- Extra company details -->
         <section class="margin-100">
-            <h1 class="margin-50 text-center h1-black">Opening hours</h1>
+            <h1 class="margin-50 text-center h1-black">Other details</h1>
             <div class="d-flex justify-content-between">
-               <?php $adminModel -> getOpeningHours(1); ?>
+               <?php $adminModel -> getExtraCompanyInfo(1); ?>
             </div>
-        </section>
-
-    <!-- Contact information -->
-        <section class="margin-100">
-            <h1 class="margin-50 text-center h1-black">Contact information</h1>
-                <?php $adminModel -> getContactInfo(1); ?>
-            
         </section>
 
     <!-- News -->

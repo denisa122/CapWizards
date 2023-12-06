@@ -59,16 +59,18 @@ else if ($action == "updateCompanyDescription")
     window.location.href='http://localhost/CapWizards/Admin';
     </script>";
 }
-// Methods for opening hours
-else if ($action = "updateOpeningHours")
+// Methods for extra company details
+else if ($action = "updateExtraInfo")
 {
     $companyID = $_POST["companyID"];
+    $email = $_POST["email"];
     $openingHours = $_POST["openingHours"];
+    $phoneNumber = $_POST["phoneNumber"];
 
-    $adminModel -> updateOpeningHours($companyID, $openingHours);
+    $adminModel -> updateExtraCompanyInfo($companyID, $email, $openingHours, $phoneNumber);
 
     echo "<script>
-    alert('Opening hours updated successfully');
+    alert('Information updated successfully');
     window.location.href='http://localhost/CapWizards/Admin';
     </script>";
 }

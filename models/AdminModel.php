@@ -59,8 +59,8 @@ class AdminModel extends BaseModel
         }
     }
 
-    // Opening hours
-    function getOpeningHours($companyID)
+    // Extra company information
+    function getExtraCompanyInfo($companyID)
     {
         try {
             $cxn = parent::connectToDB();
@@ -74,7 +74,7 @@ class AdminModel extends BaseModel
 
             foreach ($result as $row)
             {
-                print($this->openingHoursTemplate($row));
+                print($this->extraCompanyInfo($row));
             }
 
         }  catch(\PDOException $e) {
@@ -82,48 +82,29 @@ class AdminModel extends BaseModel
         }
     }
 
-    function updateOpeningHours($companyID, $openingHours)
+    function updateExtraCompanyInfo($companyID, $email, $openingHours, $phoneNumber)
     {
         try {
             $cxn = parent::connectToDB();
 
-            $query = "UPDATE Company SET openingHours = :openingHours WHERE companyID = :companyID";
+            $query = "UPDATE Company SET email = :email, openingHours = :openingHours, phoneNumber = :phoneNumber WHERE companyID = :companyID";
             $stmt = $cxn -> prepare($query);
 
-            $stmt -> bindParam("openingHours", $openingHours);
-            $stmt -> bindParam("companyID", $companyID);
+            $stmt -> bindParam(":email", $email);
+            $stmt -> bindParam(":openingHours", $openingHours);
+            $stmt -> bindParam(":phoneNumber", $phoneNumber);
+            $stmt -> bindParam(":companyID", $companyID);
 
             $sanitized_opening_hours = htmlspecialchars($openingHours);
+            $sanitized_phone_number = htmlspecialchars($phoneNumber);
             $stmt -> bindParam("openingHours", $sanitized_opening_hours);
+            $stmt -> bindParam("openingHours", $sanitized_phone_number);
 
             $stmt -> execute();
 
             $cxn = null;
 
         } catch (\PDOException $e){
-            echo $e -> getMessage();
-        }
-    }
-
-    // Contact information
-    function getContactInfo($companyID)
-    {
-        try {
-            $cxn = parent::connectToDB();
-
-            $query = "SELECT email, phoneNumber FROM Company WHERE companyID = :companyID";
-            $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":companyID", $companyID);
-
-            $stmt -> execute();
-            $result = $stmt -> fetchAll(\PDO::FETCH_OBJ);
-
-            foreach ($result as $row)
-            {
-                print($this->contactInfoTemplate($row));
-            }
-
-        }  catch(\PDOException $e) {
             echo $e -> getMessage();
         }
     }
@@ -254,43 +235,36 @@ class AdminModel extends BaseModel
         </div>";
     }
 
-    // Opening hours
-    function openingHoursTemplate($row)
+    // Extra company details
+    function extraCompanyInfo($row)
     {
         return $template = "
 
-        <article class=margin-50>
-        <tr> ".$row -> openingHours."</tr>
-        <div>
-        <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-opening-hours?companyID=" . $row->companyID . "'>Edit</a>
-        </div>
-        </article> 
-         ";
+        <article>
+        <table>
+           <tr>
+               <td class='table-i-width'>Opening hours:</td>
+               <td>" .$row -> openingHours . "</td>
+           </tr>
+        </table>
+           <table>
+               <tr>
+                   <td class='table-i-width'>Email:</td>
+                   <td> ".$row -> email." </td>
+               </tr>
+           </table>
+           <table>
+               <tr>
+                   <td class='table-i-width'>Phone number:</td>
+                   <td>".$row -> phoneNumber."</td>
+               </tr>
+           </table>
+           <div>
+           <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-extra-info?companyID=" . $row->companyID . "'>Edit</a>
+           </div>
+       </article> ";
     }
 
-    // Contact information
-    function contactInfoTemplate($row)
-    {
-        return $template = "
-
-         <article>
-            <table>
-                <tr>
-                    <td class=table-i-width>Email:</td>
-                    <td> ".$row -> email." </td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <td class=table-i-width>Phone number:</td>
-                    <td>".$row -> phoneNumber."</td>
-                </tr>
-            </table>
-            <div>
-            <a class='btn btn-secondary' href=''>Edit</a>
-            </div>
-        </article> ";
-    }
 
     // News 
     function newsTemplate($row)

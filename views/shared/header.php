@@ -18,6 +18,9 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+
+      <!-- Product categories -->
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Alcoholic
@@ -34,6 +37,7 @@
           <a class="dropdown-item" href="http://localhost/CapWizards/Products/Alcoholic/Wine">Wine</a>
         </div>
       </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Non-alcoholic
@@ -48,10 +52,27 @@
           <a class="dropdown-item" href="http://localhost/CapWizards/Products/Non-alcoholic/Water">Water</a>
         </div>
       </li>
+
+      <!-- Logo -->
+
       <li class="nav-item">
         <a class="nav-link" href="http://localhost/CapWizards" style="margin-left: 720px !important;"> <!-- Change this to a better option to center the logo-->
           LOGO
         </a>
+      </li>
+
+      <!-- User actions -->
+
+      <li>
+      <a class="nav-link" href="http://localhost/CapWizards/ShoppingCart" style="margin-left: 800px;"> 
+        <img src="/CapWizards/assets/svg/cart.svg" alt="Cart icon">  
+      </a>
+      </li>
+
+      <li>
+      <a class="nav-link" href="http://localhost/CapWizards/Login"> 
+        <img src="/CapWizards/assets/svg/avatar.svg" alt="Avatar icon">  
+      </a>
       </li>
     </ul>
   </div>

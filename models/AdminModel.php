@@ -36,6 +36,29 @@ class AdminModel extends BaseModel
         }
     }
 
+    function updateDescription($companyID, $compDescription)
+    {
+        try {
+            $cxn = parent::connectToDB();
+
+            $query = "UPDATE Company SET compDescription = :compDescription WHERE companyID = :companyID";
+            $stmt = $cxn -> prepare($query);
+
+            $stmt -> bindParam("compDescription", $compDescription);
+            $stmt -> bindParam("companyID", $companyID);
+
+            $sanitized_description = htmlspecialchars($compDescription);
+            $stmt -> bindParam("compDescription", $sanitized_description);
+
+            $stmt -> execute();
+
+            $cxn = null;
+
+        } catch (\PDOException $e){
+            echo $e -> getMessage();
+        }
+    }
+
     // News
     function getNews()
     {
@@ -107,12 +130,14 @@ class AdminModel extends BaseModel
             $query = "UPDATE News SET newsTitle = :newsTitle, newsText = :newsText WHERE newsID = :newsID";
             $stmt = $cxn -> prepare($query);
 
-            $sanitized_title = htmlspecialchars($newsTitle);
-			$sanitized_text = htmlspecialchars($newsText);
-
             $stmt -> bindParam("newsTitle", $newsTitle);
             $stmt -> bindParam("newsText", $newsText);
             $stmt -> bindParam("newsID", $newsID);
+
+            $sanitized_title = htmlspecialchars($newsTitle);
+			$sanitized_text = htmlspecialchars($newsText);
+            $stmt -> bindParam("newsTitle", $sanitized_title);
+            $stmt -> bindParam("newsText", $sanitized_text);
 
             $stmt -> execute();
 
@@ -155,8 +180,7 @@ class AdminModel extends BaseModel
 
         <p class ='p-pink'> ".$row -> compDescription."</p> 
         <div>
-        <button class='btn btn-secondary'>Edit</button>
-        <button class='btn btn-danger'>Delete</button>
+        <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-description?companyID=" . $row->companyID . "'>Edit</a>
         </div>";
     }
 

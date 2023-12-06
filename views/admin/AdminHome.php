@@ -30,7 +30,6 @@ $FooterInfoModel = new FooterModel();
                <?php $FooterInfoModel -> getOpeningHours(1); ?>
                 <div class="text-right">
                     <button class="btn btn-secondary">Edit</button>
-                    <button class="btn btn-danger" stye>Delete</button>
                 </div>
             </div>
         </section>
@@ -41,7 +40,6 @@ $FooterInfoModel = new FooterModel();
                 <?php $FooterInfoModel -> getContactInfo(1); ?>
                 <div class="text-right col">
                     <button class="btn btn-secondary">Edit</button>
-                    <button class="btn btn-danger" stye>Delete</button>
                 </div>
             
         </section>
@@ -62,7 +60,6 @@ $FooterInfoModel = new FooterModel();
     <!-- Daily offers -->
     <section class="dailyOffers-section text-center">
         <h1 class="h1-black margin-50">Special offers</h1>
-        <button class="btn btn-success">Add daily offer</button>
         <div class="d-flex justify-content-center justify-content-between">
             <article class="product-w"> 
             <?php $adminModel -> getSpecialOffers(10) ?>

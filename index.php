@@ -85,6 +85,13 @@ route('/CapWizards/Admin/Update-news', function () {
     require "views/admin/UpdateNews.php";
 });
 
+route('/CapWizards/Admin/Update-description', function () {
+    // Extract the newsID from the query parameters
+    $newsID = isset($_GET['companyID']) ? $_GET['companyID'] : null;
+    
+    require "views/admin/UpdateCompanyDescription.php";
+});
+
 // Contact form
 
 route('CapWizards/contactForm.php', function () {

@@ -9,6 +9,7 @@ $adminModel = new AdminModel();
 
 $action = $_GET["action"];
 
+// CRUD for news
 if ($action == "addNews")
 {
     $newsTitle = $_POST["newsTitle"];
@@ -40,6 +41,19 @@ if ($action == "addNews")
 
     echo "<script>
     alert('News updated successfully');
+    window.location.href='http://localhost/CapWizards/Admin';
+    </script>";
+} 
+// Methods for company description
+else if ($action == "updateCompanyDescription")
+{
+    $companyID = $_POST["companyID"];
+    $compDescription = $_POST["compDescription"];
+
+    $adminModel -> updateDescription($companyID, $compDescription);
+
+    echo "<script>
+    alert('Company description updated successfully');
     window.location.href='http://localhost/CapWizards/Admin';
     </script>";
 }

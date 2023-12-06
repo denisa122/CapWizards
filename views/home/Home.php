@@ -1,16 +1,12 @@
 <?php
 require("./views/shared/header.php");
-require_once "./models/NewsModel.php";
-require_once "./models/CompDescriptionModel.php";
-require_once "./models/SpecialOffersModel.php";
 
-use models\NewsModel;
-use  models\DescriptionModel;
-use  models\SpecialOffersModel;
+require_once "./models/HomeModel.php";
 
-$newsModel = new NewsModel();
-$descriptionModel = new DescriptionModel();
-$specialOffersModel = new SpecialOffersModel();
+use models\HomeModel;
+
+
+$homeModel = new HomeModel();
 
 ?>
 
@@ -23,7 +19,7 @@ $specialOffersModel = new SpecialOffersModel();
     <!--About us-->
     <section class="text-center about-section">
         <h2 class="h1-green margin-50">About Us</h2>
-        <?php $descriptionModel -> getDescription(1) ?>
+        <?php $homeModel -> getDescription(1); ?>
     </section>
 
     <!--Categories-->
@@ -44,15 +40,15 @@ $specialOffersModel = new SpecialOffersModel();
         <h1 class="h1-black margin-50">Special offers</h1>
         <div class="d-flex justify-content-center justify-content-between">
             <article class="product-w"> 
-            <?php $specialOffersModel -> getSpecialOffers(10) ?>
+            <?php $homeModel -> getSpecialOffers(10) ?>
             </article>
                 
             <article class="product-w"> 
-            <?php $specialOffersModel -> getSpecialOffers(5) ?>
+            <?php $homeModel -> getSpecialOffers(5) ?>
             </article>
                 
             <article class="product-w"> 
-                <?php $specialOffersModel -> getSpecialOffers(17) ?>  
+                <?php $homeModel -> getSpecialOffers(17) ?>  
             </article>
         </div>
     </section>
@@ -62,10 +58,10 @@ $specialOffersModel = new SpecialOffersModel();
         <h1 class="h1-black margin-50">News</h1>
         <div class="d-flex justify-content-center">
             <div class="news-pink">
-            <?php $newsModel -> getNews(1) ?>
+            <?php $homeModel -> getNews(1) ?>
             </div>
             <div class="news-blue">
-            <?php $newsModel -> getNews(2) ?>
+            <?php $homeModel -> getNews(2) ?>
             </div>
         </div>
     </article>

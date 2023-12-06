@@ -21,7 +21,8 @@ if ($action == "addNews")
     alert('News created successfully');
     window.location.href='http://localhost/CapWizards/Admin';
     </script>";
-} else if ($action == "deleteNews")
+} 
+else if ($action == "deleteNews")
 {
     $newsID = $_GET["newsID"];
 
@@ -31,7 +32,8 @@ if ($action == "addNews")
     alert('News deleted successfully');
     window.location.href='http://localhost/CapWizards/Admin';
     </script>";
-} else if ($action == "updateNews")
+} 
+else if ($action == "updateNews")
 {
     $newsID = $_POST["newsID"];
     $newsTitle = $_POST["newsTitle"];
@@ -54,6 +56,19 @@ else if ($action == "updateCompanyDescription")
 
     echo "<script>
     alert('Company description updated successfully');
+    window.location.href='http://localhost/CapWizards/Admin';
+    </script>";
+}
+// Methods for opening hours
+else if ($action = "updateOpeningHours")
+{
+    $companyID = $_POST["companyID"];
+    $openingHours = $_POST["openingHours"];
+
+    $adminModel -> updateOpeningHours($companyID, $openingHours);
+
+    echo "<script>
+    alert('Opening hours updated successfully');
     window.location.href='http://localhost/CapWizards/Admin';
     </script>";
 }

@@ -9,7 +9,7 @@ USE CapWizardsDB;
 CREATE TABLE Company (
     companyID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(100),
-    openingHours VARCHAR(100),
+    openingHours VARCHAR(200),
     phoneNumber VARCHAR(80),
     compDescription VARCHAR(500)
 )ENGINE = InnoDB;

@@ -59,6 +59,75 @@ class AdminModel extends BaseModel
         }
     }
 
+    // Opening hours
+    function getOpeningHours($companyID)
+    {
+        try {
+            $cxn = parent::connectToDB();
+
+            $query = "SELECT * FROM Company WHERE companyID = :companyID";
+            $stmt = $cxn -> prepare($query);
+            $stmt -> bindParam(":companyID", $companyID);
+
+            $stmt -> execute();
+            $result = $stmt -> fetchAll(\PDO::FETCH_OBJ);
+
+            foreach ($result as $row)
+            {
+                print($this->openingHoursTemplate($row));
+            }
+
+        }  catch(\PDOException $e) {
+            echo $e -> getMessage();
+        }
+    }
+
+    function updateOpeningHours($companyID, $openingHours)
+    {
+        try {
+            $cxn = parent::connectToDB();
+
+            $query = "UPDATE Company SET openingHours = :openingHours WHERE companyID = :companyID";
+            $stmt = $cxn -> prepare($query);
+
+            $stmt -> bindParam("openingHours", $openingHours);
+            $stmt -> bindParam("companyID", $companyID);
+
+            $sanitized_opening_hours = htmlspecialchars($openingHours);
+            $stmt -> bindParam("openingHours", $sanitized_opening_hours);
+
+            $stmt -> execute();
+
+            $cxn = null;
+
+        } catch (\PDOException $e){
+            echo $e -> getMessage();
+        }
+    }
+
+    // Contact information
+    function getContactInfo($companyID)
+    {
+        try {
+            $cxn = parent::connectToDB();
+
+            $query = "SELECT email, phoneNumber FROM Company WHERE companyID = :companyID";
+            $stmt = $cxn -> prepare($query);
+            $stmt -> bindParam(":companyID", $companyID);
+
+            $stmt -> execute();
+            $result = $stmt -> fetchAll(\PDO::FETCH_OBJ);
+
+            foreach ($result as $row)
+            {
+                print($this->contactInfoTemplate($row));
+            }
+
+        }  catch(\PDOException $e) {
+            echo $e -> getMessage();
+        }
+    }
+
     // News
     function getNews()
     {
@@ -174,6 +243,7 @@ class AdminModel extends BaseModel
 
     // Templates
 
+    // Company description
     function companyDescriptionTemplate($row)
     {
         return $template = "
@@ -182,6 +252,44 @@ class AdminModel extends BaseModel
         <div>
         <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-description?companyID=" . $row->companyID . "'>Edit</a>
         </div>";
+    }
+
+    // Opening hours
+    function openingHoursTemplate($row)
+    {
+        return $template = "
+
+        <article class=margin-50>
+        <tr> ".$row -> openingHours."</tr>
+        <div>
+        <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-opening-hours?companyID=" . $row->companyID . "'>Edit</a>
+        </div>
+        </article> 
+         ";
+    }
+
+    // Contact information
+    function contactInfoTemplate($row)
+    {
+        return $template = "
+
+         <article>
+            <table>
+                <tr>
+                    <td class=table-i-width>Email:</td>
+                    <td> ".$row -> email." </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class=table-i-width>Phone number:</td>
+                    <td>".$row -> phoneNumber."</td>
+                </tr>
+            </table>
+            <div>
+            <a class='btn btn-secondary' href=''>Edit</a>
+            </div>
+        </article> ";
     }
 
     // News 

@@ -37,50 +37,6 @@ class FooterModel extends BaseModel
         }
     }
 
-    function getOpeningHours($companyID)
-    {
-        try {
-            $cxn = parent::connectToDB();
-
-            $query = "SELECT openingHours FROM Company WHERE companyID = :companyID";
-            $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":companyID", $companyID);
-
-            $stmt -> execute();
-            $result = $stmt -> fetchAll(\PDO::FETCH_OBJ);
-
-            foreach ($result as $row)
-            {
-                print($this->openingHoursTemplate($row));
-            }
-
-        }  catch(\PDOException $e) {
-            echo $e -> getMessage();
-        }
-    }
-
-    function getContactInfo($companyID)
-    {
-        try {
-            $cxn = parent::connectToDB();
-
-            $query = "SELECT email, phoneNumber FROM Company WHERE companyID = :companyID";
-            $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":companyID", $companyID);
-
-            $stmt -> execute();
-            $result = $stmt -> fetchAll(\PDO::FETCH_OBJ);
-
-            foreach ($result as $row)
-            {
-                print($this->contactInfoTemplate($row));
-            }
-
-        }  catch(\PDOException $e) {
-            echo $e -> getMessage();
-        }
-    }
-
     function footerInfoTemplate($row)
     {
         return $template = "
@@ -104,35 +60,4 @@ class FooterModel extends BaseModel
             </table>
         </article> ";
     }
-
-    function openingHoursTemplate($row)
-    {
-        return $template = "
-
-        <article class=margin-50>
-        <tr> ".$row -> openingHours."</tr>
-        </article> 
-         ";
-    }
-
-    function contactInfoTemplate($row)
-    {
-        return $template = "
-
-         <article>
-            <table>
-                <tr>
-                    <td class=table-i-width>Email:</td>
-                    <td> ".$row -> email." </td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <td class=table-i-width>Phone number:</td>
-                    <td>".$row -> phoneNumber."</td>
-                </tr>
-            </table>
-        </article> ";
-    }
-
 }

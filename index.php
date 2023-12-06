@@ -92,6 +92,13 @@ route('/CapWizards/Admin/Update-description', function () {
     require "views/admin/UpdateCompanyDescription.php";
 });
 
+route('/CapWizards/Admin/Update-opening-hours', function () {
+    // Extract the newsID from the query parameters
+    $newsID = isset($_GET['companyID']) ? $_GET['companyID'] : null;
+    
+    require "views/admin/UpdateOpeningHours.php";
+});
+
 // Contact form
 
 route('CapWizards/contactForm.php', function () {

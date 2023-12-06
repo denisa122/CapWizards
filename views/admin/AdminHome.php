@@ -27,20 +27,14 @@ $FooterInfoModel = new FooterModel();
         <section class="margin-100">
             <h1 class="margin-50 text-center h1-black">Opening hours</h1>
             <div class="d-flex justify-content-between">
-               <?php $FooterInfoModel -> getOpeningHours(1); ?>
-                <div class="text-right">
-                    <button class="btn btn-secondary">Edit</button>
-                </div>
+               <?php $adminModel -> getOpeningHours(1); ?>
             </div>
         </section>
 
     <!-- Contact information -->
         <section class="margin-100">
             <h1 class="margin-50 text-center h1-black">Contact information</h1>
-                <?php $FooterInfoModel -> getContactInfo(1); ?>
-                <div class="text-right col">
-                    <button class="btn btn-secondary">Edit</button>
-                </div>
+                <?php $adminModel -> getContactInfo(1); ?>
             
         </section>
 

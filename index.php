@@ -90,3 +90,8 @@ $action = $_SERVER['REQUEST_URI'];
 //echo $action;
 
 dispatch($action);
+
+// Single page
+route('/CapWizards/Products/', function () {
+    require "views/product/SingleProduct.php";
+});

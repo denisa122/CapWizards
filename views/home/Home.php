@@ -24,13 +24,13 @@ $homeModel = new HomeModel();
 
     <!--Categories-->
     <section class="d-flex justify-content-between categories-section text-center">
-        <a href="" class="text-decoration-none">
-            <img src="/Assets/svg/beer.svg" alt="#">
+        <a href="http://localhost/CapWizards/Products/Alcoholic" class="text-decoration-none">
+            <img src="/CapWizards/assets/svg/beer.svg" alt="#">
             <h2>Alcoholic</h2>
         </a>
 
-        <a href="" class="text-decoration-none">
-            <img src="/Assets/svg/nonAlcoholic.svg" alt="#">
+        <a href="http://localhost/CapWizards/Products/Non-alcoholic" class="text-decoration-none">
+            <img src="/CapWizards/assets/svg/nonAlcoholic.svg" alt="#">
             <h2>Non alcoholic</h2>
         </a>
     </section>

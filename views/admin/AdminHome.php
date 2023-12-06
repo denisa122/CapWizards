@@ -1,13 +1,13 @@
 <?php
 require("./views/shared/header.php");
 
-require_once "./models/HomeModel.php";
+require_once "./models/AdminModel.php";
 require_once "./models/FooterModel.php";
 
-use models\HomeModel;
+use models\AdminModel;
 use models\FooterModel;
 
-$homeModel = new HomeModel();
+$adminModel = new AdminModel();
 $FooterInfoModel = new FooterModel();
 ?>
 
@@ -19,11 +19,7 @@ $FooterInfoModel = new FooterModel();
         <section class="margin-100">
             <h1 class="margin-50 text-center h1-black">Company description</h1>
             <div class="d-flex justify-content-between">
-                <?php $homeModel -> getDescription(1); ?>
-                <div class="S-C-button-p">
-                    <button class="btn btn-secondary">Edit</button>
-                    <button class="btn btn-danger" stye>Delete</button>
-                </div>
+                <?php $adminModel -> getDescription(1); ?>
             </div>
         </section>
 
@@ -53,21 +49,10 @@ $FooterInfoModel = new FooterModel();
     <!-- News -->
         <section class="margin-100">
         <h1 class="margin-50 text-center h1-black">News</h1>
-        <button class="btn btn-success">Add news</button>
+        <a class="btn btn-success" href="http://localhost/CapWizards/Admin/Add-news">Add news</a>
         <div class="d-flex justify-content-center">
             <div class="news-pink">
-            <?php $homeModel -> getNews(1) ?>
-            <div class="text-right">
-                <button class="btn btn-secondary">Edit</button>
-                <button class="btn btn-danger" stye>Delete</button>
-            </div>
-            </div>
-            <div class="news-blue">
-            <?php $homeModel -> getNews(2) ?>
-            <div class="text-right">
-                <button class="btn btn-secondary">Edit</button>
-                <button class="btn btn-danger" stye>Delete</button>
-            </div>
+            <?php $adminModel -> getNews() ?>
             </div>
         </div>
     </article>
@@ -80,7 +65,7 @@ $FooterInfoModel = new FooterModel();
         <button class="btn btn-success">Add daily offer</button>
         <div class="d-flex justify-content-center justify-content-between">
             <article class="product-w"> 
-            <?php $homeModel -> getSpecialOffers(10) ?>
+            <?php $adminModel -> getSpecialOffers(10) ?>
             <div class="text-right">
                 <button class="btn btn-secondary">Edit</button>
                 <button class="btn btn-danger" stye>Delete</button>
@@ -88,7 +73,7 @@ $FooterInfoModel = new FooterModel();
             </article>
                 
             <article class="product-w"> 
-            <?php $homeModel -> getSpecialOffers(5) ?>
+            <?php $adminModel -> getSpecialOffers(5) ?>
             <div class="text-right">
                 <button class="btn btn-secondary">Edit</button>
                 <button class="btn btn-danger" stye>Delete</button>
@@ -96,7 +81,7 @@ $FooterInfoModel = new FooterModel();
             </article>
                 
             <article class="product-w"> 
-                <?php $homeModel -> getSpecialOffers(17) ?>
+                <?php $adminModel -> getSpecialOffers(17) ?>
                 <div class="text-right">
                     <button class="btn btn-secondary">Edit</button>
                     <button class="btn btn-danger" stye>Delete</button>

@@ -58,10 +58,7 @@ $homeModel = new HomeModel();
         <h1 class="h1-black margin-50">News</h1>
         <div class="d-flex justify-content-center">
             <div class="news-pink">
-            <?php $homeModel -> getNews(1) ?>
-            </div>
-            <div class="news-blue">
-            <?php $homeModel -> getNews(2) ?>
+            <?php $homeModel -> getNews() ?>
             </div>
         </div>
     </article>

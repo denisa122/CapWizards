@@ -17,10 +17,6 @@ route('/CapWizards/Register', function () {
     require "views/login/Register.php";
 });
 
-route('/CapWizards/Admin', function () {
-    require "views/admin/AdminHome.php";
-});
-
 route('/CapWizards/ShoppingCart', function () {
     require "views/order/CartOverview.php";
 });
@@ -71,6 +67,25 @@ route('/CapWizards/Products/Non-alcoholic/Soft-drink', function () {
 route('/CapWizards/Products/Non-alcoholic/Water', function () {
     require "views/product/NonAlcoholicWater.php";
 });
+
+// Admin related pages
+
+route('/CapWizards/Admin', function () {
+    require "views/admin/AdminHome.php";
+});
+
+route('/CapWizards/Admin/Add-news', function () {
+    require "views/admin/AddNews.php";
+});
+
+route('/CapWizards/Admin/Update-news', function () {
+    // Extract the newsID from the query parameters
+    $newsID = isset($_GET['newsID']) ? $_GET['newsID'] : null;
+    
+    require "views/admin/UpdateNews.php";
+});
+
+// Contact form
 
 route('CapWizards/contactForm.php', function () {
     // Check if the form is submitted

@@ -18,7 +18,7 @@ CREATE TABLE News (
     newsID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     newsTitle varchar(100),
     newsText varchar(255),
-    newsDate date 
+    newsDate date NULL
 )ENGINE = InnoDB;
 
 CREATE TABLE CompanyNews (

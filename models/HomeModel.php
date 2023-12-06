@@ -57,14 +57,14 @@ class HomeModel extends BaseModel
         }
     }
 
-    function getNews($newsID)
+    function getNews()
     {
         try {
             $cxn = parent::connectToDB();
 
-            $query = "SELECT * FROM News WHERE newsID = :newsID";
+            // Always get the 2 most recently added news
+            $query = "SELECT * FROM News order by newsID desc limit 2";
             $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":newsID", $newsID);
 
             $stmt -> execute();
             $result =  $stmt -> fetchAll(\PDO::FETCH_OBJ);

@@ -102,7 +102,7 @@ class HomeModel extends BaseModel
                     <div class=d-flex justify-content-center>
                         <p class=font-weight-bold gap-50>".$row -> price." DKK</p>
                  
-                        <a href=><img src= alt=></a>
+                        <a href=><img src='/CapWizards/assets/svg/plus.svg' alt='Add to cart btn'></a>
                     </div> ";
     }
 

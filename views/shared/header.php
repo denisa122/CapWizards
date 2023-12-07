@@ -64,13 +64,24 @@
       <!-- User actions -->
 
       <li>
-      <a class="nav-link" href="http://localhost/CapWizards/ShoppingCart" style="margin-left: 800px;"> 
-        <img src="/CapWizards/assets/svg/cart.svg" alt="Cart icon">  
+
+      <?php 
+        require_once ("./views/shared/session.php");
+        require_once("././dataaccess/db/DBConnector.php");
+        $FK_customerID = $_SESSION['customerID'];
+        $count_cart_items = $conn->prepare("SELECT * FROM `Order` WHERE FK_customerID =?");
+        $count_cart_items->execute();
+        $count_cart_items->store_result();
+
+        $total_cart_items = $count_cart_items->num_rows;
+      ?>
+      <a class="nav-link" href="http://localhost/CapWizards/ShoppingCart" style="margin-left: 80px;"> 
+        <img src="/CapWizards/assets/svg/cart.svg" alt="Cart icon">
       </a>
       </li>
 
       <li>
-      <a class="nav-link" href="http://localhost/CapWizards/Login"> 
+      <a class="nav-link" href="http://localhost/CapWizards/Login">   
         <img src="/CapWizards/assets/svg/avatar.svg" alt="Avatar icon">  
       </a>
       </li>

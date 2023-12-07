@@ -1,7 +1,7 @@
 <?php
 require("./views/shared/header.php");
-require_once ("./views/shared/session.php");
-
+require_once("././dataaccess/db/DBConnector.php");
+ $FK_customerID = $_SESSION['customerID'];
 ?>
 
 <!-- Main -->
@@ -16,14 +16,15 @@ require_once ("./views/shared/session.php");
                 $FK_customerID = $_SESSION['customerID'];
 
                 $select_order = $conn->prepare("SELECT * FROM ProductOrder JOIN `Order` JOIN Product ON Order.orderID = ProductOrder.orderID AND ProductOrder.productID = Product.productID WHERE order.FK_customerID = ?");
-                $select_order->execute([$FK_customerID]);
+                $select_order->execute();
+                $select_order->store_result();
                 }
-                if($select_order && $select_order->rowCount() > 0) {
+                if($select_order && $select_order->num_rows > 0) {
     
                     while($fetch_order = $select_order->fetch(PDO::FETCH_ASSOC)){
                         $select_products = $conn->prepare("SELECT * FROM Product WHERE productID = ?");
                         $select_products->execute([$fetch_order['productID']]);  
-                    if($select_products->rowCount() > 0){
+                    if($select_products->num_rows > 0){
                     while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){  
             ?>
 
@@ -45,7 +46,7 @@ require_once ("./views/shared/session.php");
                     </div>
                 </div>
                 <div class="mb-0 col3-p">
-                    <h2><?= $fetch_product['order.finalPrice']; ?>/h2>
+                    <h2><?= $fetch_product['Product.price'] * $fetch_order['ProductOrder.quantity']; ?>/h2>
                 </div>
             </article>
             <div class="text-center"><a href="checkout.php?get_id=<?$fetch_product['id']; ?>" class="big-button btn-checkout">Go to checkout</a></div>

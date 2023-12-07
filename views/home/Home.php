@@ -8,6 +8,34 @@ use models\HomeModel;
 
 $homeModel = new HomeModel();
 
+$FK_customerID = $_SESSION['customerID'];
+if(isset($_POST['add_to_cart'])){
+    $id = create_unique_id();
+    $productID = $_POST['productID'];
+    $productID = filter_var($productID, FILTER_SANITIZE_STRING);
+
+    $verify_cart = $conn->prepare("SELECT * FROM ProductOrder JOIN `Order` JOIN Product ON Order.orderID = ProductOrder.orderID AND ProductOrder.productID = Product.productID WHERE ProductOrder.productID = ? AND order.FK_customerID = ?");
+    $verify_cart->execute($productID, $FK_customerID);
+
+    $max_cart_items = $conn->prepare("SELECT * FROM `Order` WHERE FK_customerID = ?");
+    $max_cart_items->execute($FK_customerID);
+
+    if($verify_cart->num_rows > 0){
+        $warning_msg[] = 'Already added to cart!';
+    }elseif($max_cart_items->num_rows == 100){
+        $warning_msg[] = 'Cart is full';
+    }else{
+        $select_p = $conn->prepare("SELECT * FROM Product WHERE productID = ? LIMIT 1");
+        $select_p->execute([$productID]);
+        $fetch_p = $select_p->fetch(PDO::FETCH_ASSOC);
+
+        $insert_cart = $conn->prepare("INSERT INTO `Order` ( FK_customerID) VALUES (?)");
+        $insert_cart = $conn->prepare("INSERT INTO ProductOrder (productID, orderID) VALUES (?,?)");
+        $insert_cart->execute([$FK_customerID, $productID, $orderID, $fetch_p['price']]);
+
+        $success_msg[] = 'Product Added';
+    }
+}
 ?>
 
     <main class="pt-0">

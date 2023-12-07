@@ -91,8 +91,8 @@ class HomeModel extends BaseModel
     function specialOffersTemplate($row)
     {
         return $template = "
-
                 <a class=text-decoration-none product-card href=>
+                    <input class=hidden name=product_id value= ".$row -> productID.">
                     <img class=img-150 margin-30 src = ".$row -> imgUrl." alt= ".$row -> altTxt.">
                     <h2 class=h2-black margin-15>".$row -> productName."</h2>
                     <p class=margin-15>
@@ -102,9 +102,10 @@ class HomeModel extends BaseModel
                     <div class=d-flex justify-content-center>
                         <p class=font-weight-bold gap-50>".$row -> price." DKK</p>
                  
-                        <a href=><img src='/CapWizards/assets/svg/plus.svg' alt='Add to cart btn'></a>
+                        <input value=add_to_cart type=submit name=add_to_cart>
                     </div> ";
     }
+
 
     function newsTemplate($row)
     {

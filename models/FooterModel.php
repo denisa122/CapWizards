@@ -41,20 +41,20 @@ class FooterModel extends BaseModel
     {
         return $template = "
 
-        <article class=margin-50>
-        <tr> ".$row -> openingHours."</tr>
+        <article class='margin-50'>
+            <tr> ".$row -> openingHours."</tr>
         </article> 
          <article>
-            <h2 class=h2-small margin-30>Do (not) hesitate to contact our team of Mystic Scaly Spellwavers with any questions and other matters :D</h2>
+            <h2 class='h2-small margin-30'>Do (not) hesitate to contact our team of Mystic Scaly Spellwavers with any questions and other matters :D</h2>
             <table>
                 <tr>
-                    <td class=table-i-width>Email:</td>
+                    <td class='table-i-width'>Email:</td>
                     <td> ".$row -> email." </td>
                 </tr>
             </table>
             <table>
                 <tr>
-                    <td class=table-i-width>Phone number:</td>
+                    <td class='table-i-width'>Phone number:</td>
                     <td>".$row -> phoneNumber."</td>
                 </tr>
             </table>

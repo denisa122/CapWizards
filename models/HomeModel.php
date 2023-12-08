@@ -91,8 +91,10 @@ class HomeModel extends BaseModel
     function specialOffersTemplate($row)
     {
         return $template = "
+            <form method=POST action='././views/shared/addToCartButton.php'>
                 <a class=text-decoration-none product-card href=>
-                    <input class=hidden name=product_id value= ".$row -> productID.">
+                    <input class=hidden name=productID value= ".$row -> productID.">
+                    <input type='hidden' name='orderID' value='".$_SESSION['orderID']."'>
                     <img class=img-150 margin-30 src = ".$row -> imgUrl." alt= ".$row -> altTxt.">
                     <h2 class=h2-black margin-15>".$row -> productName."</h2>
                     <p class=margin-15>
@@ -103,7 +105,8 @@ class HomeModel extends BaseModel
                         <p class=font-weight-bold gap-50>".$row -> price." DKK</p>
                  
                         <input value=add_to_cart type=submit name=add_to_cart>
-                    </div> ";
+                    </div> 
+            </form>";
     }
 
 

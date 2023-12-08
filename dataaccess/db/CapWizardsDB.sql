@@ -106,8 +106,8 @@ CREATE TABLE `Order` (
     deliveryMethod varchar(50),
     finalPrice DECIMAL,
     FK_customerID INT NOT NULL,
-    FK_addressID INT NOT NULL,
-    FK_paymentID INT NOT NULL,
+    FK_addressID INT NULL,
+    FK_paymentID INT NULL,
     FOREIGN KEY (FK_customerID) REFERENCES Customer (customerID),
     FOREIGN KEY (FK_addressID) REFERENCES Address (addressID),
     FOREIGN KEY (FK_paymentID) REFERENCES Payment (paymentID)

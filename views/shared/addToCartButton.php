@@ -1,14 +1,7 @@
 <?php
+require_once ("session.php");
+require_once("../../dataaccess/db/DBConnector.php");
 
-require_once ("./views/shared/session.php");
-require_once("././dataaccess/db/DBConnector.php");
-
-$FK_customerID = $_SESSION['customerID'];
-$count_cart_items = $conn->prepare("SELECT * FROM `Order` WHERE FK_customerID =?");
-$count_cart_items->execute();
-$count_cart_items->store_result();
-
-$total_cart_items = $count_cart_items->num_rows;
 
 $customerID = $_SESSION['customerID'];
 $orderID = $_SESSION['orderID'];
@@ -27,6 +20,10 @@ if (isset($_POST['add_to_cart'])) {
         $insert_order = $conn->prepare("INSERT INTO `Order` (orderID, FK_customerID) VALUES (?, ?)");
         $insert_order->bind_param("ss", $orderID, $customerID);
         $insert_order->execute();
+    } else {
+        // If an order exists, fetch the orderID
+        $existing_order = $resultOrder->fetch_assoc();
+        $orderID = $existing_order['orderID'];
     }
     
     $verify_cart = $conn->prepare("SELECT * FROM ProductOrder WHERE productID = ? AND orderID = ?");
@@ -67,11 +64,12 @@ if (isset($_POST['add_to_cart'])) {
 
             $insert_product_order = $conn->prepare("INSERT INTO ProductOrder (productID, orderID) VALUES (?, ?)");
             $insert_product_order->bind_param("ss", $productID, $orderID);
+            var_dump($orderID);
             $insert_product_order->execute();
-
-            $success_msg[] = 'Product Added';
+            
+            echo ('Product Added');
+            }
     
         }
     }
-}
 ?>

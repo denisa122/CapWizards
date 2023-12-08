@@ -1,10 +1,22 @@
+<?php 
+        require_once ("session.php");
+        require_once("././dataaccess/db/DBConnector.php");
+
+        $FK_customerID = $_SESSION['customerID'];
+        $count_cart_items = $conn->prepare("SELECT * FROM `Order` WHERE FK_customerID =?");
+        $count_cart_items->execute();
+        $count_cart_items->store_result();
+
+        $total_cart_items = $count_cart_items->num_rows;
+      ?>
+      
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="/CapWizards/assets/css/main.css">
+        <link rel="stylesheet" href="./CapWizards/assets/css/main.css">
         <script src="/assets/amountCounter.js" defer></script>
         <title>Document</title>
     </head>
@@ -66,10 +78,6 @@
 
       <li>
 
-      <?php 
-        require_once ("./views/shared/session.php");
-        require_once("././dataaccess/db/DBConnector.php");
-      ?>
       <a class="nav-link" href="http://localhost/CapWizards/ShoppingCart" style="margin-left: 80px;"> 
         <img src="/CapWizards/assets/svg/cart.svg" alt="Cart icon">
       </a>

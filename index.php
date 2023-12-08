@@ -43,16 +43,13 @@ route('/CapWizards/Products/Alcoholic/Shaker', function () {
 });
 
 route('/CapWizards/Products/Alcoholic/Wine', function () {
-    require "views/product/AlcoholicWine.php";
-});
-
-route('/CapWizards/Products/Alcoholic/Wine', function () {
     require "views/product/SingleProduct.php";
 });
 
 // Non-alcoholic products
 
 route('/CapWizards/Products/Non-alcoholic', function () {
+    $sproductID = $_GET['productID'];
     require "views/product/AllNonAlcoholic.php";
 });
 
@@ -99,6 +96,11 @@ route('/CapWizards/Admin/Update-extra-info', function () {
     require "views/admin/UpdateExtraCompanyInfo.php";
 });
 
+//Single page
+route('/CapWizards/Products/', function () {
+    require "views/product/SingleProduct.php";
+});
+
 // Contact form
 
 route('CapWizards/contactForm.php', function () {
@@ -120,7 +122,3 @@ $action = $_SERVER['REQUEST_URI'];
 
 dispatch($action);
 
-// Single page
-route('/CapWizards/Products/', function () {
-    require "views/product/SingleProduct.php";
-});

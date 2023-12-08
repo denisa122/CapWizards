@@ -2,18 +2,20 @@
 require("./views/shared/header.php");
 
 
-require_once "./models/SingleProductModel.php";
+require_once "./models/ProductModel.php";
 
-use models\SingleProductModel;
+use models\ProductModel;
 
-$SingleProductModel = new SingleProductModel();
+$SingleProductModel = new ProductModel();
+
+ 
 
 ?>
 
 <!-- Main -->
     <main>
             <div class="side-padding"> 
-                <?php $SingleProductModel -> getSingleProduct(1) ?>
+                <?php $SingleProductModel -> getSingleProduct(1); ?>
             </div>
     <!-- Recommended -->
     <section class="recommended-section text-center">

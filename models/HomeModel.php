@@ -63,7 +63,7 @@ class HomeModel extends BaseModel
             $cxn = parent::connectToDB();
 
             // Always get the 2 most recently added news
-            $query = "SELECT * FROM News order by newsID desc limit 2";
+            $query = "SELECT * FROM News order by newsDate desc limit 2";
             $stmt = $cxn -> prepare($query);
 
             $stmt -> execute();
@@ -113,8 +113,9 @@ class HomeModel extends BaseModel
     function newsTemplate($row)
     {
         return $template = "
-
-        <h2 class = h2-pink margin-15>".$row -> newsTitle ."</h2>
-        <p class ='p-pink'> ".$row -> newsText ."</p> ";
+        <div class='news-pink'>
+            <h2 class = h2-red margin-15>".$row -> newsTitle."</h2>
+            <p class ='p-red'> ".$row -> newsText ."</p> 
+        </div>";
     }
 }

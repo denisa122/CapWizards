@@ -122,9 +122,7 @@ $homeModel = new HomeModel();
     <article class="text-center">
         <h1 class="h1-black margin-50">News</h1>
         <div class="d-flex justify-content-center">
-            <div class="news-pink">
             <?php $homeModel -> getNews() ?>
-            </div>
         </div>
     </article>
 </main>

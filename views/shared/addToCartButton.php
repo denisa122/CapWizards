@@ -62,8 +62,9 @@ if (isset($_POST['add_to_cart'])) {
             // Get the last inserted order ID
             // $orderID = $conn->lastInsertId();
 
-            $insert_product_order = $conn->prepare("INSERT INTO ProductOrder (productID, orderID) VALUES (?, ?)");
-            $insert_product_order->bind_param("ss", $productID, $orderID);
+            $quantity = 1;
+            $insert_product_order = $conn->prepare("INSERT INTO ProductOrder (productID, orderID, quantity) VALUES (?, ?, ?)");
+            $insert_product_order->bind_param("sss", $productID, $orderID, $quantity);
             var_dump($orderID);
             $insert_product_order->execute();
             

@@ -1,7 +1,8 @@
 <?php
 require("./views/shared/header.php");
 require_once("././dataaccess/db/DBConnector.php");
- $FK_customerID = $_SESSION['customerID'];
+$customerID = $_SESSION['customerID'];
+$orderID = $_SESSION['orderID'];
 ?>
 
 <!-- Main -->
@@ -11,15 +12,21 @@ require_once("././dataaccess/db/DBConnector.php");
 
             <?php 
                 $select_order = null;
-                if(isset($_SESSION['orderID'])) {
-                    echo "$orderID"; 
-                $select_order = $conn->prepare("SELECT Product.imgUrl, Product.altTxt, Product.productName, Product.price, ProductOrder.quantity, ProductOrder.orderID FROM ProductOrder JOIN Product ON ProductOrder.productID = Product.productID WHERE ProductOrder.orderID = ?");
-                $select_order->bind_param("s", $orderID);
-                $select_order->execute();
-                $order_result = $select_order->get_result();
-                }
+                $order_exists = $conn->prepare("SELECT * FROM `Order` WHERE FK_customerID = ?");
+                $order_exists->bind_param("s", $customerID);
+                $order_exists->execute();
+                $resultOrder = $order_exists->get_result();
 
-                if($order_result->num_rows > 0) {
+                if($resultOrder->num_rows === 0) {
+                    echo "<p>Shopping cart is empty</p>";
+                }else{
+                    $existing_order = $resultOrder->fetch_assoc();
+                    $orderID = $existing_order['orderID'];
+                    $select_order = $conn->prepare("SELECT Product.imgUrl, Product.altTxt, Product.productName, Product.price, ProductOrder.quantity, ProductOrder.orderID FROM ProductOrder JOIN Product ON ProductOrder.productID = Product.productID WHERE ProductOrder.orderID = ?");
+                    $select_order->bind_param("s", $orderID);
+                    $select_order->execute();
+                    $order_result = $select_order->get_result();
+            
     
                   while ($fetch_order = $order_result->fetch_assoc()) { 
             ?>
@@ -51,10 +58,7 @@ require_once("././dataaccess/db/DBConnector.php");
     </main>
 
     <?php 
-    } else 
-    {
-    echo "<p>Shopping cart is empty</p>";
-    }
+    };
     require("./views/shared/footer.php");
 ?>
  

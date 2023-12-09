@@ -14,9 +14,12 @@ $SingleProductModel = new ProductModel();
 
 <!-- Main -->
     <main>
-            <div class="side-padding"> 
+        <section class='product-info-section'>
+            <div class="side-padding">
                 <?php $SingleProductModel -> getSingleProduct(1); ?>
             </div>
+        </section>
+            
     <!-- Recommended -->
     <section class="recommended-section text-center">
         <h1 class="h1-black margin-50">Recommended</h1>

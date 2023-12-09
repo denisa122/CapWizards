@@ -87,9 +87,7 @@ class ProductModel extends BaseModel
         //TODO: Figure out how to display 3 products in a row for the products pages
         return $template = "
         
-        
         <article class='product-w gap-50 margin-100'>
-        
             <a class='text-decoration-none product-card' href=http://localhost/CapWizards/Products/?ID= ". $row -> productID .">
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
@@ -109,7 +107,6 @@ class ProductModel extends BaseModel
     {
         return $template = "
 
-        <section class='product-info-section'>
                 <div class='text-center'>
                     <img class='img-350 margin-30' src = ".$row -> imgUrl." alt= ".$row -> altTxt.">
                     <h1 class='h1-black margin-50'>" .$row -> productName ."</h1>
@@ -120,19 +117,19 @@ class ProductModel extends BaseModel
                     <div class='col-7'>
                     <ul class='nav' id='myTab' role='tablist'>
                         <li class='margin-15 gap-15' role='presentation'>
-                          <a class='active text-decoration-none h2-small tabs-a' href='#description' id='descr-tab' data-toggle='tab' data-target='#description' aria-controls='description' aria-selected='true'>Description</a>
+                          <a class='nav-link active text-decoration-none h2-small tabs-a' href='#description' id='descr-tab' data-toggle='tab' data-target='#description' aria-controls='description' aria-selected='true'>Description</a>
                         </li>
-                        <li   role='presentation'>
-                          <a class='text-decoration-none h2-small tabs-a'  href='#specification' id='specification-tab'  data-toggle='tab' data-target='#specification' aria-controls='specification' aria-selected='false'>Specification</a>
+                        <li role='presentation'>
+                          <a class='nav-link text-decoration-none h2-small tabs-a'  href='#specification' id='specification-tab'  data-toggle='tab' data-target='#specification' aria-controls='specification' aria-selected='false'>Specification</a>
                         </li>
                       </ul>
                       <div class='tab-content' id='myTabContent'>
-                        <div class='tab-pane fade show active' id='description' role='tabpanel' aria-labelledby='descr-tab'>
-                            <p>".$row -> productDescription ."</p>
+                        <div class='tab-pane active' id='description' role='tabpanel' aria-labelledby='descr-tab'>
+                            <p class='p-black'>".$row -> productDescription ."</p>
                         </div>
-                        <div class='tab-pane fade' id='specification' role='tabpanel' aria-labelledby='specification-tab'>
+                        <div class='tab-pane' id='specification' role='tabpanel' aria-labelledby='specification-tab'>
                             <table>
-                                <tr>
+                                <tr class='p-black'>
                                     <td class='table-i-width'>Brand:</td>
                                     <td> ".$row -> brand ."</td>
                                 </tr>
@@ -177,8 +174,7 @@ class ProductModel extends BaseModel
                         <div class='row'><a class='small-button-pink'>Add to cart</a></div>
                     </div>
                 </div>
-            </div>
-        </section> ";
+            </div>";
     }
 
 

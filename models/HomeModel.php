@@ -97,7 +97,7 @@ class HomeModel extends BaseModel
                     <input type='hidden' name='orderID' value='".$_SESSION['orderID']."'>
                     <img class='img-150 margin-30' src = ".$row -> imgUrl." alt= ".$row -> altTxt.">
                     <h2 class='h2-black' margin-15>".$row -> productName."</h2>
-                    <p class='margin-15'>
+                    <p class='margin-15 p-black'>
                         ".$row -> productDescription."
                     </p>
                 </a>

@@ -1,10 +1,12 @@
 <?php
-require("./views/shared/header.php") 
+
+require("./views/shared/header.php");
+
 ?>
 
 <!-- Main -->
 <main>
-    <article class="text-center">
+    <article class="text-center top-padding">
         <h1 class="h1-yellow margin-30">Create an account</h1>
         <div class="d-flex justify-content-center">
         <form id="registerForm" method="POST" action="<?php echo BASE_URL ?>/Controllers/LoginController.php?action=register">

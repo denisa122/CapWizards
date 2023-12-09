@@ -22,9 +22,9 @@
     </head>
     <body>
          <!-- Header -->
-         <header>
+         <!-- <header>
          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  <!-- <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -32,7 +32,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
-      <!-- Product categories -->
+      <!-- Product categories
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,15 +66,15 @@
         </div>
       </li>
 
-      <!-- Logo -->
+      <!-- Logo
 
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost/CapWizards" style="margin-left: 720px !important;"> <!-- Change this to a better option to center the logo-->
+        <a class="nav-link" href="http://localhost/CapWizards" style="margin-left: 720px !important;"> <!-- Change this to a better option to center the logo
           LOGO
         </a>
       </li>
 
-      <!-- User actions -->
+      <!-- User actions
 
       <li>
 
@@ -91,11 +91,11 @@
     </ul>
   </div>
 </nav>  
-</header>
+</header> -->
 
-<!-- <header>
+      <header>
         <nav class="d-flex justify-content-between">
-            <!-- Alcoholic 
+            <!-- Alcoholic  -->
             <div class="d-flex">
                 <div class="dropdown d-flex gap-30">
                         <h2 class="dropdown h2-small gap-5" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Alcoholic</h2>
@@ -129,25 +129,25 @@
                         </div>
                     </div>
                 </div>
-            <!-- Non-alcoholic
+            <!-- Non-alcoholic -->
                 <div class="dropdown d-flex">
                     <h2 class="dropdown h2-small gap-5" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Non-Alcoholic</h2>
                     <img src="/CapWizards/assets/svg/arrow.svg" alt="Arrow icon">
                 <div class="dropdown-menu border-0 rounded-0 p-0 " aria-labelledby="dropdownMenu">
                     <div class="d-flex">
-                        <a class="dropdown-item text-center p-0">
+                        <a class="dropdown-item text-center p-0" href="http://localhost/CapWizards/Products/Non-alcoholic/Soda">
                             <div class="menu-red"> 
                                 <img src="/CapWizards/assets/svg/cider.svg" alt="Soda icon">
                                 <h2 class="h2-small h2-bage">Soda</h2>
                             </div>
                         </a>
-                        <a href="" class="dropdown-item text-center p-0">
+                        <a href="" class="dropdown-item text-center p-0" href="http://localhost/CapWizards/Products/Non-alcoholic/Soft-drink">
                             <div class="menu-yellow">
                                 <img src="/CapWizards/assets/svg/beer-bage.svg" alt="Soft drink icon">
                                 <h2 class="h2-small h2-bage">Soft drink</h2>
                             </div>
                         </a>
-                        <a class="dropdown-item text-center p-0">
+                        <a class="dropdown-item text-center p-0" href="http://localhost/CapWizards/Products/Non-alcoholic/Water">
                             <div class="menu-blue"> 
                                 <img src="/CapWizards/assets/svg/mixer.svg" alt="Water icon">
                                 <h2 class="h2-small h2-bage">Water</h2>
@@ -157,10 +157,18 @@
                 </div>
             </div>
             </div>
-        <!-- Icons 
+
+            <a class="nav-link" href="http://localhost/CapWizards" style="margin-left: 720px !important;"> <!-- Change this to a better option to center the logo -->
+              LOGO
+            </a>
+        <!-- Icons -->
             <div>
-                <img class="gap-30" src="/CapWizards/assets/svg/cart.svg" alt="Cart icon">
-                <img src="/CapWizards/assets/svg/avatar.svg" alt="Admin icon">
+              <a class="gap-30" href="http://localhost/CapWizards/ShoppingCart" style="margin-left: 80px;"> 
+                <img src="/CapWizards/assets/svg/cart.svg" alt="Cart icon">
+              </a>
+              <a  href="http://localhost/CapWizards/Login">   
+                <img src="/CapWizards/assets/svg/avatar.svg" alt="Avatar icon">  
+              </a>
             </div>
-            </nav>
-        </header>  -->
+          </nav>
+        </header> 

@@ -1,10 +1,12 @@
 <?php
-require("./views/shared/header.php") 
+
+require("./views/shared/header.php");
+
 ?>
 
 <!-- Main -->
 <main>
-    <article class="text-center ">
+    <article class="text-center top-padding">
         <h1 class="h1-yellow margin-30">Log In</h1>
         <div class="d-flex justify-content-center">
             <form method="POST" id="loginForm" action="<?php echo BASE_URL ?>/Controllers/LoginController.php?action=login">
@@ -28,7 +30,7 @@ require("./views/shared/header.php")
         </div>
     
     </article>
-  </main>
+</main>
 
 <?php
 require("./views/shared/footer.php") 

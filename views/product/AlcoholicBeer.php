@@ -24,7 +24,6 @@ $productModel = new ProductModel();
         </div>
     </section>
 </main>
-</html>
 
 <?php
 require("./views/shared/footer.php") 

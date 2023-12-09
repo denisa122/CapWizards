@@ -142,6 +142,10 @@ footer {
     padding: 0 150px;
 }
 
+.top-padding {
+    padding-top: 150px;
+}
+
 
 /* Headings */
 .h1-black,
@@ -203,6 +207,10 @@ footer {
     color: var(--custom-red);
 }
 
+.p-black {
+    color: #000;
+}
+
 
 /* Img */
 .img-150 {
@@ -248,6 +256,7 @@ footer {
 /* Forms */
 .input-color {
     background-color: var(--custom-bage);
+    color:#000;
 }
 
 .input-size-s {
@@ -373,7 +382,7 @@ input::-webkit-outer-spin-button {
 
 /* PRODUCT PAGES style */
 .product-info-section {
-    padding: 0 0 150px 0;
+    padding:  150px 0;
  }
  
  .recommended-section {
@@ -415,9 +424,6 @@ input::-webkit-outer-spin-button {
     color: var(--custom-bage);
  }
  
- 
- 
- 
  .tabs-a {
     color: #000;
  }
@@ -425,3 +431,8 @@ input::-webkit-outer-spin-button {
  .tabs-a:hover {
     color: #000;
  } 
+
+/* CART OVERVIEW page*/
+
+/* LOGIN page */
+/* CREATE ACCOUNT page */

@@ -24,7 +24,6 @@ $productModel = new ProductModel();
         </div>
     </section>
 </main>
-</html>
 
 <!-- For now it's empty bc we don't have any ciders in the database -->
 

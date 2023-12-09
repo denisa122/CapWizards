@@ -90,10 +90,10 @@ class ProductModel extends BaseModel
         
         <article class='product-w gap-50 margin-100'>
         
-            <a class=text-decoration-none product-card href=http://localhost/CapWizards/Products/?ID= ". $row -> productID .">
+            <a class='text-decoration-none product-card' href=http://localhost/CapWizards/Products/?ID= ". $row -> productID .">
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
-                <p class='margin-15'>" . $row -> productDescription . " </p>
+                <p class='margin-15 p-black'>" . $row -> productDescription . " </p>
             </a>
 
             <div class='d-flex justify-content-center'>
@@ -109,8 +109,8 @@ class ProductModel extends BaseModel
     {
         return $template = "
 
-        <section class=product-info-section>
-                <div class=text-center>
+        <section class='product-info-section'>
+                <div class='text-center'>
                     <img class='img-350 margin-30' src = ".$row -> imgUrl." alt= ".$row -> altTxt.">
                     <h1 class='h1-black margin-50'>" .$row -> productName ."</h1>
                 </div>

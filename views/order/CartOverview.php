@@ -7,7 +7,7 @@ $orderID = $_SESSION['orderID'];
 
 <!-- Main -->
     <main>
-        <section class="cart-item-section">
+        <section class="cart-item-section top-padding">
             <h1 class="text-center margin-50 h1-black">Cart overview</h1>
 
             <?php 

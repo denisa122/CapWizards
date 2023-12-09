@@ -16,9 +16,13 @@ $productModel = new ProductModel();
     </section>
 
 <!-- Product grid -->
-    <ul>
-  <?php $productModel -> getProductsBySubcategory(2, 7); ?>
-</ul>
+    <section class='side-padding text-center'>
+        <div class='d-flex justify-content-center justify-content-between container'>
+            <div class='row'>
+                 <?php $productModel -> getProductsBySubcategory(2, 7); ?>
+            </div>
+        </div>
+    </section>
 </main>
 </html>
 

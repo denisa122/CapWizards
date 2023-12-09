@@ -87,25 +87,22 @@ class ProductModel extends BaseModel
         //TODO: Figure out how to display 3 products in a row for the products pages
         return $template = "
         
-        <section class='side-padding text-center'>
-        <div class='d-flex justify-content-center justify-content-between margin-100 container'>
-        <div class='row'>
-        <article class='product-w col-sm'>
         
-        <a class=text-decoration-none product-card href=http://localhost/CapWizards/Products/?ID= ". $row -> productID .">
-        <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
-        <h2 class='h2-black margin-15'" . $row-> productName . "</h2>
-        <p class='margin-15'>" . $row -> productDescription . " </p>
-        </a>
+        <article class='product-w gap-50 margin-100'>
+        
+            <a class=text-decoration-none product-card href=http://localhost/CapWizards/Products/?ID= ". $row -> productID .">
+                <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
+                <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
+                <p class='margin-15'>" . $row -> productDescription . " </p>
+            </a>
 
-        <div class='d-flex justify-content-center'>
-        <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>
+            <div class='d-flex justify-content-center'>
+                <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>
 
-        <a href=''><img src='/CapWizards/assets/svg/plus.svg' alt = 'Add to cart button'></a>
-        </div>
-        </article>
-        </div>
-        </section>";
+                <a href=''><img src='/CapWizards/assets/svg/plus.svg' alt = 'Add to cart button'></a>
+            </div>
+        </article>";
+        
     }
 
     function singleProductTemplate($row)

@@ -14,7 +14,7 @@
 }
 
 main {
-    padding: 150px 0;
+    padding: 0 0 150px 0;
     font-size: 18px;
     background-color: var(--custom-bage);
 }

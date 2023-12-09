@@ -78,7 +78,7 @@ $homeModel = new HomeModel();
     <main class="pt-0">
     <!--banner-->
     <section class="banner text-center">
-        <img src="/Assets/svg/Intro section.svg" alt="">
+        <img src="/CapWizards/assets/svg/Intro section.svg" alt="">
     </section>
 
     <!--About us-->

@@ -11,14 +11,18 @@ $productModel = new ProductModel();
 
 
 <main>
-    <section class="text-center categories-header margin-100 subcategories-yellow">
+    <section class="text-center categories-header margin-100 subcategories-pink">
         <h1 class="h1-black">Wine</h1>
     </section>
 
 <!-- Product grid -->
-    <ul>
-  <?php $productModel -> getProductsBySubcategory(1, 1); ?>
-</ul>
+    <section class='side-padding text-center'>
+        <div class='d-flex justify-content-center justify-content-between container'>
+            <div class='row'>
+                <?php $productModel -> getProductsBySubcategory(1, 1); ?>
+            </div>
+        </div>
+    </section>
 </main>
 </html>
 

@@ -8,15 +8,14 @@ use models\ProductModel;
 
 $SingleProductModel = new ProductModel();
 
- 
-
 ?>
 
 <!-- Main -->
     <main>
         <section class='product-info-section'>
             <div class="side-padding">
-                <?php $SingleProductModel -> getSingleProduct(1); ?>
+                <?php $SingleProductModel -> getSingleProduct( );?>
+               
             </div>
         </section>
             

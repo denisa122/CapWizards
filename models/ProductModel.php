@@ -60,14 +60,14 @@ class ProductModel extends BaseModel
         }
     }
 
-    function getSingleProduct($productID)
+    function getSingleProduct()
     {
         try {
             $cxn = parent::connectToDB();
              
             $query = "SELECT * FROM Product Where productID = :productID";
             $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":productID", $productID);
+            $stmt -> bindParam(":productID", $_GET['productID']);
 
             $stmt -> execute();
             $result =  $stmt -> fetchAll(\PDO::FETCH_OBJ);
@@ -88,7 +88,7 @@ class ProductModel extends BaseModel
         return $template = "
         
         <article class='product-w gap-50 margin-100'>
-            <a class='text-decoration-none product-card' href=http://localhost/CapWizards/Products/?ID= ". $row -> productID .">
+            <a class='text-decoration-none product-card' href=http://localhost/CapWizards/Products/?productID=". $row -> productID .">
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
                 <p class='margin-15 p-black'>" . $row -> productDescription . " </p>

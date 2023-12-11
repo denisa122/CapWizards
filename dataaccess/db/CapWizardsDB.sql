@@ -48,11 +48,6 @@ CREATE TABLE CategorySubcategory (
     FOREIGN KEY (subcategoryID) REFERENCES Subcategory (subcategoryID)
 )ENGINE = InnoDB;
 
-CREATE TABLE Variations (
-    variationID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    color varchar(50)
-)ENGINE = InnoDB;
-
 CREATE TABLE Product (
     productID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     productName  VARCHAR(50),
@@ -71,12 +66,11 @@ CREATE TABLE Product (
     FOREIGN KEY (FK_subcategoryID) REFERENCES Subcategory (subcategoryID)
 )ENGINE = InnoDB;
 
-CREATE TABLE ProductVariations (
-    variationID int NOT NULL,
-    productID  int NOT NULL,
-    PRIMARY KEY (variationID, productID),
-    FOREIGN KEY (variationID) REFERENCES Variations (variationID),
-    FOREIGN KEY (productID) REFERENCES Product (productID)
+CREATE TABLE Variations (
+    variationID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    color varchar(50),
+    FK_productID INT,
+    FOREIGN KEY (FK_productID) REFERENCES Product (productID)
 )ENGINE = InnoDB;
 
 CREATE TABLE Account (
@@ -188,15 +182,6 @@ INSERT INTO CategorySubcategory (categoryID, subcategoryID) VALUES
 (2, 6),
 (2, 7);
 
-INSERT INTO Variations (variationID, color) VALUES 
-(NULL, "Black"),
-(NULL, "Blue"),
-(NULL, "Purple"),
-(NULL, "Green"),
-(NULL, "Red"),
-(NULL, "Silver"),
-(NULL, "White");
-
 INSERT INTO Product (productID, productName, productDescription, price, size, brand, availability, imgUrl, altTxt, material, isSpecialOffer, FK_categoryID, FK_subcategoryID) VALUES
 (NULL, "Coca-Cola Original", "Coca-Cola Original bottle cap crafted with precision and attention to every detail. Characteristic red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Coca Cola", "1", "/CapWizards/assets/img/coca-cola/Coca-cola_oryginal.png", "coca-cola original red bottle cap", "metal", 1, "2", 5),
 (NULL, "Coca-Cola Black", "Coca-Cola Black bottle cap crafted with precision and attention to every detail. Characteristic black color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Coca Cola", "1", "/CapWizards/assets/img/coca-cola/Coca-cola_black.png", "coca-cola black bottle cap", "metal", 0, "2", 5),
@@ -218,26 +203,26 @@ INSERT INTO Product (productID, productName, productDescription, price, size, br
 (NULL, "Tuborg Red", "Tuborg red bottle cap crafted with precision and attention to every detail. Characteristic red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Tuborg", "1", "/CapWizards/assets/img/tuborg/Tuborg_red.png", "Tuborg red bottle cap", "metal", 0, "1", 2),
 (NULL, "Tuborg Gron Original", "Tuborg Gron original bottle cap crafted with precision and attention to every detail. Characteristic silver color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Tuborg Gron", "1", "/CapWizards/assets/img/tuborg_gron/Tuborg-Gron_oryginal.png", "Tuborg Gron oryginal bottle cap", "metal", 0, "1", 2);
 
-INSERT INTO ProductVariations (variationID, productID) VALUES
-(1, 2),
-(1, 16),
-(2, 4),
-(2, 7),
-(2, 11),
-(2, 13),
-(3, 5),
-(4, 3),
-(4, 8),
-(4, 12),
-(4, 14),
-(4, 17),
-(5, 1),
-(5, 9),
-(5, 15),
-(5, 18),
-(6, 6),
-(6, 19),
-(7, 10);
+INSERT INTO Variations (variationID, color, FK_productID) VALUES 
+(NULL, "Black", 2),
+(NULL, "Black", 16),
+(NULL, "Blue", 4),
+(NULL, "Blue", 7),
+(NULL, "Blue", 11),
+(NULL, "Blue", 13),
+(NULL, "Purple", 5),
+(NULL, "Green", 3),
+(NULL, "Green", 8),
+(NULL, "Green", 12),
+(NULL, "Green", 14),
+(NULL, "Green", 17),
+(NULL, "Red", 1),
+(NULL, "Red", 9),
+(NULL, "Red", 15),
+(NULL, "Red", 18),
+(NULL, "Silver", 6),
+(NULL, "Silver", 19),
+(NULL, "White", 10);
 
 INSERT INTO Customer (customerID, firstName, lastName, email, phoneNumber, userName) VALUES
 (NULL, 'Haskell', 'Llop', 'hllop0@live.com', '+850 249 585 2080', 'hllop0'),

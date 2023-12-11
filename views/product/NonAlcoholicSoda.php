@@ -11,7 +11,7 @@ $productModel = new ProductModel();
 
 
 <main>
-    <section class="text-center categories-header margin-100 subcategories-yellow">
+    <section class="text-center categories-header margin-100 subcategories-red">
         <h1 class="h1-black">Soda</h1>
     </section>
 

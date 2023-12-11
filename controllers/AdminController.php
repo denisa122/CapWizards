@@ -60,7 +60,7 @@ else if ($action == "updateCompanyDescription")
     </script>";
 }
 // Methods for extra company details
-else if ($action = "updateExtraInfo")
+else if ($action == "updateExtraInfo")
 {
     $companyID = $_POST["companyID"];
     $email = $_POST["email"];
@@ -71,6 +71,43 @@ else if ($action = "updateExtraInfo")
 
     echo "<script>
     alert('Information updated successfully');
+    window.location.href='http://localhost/CapWizards/Admin';
+    </script>";
+}
+// Methods for special offers
+else if ($action == "removeProductFromSpecialOffers")
+{
+    $productID = $_GET['productID'];
+
+    $adminModel -> removeProductFromSpecialOffers($productID);
+
+    echo "<script>
+    alert('Product removed from special offers successfully');
+    window.location.href='http://localhost/CapWizards/Admin';
+    </script>";
+}
+else if ($action == "addSpecialOffer")
+{
+    $productID = $_POST["productID"];
+
+    $adminModel-> createSpecialOffer($productID);
+    
+    echo "<script>
+    alert('Special offer created successfully');
+    window.location.href='http://localhost/CapWizards/Admin';
+    </script>";
+}
+else if ($action == "updateProductSpecialOffer")
+{   
+    $productID = $_POST["productID"];
+    $productName = $_POST['productName'];
+    $productDescription = $_POST['productDescription'];
+    $price = $_POST['price'];
+
+    $adminModel -> updateProductSpecialOffer($productID, $productName, $productDescription, $price);
+
+    echo "<script>
+    alert('Product updated successfully');
     window.location.href='http://localhost/CapWizards/Admin';
     </script>";
 }

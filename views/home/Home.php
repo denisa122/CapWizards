@@ -104,16 +104,8 @@ $homeModel = new HomeModel();
     <section class="dailyOffers-section text-center">
         <h1 class="h1-black margin-50">Special offers</h1>
         <div class="d-flex justify-content-center justify-content-between">
-            <article class="product-w"> 
-            <?php $homeModel -> getSpecialOffers(10) ?>
-            </article>
-                
-            <article class="product-w"> 
-            <?php $homeModel -> getSpecialOffers(5) ?>
-            </article>
-                
-            <article class="product-w"> 
-                <?php $homeModel -> getSpecialOffers(17) ?>  
+            <article class="product-w container"> 
+            <?php $homeModel -> getSpecialOffers(); ?>
             </article>
         </div>
     </section>

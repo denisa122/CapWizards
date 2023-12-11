@@ -12,4 +12,4 @@ require("./views/shared/header.php")
             <br/>
              
             <button type="submit" name="addNews" class="row text-center form-button-wrapper margin-30 big-button form-button">Add</button>
-          </form>
+</form>

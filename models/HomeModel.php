@@ -35,16 +35,15 @@ class HomeModel extends BaseModel
         }
     }
 
-    function getSpecialOffers($productID)
+    function getSpecialOffers()
     {
         try {
             $cxn = parent::connectToDB();
 
-            $query = "SELECT * FROM Product WHERE productID = :productID";
+            $query = "SELECT * FROM Product WHERE isSpecialOffer = 1";
             $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":productID", $productID);
-
             $stmt -> execute();
+            
             $result =  $stmt -> fetchAll(\PDO::FETCH_OBJ);
             
             foreach ($result as $row)

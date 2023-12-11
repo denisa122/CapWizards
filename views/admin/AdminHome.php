@@ -47,29 +47,10 @@ $FooterInfoModel = new FooterModel();
     <!-- Daily offers -->
     <section class="dailyOffers-section text-center">
         <h1 class="h1-black margin-50">Special offers</h1>
+        <a class="btn btn-success" href="http://localhost/CapWizards/Admin/Add-special-offer" style="margin-bottom: 80px;">Add special offer</a>
         <div class="d-flex justify-content-center justify-content-between">
-            <article class="product-w"> 
-            <?php $adminModel -> getSpecialOffers(10) ?>
-            <div class="text-right">
-                <button class="btn btn-secondary">Edit</button>
-                <button class="btn btn-danger" stye>Delete</button>
-            </div>
-            </article>
-                
-            <article class="product-w"> 
-            <?php $adminModel -> getSpecialOffers(5) ?>
-            <div class="text-right">
-                <button class="btn btn-secondary">Edit</button>
-                <button class="btn btn-danger" stye>Delete</button>
-            </div>
-            </article>
-                
-            <article class="product-w"> 
-                <?php $adminModel -> getSpecialOffers(17) ?>
-                <div class="text-right">
-                    <button class="btn btn-secondary">Edit</button>
-                    <button class="btn btn-danger" stye>Delete</button>
-            </div> 
+            <article class="product-w container"> 
+            <?php $adminModel -> getSpecialOffers(); ?>
             </article>
         </div>
     </section>

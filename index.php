@@ -104,6 +104,17 @@ route('/CapWizards/Admin/Update-extra-info', function () {
     require "views/admin/UpdateExtraCompanyInfo.php";
 });
 
+route('/CapWizards/Admin/Add-special-offer', function () {
+    require "views/admin/AddSpecialOffer.php";
+});
+
+route('/CapWizards/Admin/Update-product-special-offer', function () {
+    // Extract the newsID from the query parameters
+    $productID = isset($_GET['productID']) ? $_GET['productID'] : null;
+    
+    require "views/admin/UpdateProduct.php";
+});
+
 // Contact form
 
 route('CapWizards/contactForm.php', function () {

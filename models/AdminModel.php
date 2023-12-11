@@ -199,16 +199,15 @@ class AdminModel extends BaseModel
     }
 
     // Special offers
-    function getSpecialOffers($productID)
+    function getSpecialOffers()
     {
         try {
             $cxn = parent::connectToDB();
 
-            $query = "SELECT * FROM Product WHERE productID = :productID";
+            $query = "SELECT * FROM Product WHERE isSpecialOffer = 1";
             $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":productID", $productID);
-
             $stmt -> execute();
+            
             $result =  $stmt -> fetchAll(\PDO::FETCH_OBJ);
             
             foreach ($result as $row)
@@ -217,6 +216,70 @@ class AdminModel extends BaseModel
             }
 
         } catch(\PDOException $e) {
+            echo $e -> getMessage();
+        }
+    }
+
+    function removeProductFromSpecialOffers($productID)
+    {
+        try {
+            $cxn = parent::connectToDB();
+
+            $query = "UPDATE Product SET isSpecialOffer = 0 WHERE productID = :productID";
+            $stmt = $cxn -> prepare($query);
+            $stmt -> bindParam(":productID", $productID);
+
+            $stmt -> execute();
+
+            $cxn = null;
+
+        } catch (\PDOException $e){
+            echo $e -> getMessage();
+        }
+    }
+
+    function createSpecialOffer($productID)
+    {
+        try {
+            $cxn = parent::connectToDB();
+
+            $query = "UPDATE Product SET isSpecialOffer = 1 WHERE productID = :productID";
+            $stmt = $cxn -> prepare($query);
+
+            $stmt -> bindParam(":productID", $productID);
+
+            $stmt -> execute();
+
+            $cxn = null;
+
+        } catch (\PDOException $e){
+            echo $e -> getMessage();
+        }
+    }
+
+    function updateProductSpecialOffer($productID, $productName, $productDescription, $price)
+    {
+        try {
+            $cxn = parent::connectToDB();
+
+            $query = "UPDATE Product SET productName = :productName, productDescription = :productDescription, price = :price WHERE productID = :productID";
+            $stmt = $cxn -> prepare($query);
+
+            $stmt -> bindParam("productName", $productName);
+            $stmt -> bindParam("productDescription", $productDescription);
+            $stmt -> bindParam("price", $price);
+            $stmt -> bindParam("productID", $productID);
+
+            $sanitized_name = htmlspecialchars($productName);
+			$sanitized_description = htmlspecialchars($productDescription);
+            $stmt -> bindParam("productName", $sanitized_name);
+            $stmt -> bindParam("productDescription", $sanitized_description);
+
+            $stmt -> execute();
+
+            $cxn = null;
+
+        } catch (\PDOException $e){
             echo $e -> getMessage();
         }
     }
@@ -298,8 +361,10 @@ class AdminModel extends BaseModel
                 </a>
                     <div class=d-flex justify-content-center>
                         <p class=font-weight-bold gap-50>".$row -> price." DKK</p>
-                 
-                        <a href=><img src='/CapWizards/assets/svg/plus.svg' alt='Add to cart btn'></a>
-                    </div> ";
+                    </div> 
+                    <div style='margin-bottom:60px'>
+                    <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-product-special-offer?productID=" . $row->productID . "'>Edit</a>
+                        <a class='btn btn-danger' href='" . BASE_URL . "/Controllers/AdminController.php?action=removeProductFromSpecialOffers&productID=" . $row->productID . "'>Remove from special offers</a>
+                    </div>";
     }
 }

@@ -48,6 +48,10 @@ CREATE TABLE CategorySubcategory (
     FOREIGN KEY (subcategoryID) REFERENCES Subcategory (subcategoryID)
 )ENGINE = InnoDB;
 
+CREATE TABLE Variations (
+    variationID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    color varchar(50)
+)ENGINE = InnoDB;
 
 CREATE TABLE Product (
     productID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -56,7 +60,6 @@ CREATE TABLE Product (
     price DECIMAL,
     size int,
     brand varchar(80),
-    color varchar(50),
     availability int,
     imgUrl VARCHAR(255),
     altTxt VARCHAR(100),
@@ -66,6 +69,14 @@ CREATE TABLE Product (
     FK_subcategoryID INT,
     FOREIGN KEY (FK_categoryID) REFERENCES Category (categoryID),
     FOREIGN KEY (FK_subcategoryID) REFERENCES Subcategory (subcategoryID)
+)ENGINE = InnoDB;
+
+CREATE TABLE ProductVariations (
+    variationID int NOT NULL,
+    productID  int NOT NULL,
+    PRIMARY KEY (variationID, productID),
+    FOREIGN KEY (variationID) REFERENCES Variations (variationID),
+    FOREIGN KEY (productID) REFERENCES Product (productID)
 )ENGINE = InnoDB;
 
 CREATE TABLE Account (
@@ -177,26 +188,56 @@ INSERT INTO CategorySubcategory (categoryID, subcategoryID) VALUES
 (2, 6),
 (2, 7);
 
-INSERT INTO Product (productID, productName, productDescription, price, size, brand, color, availability, imgUrl, altTxt, material, isSpecialOffer, FK_categoryID, FK_subcategoryID) VALUES
-(NULL, "Coca-Cola Original", "Coca-Cola Original bottle cap crafted with precision and attention to every detail. Characteristic red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Coca Cola", "Red", "1", "/CapWizards/assets/img/coca-cola/Coca-cola_oryginal.png", "coca-cola original red bottle cap", "metal", 1, "2", 5),
-(NULL, "Coca-Cola Black", "Coca-Cola Black bottle cap crafted with precision and attention to every detail. Characteristic black color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Coca Cola", "Black", "1", "/CapWizards/assets/img/coca-cola/Coca-cola_black.png", "coca-cola black bottle cap", "metal", 0, "2", 5),
-(NULL, "Sprite Original", "Sprite Original bottle cap crafted with precision and attention to every detail. Characteristic green color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Sprite", "Green", "1", "/CapWizards/assets/img/sprite/Sprite_oryginal.png", "sprite original green bottle cap", "metal", 0, "2", 5),
-(NULL, "Sprite Blue", "Sprite blue bottle cap crafted with precision and attention to every detail. Characteristic blue color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Sprite", "Blue", "1", "/CapWizards/assets/img/sprite/Sprite_blue.png", "sprite blue bottle cap", "metal", 1, "2", 5),
-(NULL, "Sprite purple", "Sprite purple bottle cap crafted with precision and attention to every detail. Characteristic purple color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Sprite", "Purple", "1", "/CapWizards/assets/img/sprite/Sprite_purple.png", "sprite purple bottle cap", "metal", 0, "2", 5),
-(NULL, "Breezer Original", "Breezer Original bottle cap crafted with precision and attention to every detail. Characteristic silver color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Breezer", "Silver", "1", "/CapWizards/assets/img/breezer/Breezer_oryginal.png", "breezer original bottle cap", "metal", 0, "1", 3),
-(NULL, "Corona Original", "Corona Original bottle cap crafted with precision and attention to every detail. Characteristic navy blue color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Corona", "Navy blue", "1", "/CapWizards/assets/img/corona/Corona_oryginal.png", "Corona original bottle cap", "metal", 0, "1", 2),
-(NULL, "Corona Green", "Corona green bottle cap crafted with precision and attention to every detail. Characteristic green color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Corona", "Green", "1", "/CapWizards/assets/img/corona/Corona_green.png", "Corona green bottle cap", "metal", 0, "1", 2),
-(NULL, "Corona Red", "Corona red bottle cap crafted with precision and attention to every detail. Characteristic red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Corona", "Red", "1", "/CapWizards/assets/img/corona/Corona_red.png", "Corona red bottle cap", "metal", 0, "1", 2),
-(NULL, "Jul Original", "Jul Original bottle cap crafted with precision and attention to every detail. Characteristic white and red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Jul", "White/Red", "1", "/CapWizards/assets/img/jul/Jul_oryginal.png", "Jul original bottle cap", "metal", 0, "1", 2),
-(NULL, "Jul Blue", "Jul blue bottle cap crafted with precision and attention to every detail. Characteristic blue color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Jul", "Blue", "1", "/CapWizards/assets/img/jul/Jul_blue.png", "Jul blue bottle cap", "metal", 0, "1", 2),
-(NULL, "Jul Green", "Jul green bottle cap crafted with precision and attention to every detail. Characteristic green color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Jul", "Green", "1", "/CapWizards/assets/img/jul/Jul_green.png", "Jul green bottle cap", "metal", 0, "1", 2),
-(NULL, "Skovlyst Original", "Skovlyst original bottle cap crafted with precision and attention to every detail. Characteristic blue color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Skovlyst", "Blue", "1", "/CapWizards/assets/img/skovlyst/Skovlyst_oryginal.png", "Skovlyst oryginal bottle cap", "metal",1, "1", 2),
-(NULL, "Skovlyst Green", "Skovlyst green bottle cap crafted with precision and attention to every detail. Characteristic green color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Skovlyst", "Green", "1", "/CapWizards/assets/img/skovlyst/Skovlyst_green.png", "Skovlyst green bottle cap", "metal", 0, "1", 2),
-(NULL, "Skovlyst Red", "Skovlyst red bottle cap crafted with precision and attention to every detail. Characteristic red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Skovlyst", "Red", "1", "/CapWizards/assets/img/skovlyst/Skovlyst_red.png", "Skovlyst red bottle cap", "metal", 0, "1", 2),
-(NULL, "Tuborg Original", "Tuborg original bottle cap crafted with precision and attention to every detail. Characteristic black color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Tuborg", "Black", "1", "/CapWizards/assets/img/tuborg/Tuborg_oryginal.png", "Tuborg oryginal bottle cap","metal", 0, "1", 2),
-(NULL, "Tuborg Green", "Tuborg green bottle cap crafted with precision and attention to every detail. Characteristic green color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Tuborg", "Green", "1", "/CapWizards/assets/img/tuborg/Tuborg_green.png", "Tuborg green bottle cap", "metal", 0, "1", 2),
-(NULL, "Tuborg Red", "Tuborg red bottle cap crafted with precision and attention to every detail. Characteristic red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Tuborg", "Red", "1", "/CapWizards/assets/img/tuborg/Tuborg_red.png", "Tuborg red bottle cap", "metal", 0, "1", 2),
-(NULL, "Tuborg Gron Original", "Tuborg Gron original bottle cap crafted with precision and attention to every detail. Characteristic silver color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Tuborg Gron", "Silver", "1", "/CapWizards/assets/img/tuborg_gron/Tuborg-Gron_oryginal.png", "Tuborg Gron oryginal bottle cap", "metal", 0, "1", 2);
+INSERT INTO Variations (variationID, color) VALUES 
+(NULL, "Black"),
+(NULL, "Blue"),
+(NULL, "Purple"),
+(NULL, "Green"),
+(NULL, "Red"),
+(NULL, "Silver"),
+(NULL, "White");
+
+INSERT INTO Product (productID, productName, productDescription, price, size, brand, availability, imgUrl, altTxt, material, isSpecialOffer, FK_categoryID, FK_subcategoryID) VALUES
+(NULL, "Coca-Cola Original", "Coca-Cola Original bottle cap crafted with precision and attention to every detail. Characteristic red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Coca Cola", "1", "/CapWizards/assets/img/coca-cola/Coca-cola_oryginal.png", "coca-cola original red bottle cap", "metal", 1, "2", 5),
+(NULL, "Coca-Cola Black", "Coca-Cola Black bottle cap crafted with precision and attention to every detail. Characteristic black color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Coca Cola", "1", "/CapWizards/assets/img/coca-cola/Coca-cola_black.png", "coca-cola black bottle cap", "metal", 0, "2", 5),
+(NULL, "Sprite Original", "Sprite Original bottle cap crafted with precision and attention to every detail. Characteristic green color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Sprite", "1", "/CapWizards/assets/img/sprite/Sprite_oryginal.png", "sprite original green bottle cap", "metal", 0, "2", 5),
+(NULL, "Sprite Blue", "Sprite blue bottle cap crafted with precision and attention to every detail. Characteristic blue color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Sprite", "1", "/CapWizards/assets/img/sprite/Sprite_blue.png", "sprite blue bottle cap", "metal", 1, "2", 5),
+(NULL, "Sprite purple", "Sprite purple bottle cap crafted with precision and attention to every detail. Characteristic purple color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Sprite", "1", "/CapWizards/assets/img/sprite/Sprite_purple.png", "sprite purple bottle cap", "metal", 0, "2", 5),
+(NULL, "Breezer Original", "Breezer Original bottle cap crafted with precision and attention to every detail. Characteristic silver color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Breezer", "1", "/CapWizards/assets/img/breezer/Breezer_oryginal.png", "breezer original bottle cap", "metal", 0, "1", 3),
+(NULL, "Corona Original", "Corona Original bottle cap crafted with precision and attention to every detail. Characteristic navy blue color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Corona", "1", "/CapWizards/assets/img/corona/Corona_oryginal.png", "Corona original bottle cap", "metal", 0, "1", 2),
+(NULL, "Corona Green", "Corona green bottle cap crafted with precision and attention to every detail. Characteristic green color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Corona", "1", "/CapWizards/assets/img/corona/Corona_green.png", "Corona green bottle cap", "metal", 0, "1", 2),
+(NULL, "Corona Red", "Corona red bottle cap crafted with precision and attention to every detail. Characteristic red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Corona", "1", "/CapWizards/assets/img/corona/Corona_red.png", "Corona red bottle cap", "metal", 0, "1", 2),
+(NULL, "Jul Original", "Jul Original bottle cap crafted with precision and attention to every detail. Characteristic white and red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Jul", "1", "/CapWizards/assets/img/jul/Jul_oryginal.png", "Jul original bottle cap", "metal", 0, "1", 2),
+(NULL, "Jul Blue", "Jul blue bottle cap crafted with precision and attention to every detail. Characteristic blue color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Jul", "1", "/CapWizards/assets/img/jul/Jul_blue.png", "Jul blue bottle cap", "metal", 0, "1", 2),
+(NULL, "Jul Green", "Jul green bottle cap crafted with precision and attention to every detail. Characteristic green color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Jul", "1", "/CapWizards/assets/img/jul/Jul_green.png", "Jul green bottle cap", "metal", 0, "1", 2),
+(NULL, "Skovlyst Original", "Skovlyst original bottle cap crafted with precision and attention to every detail. Characteristic blue color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Skovlyst", "1", "/CapWizards/assets/img/skovlyst/Skovlyst_oryginal.png", "Skovlyst oryginal bottle cap", "metal",1, "1", 2),
+(NULL, "Skovlyst Green", "Skovlyst green bottle cap crafted with precision and attention to every detail. Characteristic green color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Skovlyst", "1", "/CapWizards/assets/img/skovlyst/Skovlyst_green.png", "Skovlyst green bottle cap", "metal", 0, "1", 2),
+(NULL, "Skovlyst Red", "Skovlyst red bottle cap crafted with precision and attention to every detail. Characteristic red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Skovlyst", "1", "/CapWizards/assets/img/skovlyst/Skovlyst_red.png", "Skovlyst red bottle cap", "metal", 0, "1", 2),
+(NULL, "Tuborg Original", "Tuborg original bottle cap crafted with precision and attention to every detail. Characteristic black color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Tuborg", "1", "/CapWizards/assets/img/tuborg/Tuborg_oryginal.png", "Tuborg oryginal bottle cap","metal", 0, "1", 2),
+(NULL, "Tuborg Green", "Tuborg green bottle cap crafted with precision and attention to every detail. Characteristic green color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Tuborg", "1", "/CapWizards/assets/img/tuborg/Tuborg_green.png", "Tuborg green bottle cap", "metal", 0, "1", 2),
+(NULL, "Tuborg Red", "Tuborg red bottle cap crafted with precision and attention to every detail. Characteristic red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Tuborg", "1", "/CapWizards/assets/img/tuborg/Tuborg_red.png", "Tuborg red bottle cap", "metal", 0, "1", 2),
+(NULL, "Tuborg Gron Original", "Tuborg Gron original bottle cap crafted with precision and attention to every detail. Characteristic silver color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "Tuborg Gron", "1", "/CapWizards/assets/img/tuborg_gron/Tuborg-Gron_oryginal.png", "Tuborg Gron oryginal bottle cap", "metal", 0, "1", 2);
+
+INSERT INTO ProductVariations (variationID, productID) VALUES
+(1, 2),
+(1, 16),
+(2, 4),
+(2, 7),
+(2, 11),
+(2, 13),
+(3, 5),
+(4, 3),
+(4, 8),
+(4, 12),
+(4, 14),
+(4, 17),
+(5, 1),
+(5, 9),
+(5, 15),
+(5, 18),
+(6, 6),
+(6, 19),
+(7, 10);
 
 INSERT INTO Customer (customerID, firstName, lastName, email, phoneNumber, userName) VALUES
 (NULL, 'Haskell', 'Llop', 'hllop0@live.com', '+850 249 585 2080', 'hllop0'),

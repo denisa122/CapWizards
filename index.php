@@ -43,13 +43,14 @@ route('/CapWizards/Products/Alcoholic/Shaker', function () {
 });
 
 route('/CapWizards/Products/Alcoholic/Wine', function () {
-    require "views/product/SingleProduct.php";
+    // require "views/product/AlcoholicWine.php"; 
+    require "views/product/SingleProduct.php"; //TODO delete this for the final hand in
 });
 
 // Non-alcoholic products
 
 route('/CapWizards/Products/Non-alcoholic', function () {
-    $sproductID = $_GET['productID'];
+    // $productID = $_GET['productID'];
     require "views/product/AllNonAlcoholic.php";
 });
 

@@ -17,11 +17,8 @@ $productModel = new ProductModel();
 
 <!-- Product grid -->
     <section class='side-padding text-center'>
-        <div class='d-flex justify-content-center justify-content-between container'>
-            <div class='row'>
-                 <?php $productModel -> getProductsBySubcategory(2, 7); ?>
-            </div>
-        </div>
+        <p>Unfortunately, we are currently sold out of water bottle caps.</p>
+        <a href="http://localhost/CapWizards/Products/Non-alcoholic">Explore other products from the same category</a>
     </section>
 </main>
 

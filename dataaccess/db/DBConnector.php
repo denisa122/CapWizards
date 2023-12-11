@@ -25,7 +25,8 @@ class DBConnector
         }
 
         return $pdo;
-    }   
+    }  
+     
 }
 
 $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS);

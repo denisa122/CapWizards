@@ -37,6 +37,28 @@ class ProductModel extends BaseModel
         }
     }
 
+    function getProductsByCategoryAdmin($categoryID)
+    {
+        try {
+            $cxn = parent::connectToDB();
+
+            $query = "SELECT * FROM product WHERE FK_categoryID = :categoryID";
+            $stmt = $cxn -> prepare($query);
+            $stmt -> bindParam(":categoryID", $categoryID);
+
+            $stmt -> execute();
+            $result =  $stmt -> fetchAll(\PDO::FETCH_OBJ);
+
+            foreach ($result as $row)
+            {
+                print($this->productTemplateAdmin($row));
+            }
+
+        } catch(\PDOException $e) {
+            echo $e -> getMessage();
+        }
+    }
+
     function getProductsBySubcategory($categoryID, $subcategoryID)
     {
         try {
@@ -84,7 +106,6 @@ class ProductModel extends BaseModel
 
     function productTemplate($row)
     {
-        //TODO: Figure out how to display 3 products in a row for the products pages
         return $template = "
         
         <article class='product-w gap-50 margin-100'>
@@ -101,6 +122,26 @@ class ProductModel extends BaseModel
             </div>
         </article>";
         
+    }
+
+    function productTemplateAdmin($row)
+    {
+        return $template = "
+        
+        <article class='product-w gap-50 margin-100'>
+            <a class='text-decoration-none product-card' href=http://localhost/CapWizards/Products/?productID=". $row -> productID .">
+                <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
+                <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
+                <p class='margin-15 p-black'>" . $row -> productDescription . " </p>
+            </a>
+
+            <div class='d-flex justify-content-center'>
+                <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>
+
+                <a href='" . BASE_URL . "/Admin/Update-product?productID=" . $row->productID . "' class='btn btn-secondary'>Edit</a>
+                <a href='" . BASE_URL . "/Controllers/AdminController.php?action=deleteProduct&productID=" . $row->productID . "' class='btn btn-danger'>Delete</a>
+            </div>
+        </article>";
     }
 
     function singleProductTemplate($row)

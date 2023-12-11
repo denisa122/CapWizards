@@ -97,17 +97,52 @@ else if ($action == "addSpecialOffer")
     window.location.href='http://localhost/CapWizards/Admin';
     </script>";
 }
-else if ($action == "updateProductSpecialOffer")
+else if ($action == "updateProduct")
 {   
     $productID = $_POST["productID"];
     $productName = $_POST['productName'];
     $productDescription = $_POST['productDescription'];
     $price = $_POST['price'];
 
-    $adminModel -> updateProductSpecialOffer($productID, $productName, $productDescription, $price);
+    $adminModel -> updateProduct($productID, $productName, $productDescription, $price);
 
     echo "<script>
     alert('Product updated successfully');
     window.location.href='http://localhost/CapWizards/Admin';
+    </script>";
+}
+// Methods for product from products page
+else if ($action == "deleteProduct")
+{
+    $productID = $_GET["productID"];
+
+    $adminModel -> deleteProduct($productID);
+
+    echo "<script>
+    alert('Product deleted successfully');
+    window.location.href='http://localhost/CapWizards/Admin/Products';
+    </script>";
+}
+else if ($action == "createProduct")
+{
+    $productName = $_POST["productName"];
+    $productDescription = $_POST["productDescription"];
+    $price = $_POST["price"];
+    $size = $_POST["size"];
+    $brand = $_POST["brand"];
+    $color = $_POST["color"];
+    $availability = $_POST["availability"];
+    $imgUrl = $_POST["imgUrl"];
+    $altTxt = $_POST["altTxt"];
+    $material = $_POST["material"];
+    $isSpecialOffer = $_POST["isSpecialOffer"];
+    $FK_categoryID = $_POST["FK_categoryID"];
+    $FK_subcategoryID = $_POST["FK_subcategoryID"];
+
+    $adminModel-> createProduct($productName, $productDescription, $price, $size, $brand, $color, $availability, $imgUrl, $altTxt, $material, $isSpecialOffer, $FK_categoryID, $FK_subcategoryID);
+    
+    echo "<script>
+    alert('Product created successfully');
+    window.location.href='http://localhost/CapWizards/Admin/Products';
     </script>";
 }

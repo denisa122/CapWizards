@@ -158,8 +158,8 @@
             </div>
             </div>
 
-            <a class="nav-link" href="http://localhost/CapWizards" style="margin-left: 720px !important;"> <!-- Change this to a better option to center the logo -->
-              LOGO
+            <a class="nav-link" href="http://localhost/CapWizards"> 
+              HOME
             </a>
         <!-- Icons -->
             <div>

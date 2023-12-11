@@ -108,11 +108,21 @@ route('/CapWizards/Admin/Add-special-offer', function () {
     require "views/admin/AddSpecialOffer.php";
 });
 
-route('/CapWizards/Admin/Update-product-special-offer', function () {
+route('/CapWizards/Admin/Update-product', function () {
     // Extract the newsID from the query parameters
     $productID = isset($_GET['productID']) ? $_GET['productID'] : null;
     
     require "views/admin/UpdateProduct.php";
+});
+
+// Page where admin can edit products from product page
+
+route('/CapWizards/Admin/Products', function () {
+    require "views/admin/allProducts/AllProducts.php";
+});
+
+route('/CapWizards/Admin/Add-product', function () {
+    require "views/admin/allProducts/AddProduct.php";
 });
 
 // Contact form

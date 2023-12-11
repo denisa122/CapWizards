@@ -257,7 +257,7 @@ class AdminModel extends BaseModel
         }
     }
 
-    function updateProductSpecialOffer($productID, $productName, $productDescription, $price)
+    function updateProduct($productID, $productName, $productDescription, $price)
     {
         try {
             $cxn = parent::connectToDB();
@@ -283,6 +283,59 @@ class AdminModel extends BaseModel
             echo $e -> getMessage();
         }
     }
+
+    // Create and delete new product
+    function deleteProduct($productID)
+    {
+        try {
+            $cxn = parent::connectToDB();
+
+            $query = "DELETE FROM Product WHERE productID = :productID";
+            $stmt = $cxn -> prepare($query);
+            $stmt -> bindParam(":productID", $productID);
+
+            $stmt -> execute();
+
+            $cxn = null;
+
+        } catch (\PDOException $e){
+            echo $e -> getMessage();
+        }
+    }
+
+    function createProduct($productName, $productDescription, $price, $size, $brand, $color, $availability, $imgUrl, $altTxt, $material, $isSpecialOffer, $FK_categoryID, $FK_subcategoryID)
+    {
+        try {
+            $cxn = parent::connectToDB();
+
+            $query = "INSERT INTO Product (productName, productDescription, price, size, brand, color, availability, imgUrl, altTxt, material, isSpecialOffer, FK_categoryID, FK_subcategoryID)
+             VALUES (:productName, :productDescription, :price, :size, :brand, :color, :availability, :imgUrl, :altTxt, :material, :isSpecialOffer, :FK_categoryID, :FK_subcategoryID)";
+            $stmt = $cxn -> prepare($query);
+
+            $stmt -> bindParam(":productName", $productName);
+            $stmt -> bindParam(":productDescription", $productDescription);
+            $stmt -> bindParam(":price", $price);
+            $stmt -> bindParam(":size", $size);
+            $stmt -> bindParam(":brand", $brand);
+            $stmt -> bindParam(":color", $color);
+            $stmt -> bindParam(":availability", $availability);
+            $stmt -> bindParam(":imgUrl", $imgUrl);
+            $stmt -> bindParam(":altTxt", $altTxt);
+            $stmt -> bindParam(":material", $material);
+            $stmt -> bindParam(":isSpecialOffer", $isSpecialOffer);
+            $stmt -> bindParam(":FK_categoryID", $FK_categoryID);
+            $stmt -> bindParam(":FK_subcategoryID", $FK_subcategoryID);
+
+
+            $stmt -> execute();
+
+            $cxn = null;
+
+        } catch (\PDOException $e){
+            echo $e -> getMessage();
+        }
+    }
+
 
 
     // Templates
@@ -363,7 +416,7 @@ class AdminModel extends BaseModel
                         <p class=font-weight-bold gap-50>".$row -> price." DKK</p>
                     </div> 
                     <div style='margin-bottom:60px'>
-                    <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-product-special-offer?productID=" . $row->productID . "'>Edit</a>
+                    <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-product?productID=" . $row->productID . "'>Edit</a>
                         <a class='btn btn-danger' href='" . BASE_URL . "/Controllers/AdminController.php?action=removeProductFromSpecialOffers&productID=" . $row->productID . "'>Remove from special offers</a>
                     </div>";
     }

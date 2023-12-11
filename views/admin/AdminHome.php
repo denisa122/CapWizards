@@ -36,7 +36,7 @@ $FooterInfoModel = new FooterModel();
         <h1 class="margin-50 text-center h1-black">News</h1>
         <a class="btn btn-success" href="http://localhost/CapWizards/Admin/Add-news">Add news</a>
         <div class="d-flex justify-content-center">
-            <div class="news-pink">
+            <div>
             <?php $adminModel -> getNews() ?>
             </div>
         </div>

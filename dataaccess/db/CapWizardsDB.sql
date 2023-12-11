@@ -67,13 +67,6 @@ CREATE TABLE Product (
     FOREIGN KEY (FK_subcategoryID) REFERENCES Subcategory (subcategoryID)
 )ENGINE = InnoDB;
 
-CREATE TABLE Account (
-    accountID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    userName varchar(50),
-    password VARCHAR(255),
-    role VARCHAR(50)
-)ENGINE = InnoDB;
-
 CREATE TABLE Customer (
     customerID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     firstName VARCHAR(100) NULL,
@@ -82,6 +75,9 @@ CREATE TABLE Customer (
     phoneNumber varchar(20) NULL,
     userName VARCHAR(50),
     FK_accountID INT,
+    password VARCHAR(255),
+    role VARCHAR(50),
+
     FOREIGN KEY (FK_accountID) REFERENCES Account (accountID)
 )ENGINE = InnoDB;
 

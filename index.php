@@ -64,6 +64,11 @@ route('/CapWizards/Products/Non-alcoholic/Water', function () {
     require "views/product/NonAlcoholicWater.php";
 });
 
+//Single page
+route('/CapWizards/Products/', function () {
+    require "views/product/SingleProduct.php";
+});
+
 // Admin related pages
 
 route('/CapWizards/Admin', function () {
@@ -93,11 +98,6 @@ route('/CapWizards/Admin/Update-extra-info', function () {
     $companyID = isset($_GET['companyID']) ? $_GET['companyID'] : null;
     
     require "views/admin/UpdateExtraCompanyInfo.php";
-});
-
-//Single page
-route('/CapWizards/Products/', function () {
-    require "views/product/SingleProduct.php";
 });
 
 // Contact form

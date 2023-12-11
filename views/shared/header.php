@@ -137,19 +137,19 @@
                     <div class="d-flex">
                         <a class="dropdown-item text-center p-0" href="http://localhost/CapWizards/Products/Non-alcoholic/Soda">
                             <div class="menu-red"> 
-                                <img src="/CapWizards/assets/svg/soda.svg" alt="Soda icon">
+                                <img src="/CapWizards/assets/svg/soda-drink.svg" alt="Soda icon">
                                 <h2 class="h2-small h2-bage">Soda</h2>
                             </div>
                         </a>
                         <a class="dropdown-item text-center p-0" href="http://localhost/CapWizards/Products/Non-alcoholic/Soft-drink">
                             <div class="menu-yellow">
-                                <img src="/CapWizards/assets/svg/beer-bage.svg" alt="Soft drink icon">
+                                <img src="/CapWizards/assets/svg/soft-drink.svg" alt="Soft drink icon">
                                 <h2 class="h2-small h2-bage">Soft drink</h2>
                             </div>
                         </a>
                         <a class="dropdown-item text-center p-0" href="http://localhost/CapWizards/Products/Non-alcoholic/Water">
                             <div class="menu-blue"> 
-                                <img src="/CapWizards/assets/svg/mixer.svg" alt="Water icon">
+                                <img src="/CapWizards/assets/svg/Water.svg" alt="Water icon">
                                 <h2 class="h2-small h2-bage">Water</h2>
                             </div>
                         </a>

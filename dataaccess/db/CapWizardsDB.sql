@@ -74,11 +74,8 @@ CREATE TABLE Customer (
     email VARCHAR(80),
     phoneNumber varchar(20) NULL,
     userName VARCHAR(50),
-    FK_accountID INT,
     password VARCHAR(255),
-    role VARCHAR(50),
-
-    FOREIGN KEY (FK_accountID) REFERENCES Account (accountID)
+    role VARCHAR(50)
 )ENGINE = InnoDB;
 
 CREATE TABLE Address (

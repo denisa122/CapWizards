@@ -10,11 +10,12 @@ require("./views/shared/header.php");
         <h1 class="h1-yellow margin-30">Log In</h1>
         <div class="d-flex justify-content-center">
             <form method="POST" id="loginForm" action="<?php echo BASE_URL ?>/Controllers/LoginController.php?action=login">
-            <input type="email" name="userEmail" class="row input-color input-size-b margin-15 text-center" placeholder="Email" required>
+            <input type="text" name="userName" class="row input-color input-size-b margin-15 text-center" placeholder="Username" required>
             <input type="password" name="password" class="row input-color input-size-b margin-15 text-center" placeholder="Password" required>
             <br/>
-                    <?php if (isset($loginWrong)) { ?>
-                        <p style="color: red;"><?php echo $loginWrong; ?></p>
+                    <?php if (isset($_SESSION['loginError'])) { ?>
+                        <p style="color: red;"><?php echo $_SESSION['loginError']; ?></p>
+                        <?php unset($_SESSION['loginError']); ?>
                     <?php } ?>
 
             <button type="submit" name="login" class="row text-center form-button-wrapper margin-30 big-button form-button">Login</button>

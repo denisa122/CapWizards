@@ -6,27 +6,29 @@ use models\LoginModel;
 
 $loginModel = new LoginModel();
 
+session_start();
+
 $action = $_GET["action"];
 
 if ($action == "login")
 {
-    $userEmail = $_POST["userEmail"];
+    $userName = $_POST["userName"];
     $password = $_POST["password"];
     
-    if(isset($userEmail) && isset($password))
+    if(isset($userName) && isset($password))
     {
-        $userEmail = $_POST["userEmail"];
+        $userName = $_POST["userName"];
         $password = $_POST["password"];
 
-        $customer = $loginModel -> login($userEmail, $password);
+        $customer = $loginModel -> login($userName, $password);
 
         if ($customer)
         {
             //Authentication successful
-            $_SESSION['customerID'] = $customer -> customerID;
             header("Location: http://localhost/CapWizards/");
         } else {
             //Authentication failed, redirect to login page with an error
+            $_SESSION['loginError'] = "Invalid email or password";
             header("Location: http://localhost/CapWizards/Login"); //TODO change to an appropriate error
             exit();
         }
@@ -53,6 +55,7 @@ if ($action == "login")
             header("Location: http://localhost/CapWizards/Login");
             exit();
         } else {
+            $_SESSION['registerError'] = "Failed to register user";
             header("Location: http://localhost/CapWizards/Register"); //TODO change to an appropriate error
             exit();
         }

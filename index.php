@@ -17,6 +17,10 @@ route('/CapWizards/Register', function () {
     require "views/login/Register.php";
 });
 
+route('/CapWizards/Profile', function () {
+    require "views/profile/Profile.php";
+});
+
 route('/CapWizards/ShoppingCart', function () {
     require "views/order/CartOverview.php";
 });

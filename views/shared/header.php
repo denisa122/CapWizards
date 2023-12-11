@@ -166,7 +166,7 @@
               <a class="gap-30" href="http://localhost/CapWizards/ShoppingCart" style="margin-left: 80px;"> 
                 <img src="/CapWizards/assets/svg/cart.svg" alt="Cart icon">
               </a>
-              <a  href="http://localhost/CapWizards/Login">   
+              <a  href="http://localhost/CapWizards/Profile">   
                 <img src="/CapWizards/assets/svg/avatar.svg" alt="Avatar icon">  
               </a>
             </div>

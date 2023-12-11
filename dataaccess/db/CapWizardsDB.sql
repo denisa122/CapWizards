@@ -81,13 +81,8 @@ CREATE TABLE Customer (
     email VARCHAR(80),
     phoneNumber varchar(20) NULL,
     userName VARCHAR(50),
-<<<<<<< HEAD
-    password VARCHAR(255),
-    role VARCHAR(50)
-=======
     FK_accountID INT,
     FOREIGN KEY (FK_accountID) REFERENCES Account (accountID)
->>>>>>> parent of ac2174a (account table)
 )ENGINE = InnoDB;
 
 CREATE TABLE Address (

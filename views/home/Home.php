@@ -2,11 +2,13 @@
 require("./views/shared/header.php");
 
 require_once "./models/HomeModel.php";
+require_once "./models/ProductModel.php";
 
 use models\HomeModel;
-
+use models\ProductModel;
 
 $homeModel = new HomeModel();
+$productModel = new ProductModel();
 
 
 // $customerID = $_SESSION['customerID'];
@@ -104,9 +106,10 @@ $homeModel = new HomeModel();
     <section class="dailyOffers-section text-center">
         <h1 class="h1-black margin-50">Special offers</h1>
         <div class="d-flex justify-content-center justify-content-between">
-            <article class="product-w container"> 
-            <?php $homeModel -> getSpecialOffers(); ?>
-            </article>
+                <?php 
+                    $homeModel -> getSpecialOffers(); 
+                    $productModel -> getSingleProduct()
+                ?>
         </div>
     </section>
     

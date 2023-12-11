@@ -87,7 +87,7 @@ class ProductModel extends BaseModel
         try {
             $cxn = parent::connectToDB();
              
-            $query = "SELECT * FROM Product Where productID = :productID";
+            $query = $query = "SELECT * FROM Product LEFT JOIN Variations ON product.productID = variations.FK_productID Where productID = :productID";;
             $stmt = $cxn -> prepare($query);
             $stmt -> bindParam(":productID", $_GET['productID']);
 

@@ -153,7 +153,7 @@ class ProductModel extends BaseModel
             <div class='d-flex justify-content-center'>
                 <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>
 
-                <input value=Add to cart type=submit name=add_to_cart>
+                <input value=Add type=submit name=add_to_cart>
             </div>
         </article>
         </form>";
@@ -184,7 +184,7 @@ class ProductModel extends BaseModel
     {
         return $template = "
 
-
+        <form method=POST action='././views/shared/addToCartButton.php'>
                 <div class='text-center'>
                     <img class='img-350 margin-30' src = ". $row -> imgUrl." alt= " .  $row -> altTxt.">
                     <h1 class='h1-black margin-50'>".  $row -> productName ."</h1>
@@ -235,6 +235,7 @@ class ProductModel extends BaseModel
                     </div>
 
                 <!-- Right side -->
+               
                     <div class='col-4'>
                         <div class='row margin-15'>
                             <h2>".$row -> price." DKK</h2>
@@ -248,10 +249,14 @@ class ProductModel extends BaseModel
                                 <input class='amount text-center rounded-0' id='amount' type='text' value='1' input[type=number]>
                             <button class='plus' id='plus'>+</button>
                         </div>
-                        <div class='row'><a class='small-button-pink'>Add to cart</a></div>
+                         
+                            <div class='row'><input value=Add type=submit name=add_to_cart></div>
+                        
                     </div>
+                    
                 </div>
-            </div>";
+            </div>
+            </form>";
     }
 
     function generateVariationsButtons($variations)

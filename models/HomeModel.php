@@ -108,7 +108,7 @@ class HomeModel extends BaseModel
                     <div class='d-flex justify-content-center'>
                         <p class='font-weight-bold gap-50'>".$row -> price." DKK</p>
                  
-                        <input value=add_to_cart type=submit name=add_to_cart>
+                        <input value=Add type=submit name=add_to_cart>
                     </div>
                 </article>
             </form>";

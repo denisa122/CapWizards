@@ -168,6 +168,8 @@ CREATE VIEW NewsInViews AS
 SELECT * FROM News order by newsDate desc limit 2;
 
 -- Second view -- 
+CREATE VIEW DescriptionOfCompany AS
+SELECT compDescription FROM Company WHERE companyID = 1;
 
 
 -- Inserting data into tables --

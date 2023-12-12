@@ -21,7 +21,7 @@ $productModel = new ProductModel();
     <!--About us-->
     <section class="text-center about-section">
         <h2 class="h1-green margin-50">About Us</h2>
-        <?php $homeModel -> getDescription(1); ?>
+        <?php $homeModel -> getDescription(); ?>
     </section>
 
     <!--Categories-->

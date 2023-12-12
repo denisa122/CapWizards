@@ -13,14 +13,13 @@ class HomeModel extends BaseModel
         
     }
 
-    function getDescription($companyID)
+    function getDescription()
     {
         try {
             $cxn = parent::connectToDB();
 
-            $query = "SELECT * FROM Company WHERE companyID = :companyID";
+            $query = "SELECT * FROM DescriptionOfCompany";
             $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":companyID", $companyID);
 
             $stmt -> execute();
             $result =  $stmt -> fetchAll(\PDO::FETCH_OBJ);

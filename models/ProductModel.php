@@ -98,38 +98,30 @@ class ProductModel extends BaseModel
         try {
             $cxn = parent::connectToDB();
              
-            $query = "SELECT * FROM Product Where productID = :productID;";
+            $query = "SELECT * FROM Product P
+                        JOIN ProductVariations PV ON P.productID = PV.productID
+                        JOIN Variations V ON PV.variationID = V.variationID
+                        WHERE P.productID = :productID AND V.variationID = :variationID ";
             $stmt = $cxn->prepare($query);
             $stmt->bindParam(":productID", $_GET['productID']);
-            $stmt->execute();
-            $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
-            
-            foreach ($result as $row)
-            {
-                print($this->singleProductTemplate($row));
-            }
-
-        } catch(\PDOException $e) {
-            echo $e -> getMessage();
-        }
-    }
-
-    function getProductVariations()
-    {
-        try {
-            $cxn = parent::connectToDB();
-             
-            $query = 
-            $stmt = $cxn->prepare($query);
             $stmt->bindParam(":variationID", $_GET['variationID']);
             $stmt->execute();
-            $variations = $stmt->fetchAll(\PDO::FETCH_OBJ);
-            
-            foreach ($variations as $variation)
-            {
-                print($this->singleProductTemplate($variation));
-            }
+            $result= $stmt->fetchAll(\PDO::FETCH_OBJ);
 
+            foreach ($result as $row)
+                    {
+                        $row;
+                    }
+
+                $queryVariations = "SELECT * FROM Variations V
+                                    JOIN ProductVariations PV ON V.variationID = PV.variationID
+                                    WHERE PV.variationID = :variationID";
+                $stmtVariations = $cxn->prepare($queryVariations);
+                $stmtVariations->bindParam(":variationID", $_GET['variationID']);
+                $stmtVariations->execute();
+                $variations = $stmtVariations->fetchAll(\PDO::FETCH_OBJ);
+
+            print($this->singleProductTemplate($row, $variations));
         } catch(\PDOException $e) {
             echo $e -> getMessage();
         }
@@ -138,9 +130,9 @@ class ProductModel extends BaseModel
     function productTemplate($row)
     {
         return $template = "
-        
+        <form method=POST action='././views/shared/addToCartButton.php'>
         <article class='product-w gap-50 margin-100'>
-            <a class='text-decoration-none product-card' href='http://localhost/CapWizards/Products/?productID= ". $row->productID."&variationID= $row->variationID'>
+            <a class='text-decoration-none product-card' href='http://localhost/CapWizards/Products/?productID= ". $row->productID."&variationID= ".$row->variationID."'>
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
                 <p class='margin-15 p-black'>" . $row -> productDescription . " </p>
@@ -149,9 +141,10 @@ class ProductModel extends BaseModel
             <div class='d-flex justify-content-center'>
                 <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>
 
-                <a href=''><img src='/CapWizards/assets/svg/plus.svg' alt = 'Add to cart button'></a>
+                <input value=add_to_cart type=submit name=add_to_cart>
             </div>
-        </article>";
+        </article>
+        </form>";
         
     }
 
@@ -175,9 +168,10 @@ class ProductModel extends BaseModel
         </article>";
     }
 
-    function singleProductTemplate($row)
+    function singleProductTemplate($row, $variations)
     {
         return $template = "
+
 
                 <div class='text-center'>
                     <img class='img-350 margin-30' src = ". $row -> imgUrl." alt= " .  $row -> altTxt.">
@@ -234,8 +228,7 @@ class ProductModel extends BaseModel
                             <h2>".$row -> price." DKK</h2>
                         </div>
                         <div class='row margin-15'>
-                         
-                         
+                        " . $this -> generateVariationsButtons($variations) . "
                              
                         </div>
                         <div class='row margin-30'>
@@ -248,6 +241,17 @@ class ProductModel extends BaseModel
                 </div>
             </div>";
     }
+
+    function generateVariationsButtons($variations)
+{
+    $buttons = '';
+
+    foreach ($variations as $variation) {
+        $buttons .= "<a class='c-variations' href=http://localhost/CapWizards/Products/?productID={$variation -> productID}&variationID={$variation -> variationID}>C</a>";
+    }
+
+    return $buttons;
+}
 
 
 }

@@ -2,6 +2,7 @@
 
 require("./views/shared/header.php");
 require_once("././dataaccess/db/DBConnector.php");
+
 $customerID = $_SESSION['customerID'];
 $orderID = $_SESSION['orderID'];
 

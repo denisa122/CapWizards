@@ -12,7 +12,6 @@ $cart = new ShoppingCart();
 $cartItems = $cart -> getCartItemsForDisplay();
 
 require("./views/shared/header.php");
-
 ?>
 
 <main>

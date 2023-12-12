@@ -279,11 +279,17 @@ footer {
  
 /* Color variations */
 .c-variations {
+    background-color: #000;
     width: 30px;
     height: 30px;
     border-radius: 20px;
     border: none;
     margin-right: 10px;
+}
+
+.c-variations > a {
+    text-decoration: none;
+    color: #000;
 }
 
 /* Product cards */

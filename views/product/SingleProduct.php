@@ -7,6 +7,7 @@ require_once "./models/ProductModel.php";
 use models\ProductModel;
 
 $SingleProductModel = new ProductModel();
+$GetProductVariation = new ProductModel();
 ?>
 
 <!-- Main -->
@@ -14,7 +15,7 @@ $SingleProductModel = new ProductModel();
         <section class='product-info-section'>
             <div class="side-padding">
                 <?php 
-                $SingleProductModel -> getSingleProduct();
+                    $SingleProductModel -> getSingleProduct();
                 ?>
                
             </div>

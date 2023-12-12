@@ -107,8 +107,7 @@ $productModel = new ProductModel();
         <h1 class="h1-black margin-50">Special offers</h1>
         <div class="d-flex justify-content-center justify-content-between">
                 <?php 
-                    $homeModel -> getSpecialOffers(); 
-                    $productModel -> getSingleProduct()
+                    $homeModel -> getSpecialOffers();
                 ?>
         </div>
     </section>

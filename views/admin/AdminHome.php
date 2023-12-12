@@ -54,6 +54,13 @@ $FooterInfoModel = new FooterModel();
             </article>
         </div>
     </section>
+
+    <!-- All products -->
+    <section class="dailyOffers-section text-center">
+        <h1 class="h1-black margin-50">Edit products</h1>
+        <h3>In order to edit all products available on the web shop or add new products, you must go to the products page.</h3>
+        <a href="http://localhost/CapWizards/Admin/Products">Go to products page.</a>
+    </section>
     </main>
 
     

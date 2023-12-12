@@ -14,9 +14,10 @@ if (isset($_POST['add_to_cart'])) {
     $order_exists->bind_param("s", $customerID);
     $order_exists->execute();
     $resultOrder = $order_exists->get_result();
-
+    
     if ($resultOrder->num_rows === 0) {
         // If no order exists, create a new order for the customer
+        $orderID = create_unique_id(); // Generate a unique order ID
         $insert_order = $conn->prepare("INSERT INTO `Order` (orderID, FK_customerID) VALUES (?, ?)");
         $insert_order->bind_param("ss", $orderID, $customerID);
         $insert_order->execute();
@@ -25,6 +26,7 @@ if (isset($_POST['add_to_cart'])) {
         $existing_order = $resultOrder->fetch_assoc();
         $orderID = $existing_order['orderID'];
     }
+    
     
     $verify_cart = $conn->prepare("SELECT * FROM ProductOrder WHERE productID = ? AND orderID = ?");
     $verify_cart->bind_param("ss", $productID, $orderID);
@@ -65,7 +67,6 @@ if (isset($_POST['add_to_cart'])) {
             $quantity = 1;
             $insert_product_order = $conn->prepare("INSERT INTO ProductOrder (productID, orderID, quantity) VALUES (?, ?, ?)");
             $insert_product_order->bind_param("sss", $productID, $orderID, $quantity);
-            var_dump($orderID);
             $insert_product_order->execute();
             
             echo ('Product Added');

@@ -1,13 +1,6 @@
 <?php 
         require_once ("session.php");
         require_once("././dataaccess/db/DBConnector.php");
-
-        $FK_customerID = $_SESSION['customerID'];
-        $count_cart_items = $conn->prepare("SELECT * FROM `Order` WHERE FK_customerID =?");
-        $count_cart_items->execute();
-        $count_cart_items->store_result();
-
-        $total_cart_items = $count_cart_items->num_rows;
       ?>
       
 <!DOCTYPE html>

@@ -136,7 +136,7 @@ CREATE TABLE ProductOrder (
     FOREIGN KEY (productID) REFERENCES Product (productID),
     FOREIGN KEY (orderID) REFERENCES `Order` (orderID)
 )ENGINE = InnoDB;
-
+ 
 -- Triggers --
 
 -- First trigger -- 
@@ -160,6 +160,14 @@ FOR EACH ROW
 SET NEW.lastEditedOn = CURDATE();
 //
 DELIMITER ;
+
+-- Views --
+
+-- First view -- 
+CREATE VIEW NewsInViews AS
+SELECT * FROM News order by newsDate desc limit 2;
+
+-- Second view -- 
 
 
 -- Inserting data into tables --

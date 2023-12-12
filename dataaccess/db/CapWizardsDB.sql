@@ -66,6 +66,7 @@ CREATE TABLE Product (
     material VARCHAR(50),
     color varchar(50),
     isSpecialOffer BOOLEAN,
+    lastEditedOn date NULL,
     FK_categoryID INT NOT NULL,
     FK_subcategoryID INT,
     FOREIGN KEY (FK_categoryID) REFERENCES Category (categoryID),
@@ -152,7 +153,13 @@ END;
 DELIMITER ;
 
 -- Second trigger --
-
+DELIMITER //
+CREATE TRIGGER before_update_Product
+BEFORE UPDATE ON Product
+FOR EACH ROW
+SET NEW.lastEditedOn = CURDATE();
+//
+DELIMITER ;
 
 
 -- Inserting data into tables --

@@ -48,6 +48,11 @@ CREATE TABLE CategorySubcategory (
     FOREIGN KEY (subcategoryID) REFERENCES Subcategory (subcategoryID)
 )ENGINE = InnoDB;
 
+CREATE TABLE Variations (
+    variationID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    brand varchar(80)
+)ENGINE = InnoDB;
+
 CREATE TABLE Product (
     productID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     productName  VARCHAR(50),
@@ -67,11 +72,12 @@ CREATE TABLE Product (
     FOREIGN KEY (FK_subcategoryID) REFERENCES Subcategory (subcategoryID)
 )ENGINE = InnoDB;
 
-CREATE TABLE Variations (
-    variationID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    brand varchar(80),
-    FK_productID INT NOT NULL,
-    FOREIGN KEY (FK_productID) REFERENCES Product (productID)
+CREATE TABLE ProductVariations (
+    variationID int NOT NULL,
+    productID  int NOT NULL,
+    PRIMARY KEY (variationID , productID),
+    FOREIGN KEY (variationID) REFERENCES Variations(variationID),
+    FOREIGN KEY (productID) REFERENCES Product (productID)
 )ENGINE = InnoDB;
 
 CREATE TABLE Account (
@@ -183,6 +189,16 @@ INSERT INTO CategorySubcategory (categoryID, subcategoryID) VALUES
 (2, 6),
 (2, 7);
 
+INSERT INTO Variations (variationID, brand) VALUES 
+(NULL, "Coca-Cola"),
+(NULL, "Sprite"),
+(NULL, "Breezer"),
+(NULL, "Corona"),
+(NULL, "Jul"),
+(NULL, "Skovlyst"),
+(NULL, "Tuborg"),
+(NULL, "Tuborg Gron");
+
 INSERT INTO Product (productID, productName, productDescription, price, size, availability, imgUrl, altTxt, material, color, isSpecialOffer, FK_categoryID, FK_subcategoryID) VALUES
 (NULL, "Coca-Cola Original", "Coca-Cola Original bottle cap crafted with precision and attention to every detail. Characteristic red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "1", "/CapWizards/assets/img/coca-cola/Coca-cola_oryginal.png", "coca-cola original red bottle cap", "metal", "red", 1, "2", 5),
 (NULL, "Coca-Cola Black", "Coca-Cola Black bottle cap crafted with precision and attention to every detail. Characteristic black color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "1", "/CapWizards/assets/img/coca-cola/Coca-cola_black.png", "coca-cola black bottle cap", "metal", "black", 0, "2", 5),
@@ -204,26 +220,27 @@ INSERT INTO Product (productID, productName, productDescription, price, size, av
 (NULL, "Tuborg Red", "Tuborg red bottle cap crafted with precision and attention to every detail. Characteristic red color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "1", "/CapWizards/assets/img/tuborg/Tuborg_red.png", "Tuborg red bottle cap", "metal", "red", 0, "1", 2),
 (NULL, "Tuborg Gron Original", "Tuborg Gron original bottle cap crafted with precision and attention to every detail. Characteristic silver color and standard bottle cap size, a universal fit for most beverage containers and collections. Each cap is in spotless condition.", "100", "32", "1", "/CapWizards/assets/img/tuborg_gron/Tuborg-Gron_oryginal.png", "Tuborg Gron oryginal bottle cap", "metal", "silver", 0, "1", 2);
 
-INSERT INTO Variations (variationID, brand, FK_productID ) VALUES 
-(NULL, "Coca-Cola", 1),
-(NULL, "Coca-Cola", 2),
-(NULL, "Sprite", 3),
-(NULL, "Sprite", 4),
-(NULL, "Sprite",5),
-(NULL, "Breezer", 6),
-(NULL, "Corona", 7),
-(NULL, "Corona", 8),
-(NULL, "Corona", 9),
-(NULL, "Jul", 10),
-(NULL, "Jul", 11),
-(NULL, "Jul", 12),
-(NULL, "Skovlyst", 13),
-(NULL, "Skovlyst", 14),
-(NULL, "Skovlyst", 15),
-(NULL, "Tuborg", 16),
-(NULL, "Tuborg", 17),
-(NULL, "Tuborg", 18),
-(NULL, "Tuborg Gron",19);
+INSERT INTO ProductVariations (variationID, productID) VALUES 
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4),
+(2, 5),
+(3, 6),
+(4, 7),
+(4, 8),
+(4, 9),
+(5, 10),
+(5, 11),
+(5, 12),
+(6, 13),
+(6, 14),
+(6, 15),
+(7, 16),
+(7, 17),
+(7, 18),
+(8, 19);
+
 
 INSERT INTO Customer (customerID, firstName, lastName, email, phoneNumber, userName) VALUES
 (NULL, 'Haskell', 'Llop', 'hllop0@live.com', '+850 249 585 2080', 'hllop0'),

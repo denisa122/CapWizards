@@ -7,14 +7,15 @@ require_once "./models/ProductModel.php";
 use models\ProductModel;
 
 $SingleProductModel = new ProductModel();
-
 ?>
 
 <!-- Main -->
     <main>
         <section class='product-info-section'>
             <div class="side-padding">
-                <?php $SingleProductModel -> getSingleProduct( );?>
+                <?php 
+                $SingleProductModel -> getSingleProduct();
+                ?>
                
             </div>
         </section>

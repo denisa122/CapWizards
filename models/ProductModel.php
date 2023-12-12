@@ -20,7 +20,18 @@ class ProductModel extends BaseModel
         try {
             $cxn = parent::connectToDB();
 
-            $query = "SELECT * FROM product WHERE FK_categoryID = :categoryID";
+            // $query = "SELECT * FROM product WHERE FK_categoryID = :categoryID";
+            // $query = "SELECT *
+            // FROM Variations V
+            // JOIN Product P ON V.FK_productID = P.productID
+            // JOIN Category C ON P.FK_categoryID = C.categoryID
+            // WHERE C.categoryID = :categoryID";
+            $query = "SELECT *
+            FROM Variations V
+            JOIN ProductVariations PV ON V.variationID = PV.variationID
+            JOIN Product P ON PV.productID = P.productID
+            JOIN Category C ON P.FK_categoryID = C.categoryID
+            WHERE C.categoryID = :categoryID";
             $stmt = $cxn -> prepare($query);
             $stmt -> bindParam(":categoryID", $categoryID);
 
@@ -87,16 +98,36 @@ class ProductModel extends BaseModel
         try {
             $cxn = parent::connectToDB();
              
-            $query = $query = "SELECT * FROM Product LEFT JOIN Variations ON product.productID = variations.FK_productID Where productID = :productID";;
-            $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":productID", $_GET['productID']);
-
-            $stmt -> execute();
-            $result =  $stmt -> fetchAll(\PDO::FETCH_OBJ);
+            $query = "SELECT * FROM Product Where productID = :productID;";
+            $stmt = $cxn->prepare($query);
+            $stmt->bindParam(":productID", $_GET['productID']);
+            $stmt->execute();
+            $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
             
             foreach ($result as $row)
             {
                 print($this->singleProductTemplate($row));
+            }
+
+        } catch(\PDOException $e) {
+            echo $e -> getMessage();
+        }
+    }
+
+    function getProductVariations()
+    {
+        try {
+            $cxn = parent::connectToDB();
+             
+            $query = 
+            $stmt = $cxn->prepare($query);
+            $stmt->bindParam(":variationID", $_GET['variationID']);
+            $stmt->execute();
+            $variations = $stmt->fetchAll(\PDO::FETCH_OBJ);
+            
+            foreach ($variations as $variation)
+            {
+                print($this->singleProductTemplate($variation));
             }
 
         } catch(\PDOException $e) {
@@ -109,7 +140,7 @@ class ProductModel extends BaseModel
         return $template = "
         
         <article class='product-w gap-50 margin-100'>
-            <a class='text-decoration-none product-card' href=http://localhost/CapWizards/Products/?productID=". $row -> productID .">
+            <a class='text-decoration-none product-card' href='http://localhost/CapWizards/Products/?productID= ". $row->productID."&variationID= $row->variationID'>
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
                 <p class='margin-15 p-black'>" . $row -> productDescription . " </p>
@@ -149,8 +180,8 @@ class ProductModel extends BaseModel
         return $template = "
 
                 <div class='text-center'>
-                    <img class='img-350 margin-30' src = ".$row -> imgUrl." alt= ".$row -> altTxt.">
-                    <h1 class='h1-black margin-50'>" .$row -> productName ."</h1>
+                    <img class='img-350 margin-30' src = ". $row -> imgUrl." alt= " .  $row -> altTxt.">
+                    <h1 class='h1-black margin-50'>".  $row -> productName ."</h1>
                 </div>
                 <div class='d-flex justify-content-center justify-content-between'>
                         
@@ -203,9 +234,9 @@ class ProductModel extends BaseModel
                             <h2>".$row -> price." DKK</h2>
                         </div>
                         <div class='row margin-15'>
-                            <button class='c-variations'></button>
-                            <button class='c-variations'></button>
-                            <button class='c-variations'></button>
+                         
+                         
+                             
                         </div>
                         <div class='row margin-30'>
                             <button class='minus' id='minus'>-</button>

@@ -3,8 +3,10 @@
 namespace models;
 
 require_once __DIR__ . '/../models/BaseModel.php';
+require_once __DIR__ . '/ShoppingCart.php';
 
 use models\BaseModel;
+use models\ShoppingCart;
 
 class ProductModel extends BaseModel 
 {
@@ -125,10 +127,22 @@ class ProductModel extends BaseModel
         }
     }
 
+    function addToCart ($productID, $variationID, $quantity, $price)
+    {
+        // Create an instance of ShoppingCart
+        $cart = new ShoppingCart();
+
+        // Call the necessary method to add product to the shopping cart
+        $cart -> addToCart($productID, $variationID, $quantity, $price);
+    }
+
     function productTemplate($row)
     {
         return $template = "
         <form method=POST action='././views/shared/addToCartButton.php'>
+        <input type='hidden' name='productID' value='" . $row->productID . "'>
+        <input type='hidden' name='variationID' value='" . $row->variationID . "'>
+
         <article class='product-w gap-50 margin-100'>
             <a class='text-decoration-none product-card' href='http://localhost/CapWizards/Products/?productID= ". $row->productID."&variationID= ".$row->variationID."'>
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
@@ -139,7 +153,7 @@ class ProductModel extends BaseModel
             <div class='d-flex justify-content-center'>
                 <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>
 
-                <input value=add_to_cart type=submit name=add_to_cart>
+                <input value=Add to cart type=submit name=add_to_cart>
             </div>
         </article>
         </form>";

@@ -290,15 +290,27 @@ class AdminModel extends BaseModel
         try {
             $cxn = parent::connectToDB();
 
-            $query = "DELETE FROM Product WHERE productID = :productID";
-            $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":productID", $productID);
+            // Start a transaction
+            $cxn -> beginTransaction();
+            // First, delete related rows from ProductVariations
+            $deleteVariationsQuery = "DELETE FROM ProductVariations WHERE productID = :productID";
+            $stmtVariations = $cxn->prepare($deleteVariationsQuery);
+            $stmtVariations->bindParam(':productID', $productID);
+            $stmtVariations->execute();
+            
+            // Then, delete the product
+            $deleteProductQuery = "DELETE FROM Product WHERE productID = :productID";
+            $stmtProduct = $cxn->prepare($deleteProductQuery);
+            $stmtProduct->bindParam(':productID', $productID);
+            $stmtProduct->execute();
+            $stmtProduct -> execute();
 
-            $stmt -> execute();
-
-            $cxn = null;
+            // Commit the transaction
+            $cxn -> commit();
 
         } catch (\PDOException $e){
+            // Rollback the transaction on error
+            $cxn -> rollBack();
             echo $e -> getMessage();
         }
     }

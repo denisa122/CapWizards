@@ -1,10 +1,10 @@
 <?php
 require("./views/shared/header.php");
 require_once("././dataaccess/db/DBConnector.php");
-// $customerID = $_SESSION['customerID'];
-// $orderID = $_SESSION['orderID'];
-$customerID = 2;
-$orderID = 3;
+$customerID = $_SESSION['customerID'];
+$orderID = $_SESSION['orderID'];
+// $customerID = 2;
+// $orderID = 3;
 ?>
 
 <!-- Main -->

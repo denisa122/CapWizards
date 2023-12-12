@@ -1,5 +1,7 @@
 <?php
 
+// require_once ("./views/shared/session.php");
+// require_once("././dataaccess/db/DBConnector.php");
 require("./views/shared/header.php");
 require_once("././dataaccess/db/DBConnector.php");
 
@@ -31,6 +33,7 @@ $orderID = $_SESSION['orderID'];
                 </div>
             </article>
             <div class="text-center"><a href="" class="big-button btn-checkout">Go to checkout</a></div>
+            
         </section>
     </main>
 

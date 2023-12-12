@@ -32,7 +32,7 @@ $orderID = 3;
     
                   while ($fetch_order = $order_result->fetch_assoc()) { 
             ?>
-            <form method=POST action='/CapWizards/views/order/CheckOut.php'>
+            <form method=POST action='CheckOut.php'>
                 <article class="cart-product d-flex justify-content-center justify-content-between">
                     <div class="col1-p"><img class="img-150" src="<?= $fetch_order['imgUrl']; ?>" alt="<?= $fetch_order['altTxt']; ?>"></div>
                     <div class="col2-p">
@@ -54,7 +54,7 @@ $orderID = 3;
                         <h2><?= $fetch_order['price'] * $fetch_order['quantity']; ?></h2>
                     </div>
                     <?php } ?>
-                    <div class="row text-center form-button-wrapper text-center"><input class="big-button form-button" type="submit" class="big-button btn-checkout" value="Go to checkout"></div>
+                    <div class="text-center"><input type="submit" class="big-button btn-checkout" placeholder="Go to checkout"></div>
                 </article>
             </form>
         </section>

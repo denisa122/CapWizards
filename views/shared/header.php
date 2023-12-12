@@ -1,6 +1,10 @@
 <?php 
+    if (session_status() == PHP_SESSION_NONE)
+    {
+        session_start();
+    }
       
-        require_once("././dataaccess/db/DBConnector.php");
+      require_once("././dataaccess/db/DBConnector.php");
       ?>
       
 <!DOCTYPE html>
@@ -159,9 +163,19 @@
               <a class="gap-30" href="http://localhost/CapWizards/ShoppingCart" style="margin-left: 80px;"> 
                 <img src="/CapWizards/assets/svg/cart.svg" alt="Cart icon">
               </a>
-              <a  href="http://localhost/CapWizards/Profile">   
-                <img src="/CapWizards/assets/svg/avatar.svg" alt="Avatar icon">  
-              </a>
+
+              <?php if (isset($_SESSION['user'])) {
+                // Access user information
+                $userId = $_SESSION['user']['customerID'];
+                $firstName = $_SESSION['user']['firstName'];
+                $lastName = $_SESSION['user']['lastName'];
+                $userName = $_SESSION['user']['userName'];
+
+              echo "<a href='http://localhost/CapWizards/controllers/LoginController.php?action=logout'>Log out</a>";
+            } else {
+                echo "<a href='http://localhost/CapWizards/Login'>Log in</a>";
+            }
+            ?>
             </div>
           </nav>
         </header> 

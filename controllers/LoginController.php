@@ -25,6 +25,15 @@ if ($action == "login")
         if ($customer)
         {
             //Authentication successful
+
+            $_SESSION['customerID'] = $customer['customerID'];
+            $_SESSION['user'] = [
+                'customerID' => $customer['customerID'],
+                'firstName' => $customer['firstName'],
+                'lastName' => $customer['lastName'],
+                'userName' => $customer['userName'],
+            ];
+
             header("Location: http://localhost/CapWizards/");
         } else {
             //Authentication failed, redirect to login page with an error
@@ -38,7 +47,19 @@ if ($action == "login")
         header("Location: http://localhost/CapWizards/Login"); //TODO change to an appropriate error
         exit();
     }
-} else if ($action == "register") //add first name, last name here since we have it on the form
+} 
+else if ($action == "logout")
+{
+    unset($_SESSION['customerID']);
+    unset($_SESSION['user']);
+
+    // Destroy the session
+    session_destroy();
+
+    header("Location:http://localhost/CapWizards");
+    exit();
+}
+else if ($action == "register") //add first name, last name here since we have it on the form
 {
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];

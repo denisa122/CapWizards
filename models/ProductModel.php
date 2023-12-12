@@ -139,7 +139,7 @@ class ProductModel extends BaseModel
     function productTemplate($row)
     {
         return $template = "
-        <form method=POST action='././views/shared/addToCartButton.php'>
+        
         <input type='hidden' name='productID' value='" . $row->productID . "'>
         <input type='hidden' name='variationID' value='" . $row->variationID . "'>
 
@@ -149,14 +149,14 @@ class ProductModel extends BaseModel
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
                 <p class='margin-15 p-black'>" . $row -> productDescription . " </p>
             </a>
+            <form method=POST action='././views/shared/addToCartButton.php'>
+                <div class='d-flex justify-content-center'>
+                    <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>
 
-            <div class='d-flex justify-content-center'>
-                <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>
-
-                <input value=Add type=submit name=add_to_cart>
-            </div>
-        </article>
-        </form>";
+                    <input value=Add type=submit name=add_to_cart>
+                </div>
+            </form>
+        </article>";
         
     }
 

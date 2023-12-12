@@ -136,6 +136,24 @@ CREATE TABLE ProductOrder (
     FOREIGN KEY (orderID) REFERENCES `Order` (orderID)
 )ENGINE = InnoDB;
 
+-- Triggers --
+
+-- First trigger -- 
+DELIMITER //
+CREATE TRIGGER before_insert_News
+BEFORE INSERT ON News
+FOR EACH ROW
+BEGIN 
+    IF NEW.newsDate IS NULL THEN 
+    SET NEW.newsDate = CURDATE();
+    END IF;
+END;
+//
+DELIMITER ;
+
+-- Second trigger --
+
+
 
 -- Inserting data into tables --
 INSERT INTO Company 

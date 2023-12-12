@@ -20,15 +20,8 @@ class ProductModel extends BaseModel
         try {
             $cxn = parent::connectToDB();
 
-            // $query = "SELECT * FROM product WHERE FK_categoryID = :categoryID";
-            // $query = "SELECT *
-            // FROM Variations V
-            // JOIN Product P ON V.FK_productID = P.productID
-            // JOIN Category C ON P.FK_categoryID = C.categoryID
-            // WHERE C.categoryID = :categoryID";
             $query = "SELECT *
-            FROM Variations V
-            JOIN ProductVariations PV ON V.variationID = PV.variationID
+            FROM ProductVariations PV
             JOIN Product P ON PV.productID = P.productID
             JOIN Category C ON P.FK_categoryID = C.categoryID
             WHERE C.categoryID = :categoryID";
@@ -75,7 +68,12 @@ class ProductModel extends BaseModel
         try {
             $cxn = parent::connectToDB();
 
-            $query = "SELECT * FROM product WHERE FK_categoryID = :categoryID AND FK_subcategoryID = :subcategoryID";
+            // $query = "SELECT * FROM product WHERE FK_categoryID = :categoryID AND FK_subcategoryID = :subcategoryID";
+            $query = "SELECT *
+            FROM ProductVariations PV
+            JOIN Product P ON PV.productID = P.productID
+            JOIN Category C ON P.FK_categoryID = C.categoryID
+            WHERE C.categoryID = :categoryID AND FK_subcategoryID = :subcategoryID";
             $stmt = $cxn -> prepare($query);
             $stmt -> bindParam(":categoryID", $categoryID);
             $stmt -> bindParam(":subcategoryID", $subcategoryID);
@@ -247,7 +245,7 @@ class ProductModel extends BaseModel
     $buttons = '';
 
     foreach ($variations as $variation) {
-        $buttons .= "<a class='c-variations' href=http://localhost/CapWizards/Products/?productID={$variation -> productID}&variationID={$variation -> variationID}>C</a>";
+        $buttons .= "<a class='c-variations' href='http://localhost/CapWizards/Products/?productID=".$variation -> productID."&variationID=".$variation -> variationID."'>C</a>";
     }
 
     return $buttons;

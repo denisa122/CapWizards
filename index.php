@@ -25,7 +25,9 @@ route('/CapWizards/ShoppingCart', function () {
     require "views/order/CartOverview.php";
 });
 
-
+route('/CapWizards/views/order/CheckOut', function () {
+    require "views/order/CheckOut.php";
+});
 // Product pages for each category and subcategory
 
 // Alcoholic products
@@ -139,6 +141,8 @@ route('CapWizards/contactForm.php', function () {
     } 
     include './views/shared/contactForm.php';
 });
+
+
 
 
 $action = $_SERVER['REQUEST_URI'];

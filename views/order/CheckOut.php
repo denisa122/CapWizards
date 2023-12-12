@@ -1,7 +1,5 @@
 <?php
 
-// require_once ("./views/shared/session.php");
-// require_once("././dataaccess/db/DBConnector.php");
 require("./views/shared/header.php");
 require_once("././dataaccess/db/DBConnector.php");
 

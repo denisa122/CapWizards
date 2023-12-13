@@ -179,6 +179,11 @@
                 echo "<a href='http://denisaneagu.com/CapWizards/Login'>Log in</a>";
             }
             ?>
+
+                <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') {
+              echo "<a href='http://denisaneagu.com/CapWizards/Admin' style='margin-left:20px'>Admin panel</a>";
+            } 
+            ?>
             </div>
           </nav>
         </header> 

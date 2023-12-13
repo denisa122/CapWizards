@@ -281,8 +281,8 @@ footer {
 .c-variations {
     width: 30px;
     height: 30px;
+    border: 1px solid #787878 ;
     border-radius: 20px;
-    border: none;
     margin-right: 10px;
 }
 
@@ -385,6 +385,11 @@ input::-webkit-outer-spin-button {
 }
 
 /* PRODUCT PAGES style */
+.p-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
 .product-info-section {
     padding:  150px 0;
  }

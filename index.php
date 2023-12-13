@@ -26,8 +26,9 @@ route('/CapWizards/ShoppingCart', function () {
 });
 
 route('/CapWizards/views/order/CheckOut', function () {
-    require "views/order/CheckOut.php";
+    require "views/order/goToCheckout.php";
 });
+
 // Product pages for each category and subcategory
 
 // Alcoholic products

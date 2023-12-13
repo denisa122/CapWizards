@@ -24,6 +24,7 @@ require("./views/shared/header.php");
             <?= $cartItem ?>
         <?php endforeach; ?>
     </section>
+    <div class="row text-center form-button-wrapper"><a href="http://denisaneagu.com/CapWizards/views/order/CheckOut" class="big-button form-button">Go to checkout</a></div>
 </main>
 
 <?php

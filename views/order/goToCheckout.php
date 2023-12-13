@@ -9,7 +9,7 @@ require("./views/shared/header.php");
     <article class="text-center top-padding">
         <h1 class="h1-yellow margin-30">Check Out</h1>
         <div class="d-flex justify-content-center">
-        <form method="POST" action="http://denisaneagu.com/CapWizards/Controllers/CheckOutController.php?action=Checkout">
+        <form method="POST" action="http://denisaneagu.com/CapWizards/Controllers/CheckOutcontroller.php?action=Checkout">
          
             
           <div class="row margin-15"> 

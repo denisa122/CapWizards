@@ -22,7 +22,7 @@ class ShoppingCart extends BaseModel
         }
     }
 
-    public function addToCart ($productID, $variationID, $quantity, $price)
+    public function addToCart ($productID, $productName, $variationID, $quantity, $price, $imgUrl)
     {
         $key = $productID . '_' . $variationID;
 
@@ -34,9 +34,11 @@ class ShoppingCart extends BaseModel
             // Add a new item to the cart
             $_SESSION['cart'][$key] = [
                 'productID' => $productID,
+                'productName' => $productName,
                 'variationID' => $variationID,
                 'quantity' => $quantity,
                 'price' => $price,
+                'imgUrl' => $imgUrl,
             ];
         }
     }
@@ -91,12 +93,14 @@ class ShoppingCart extends BaseModel
     public function cartItemTemplate($item)
     {
         return "
-        <div class='cart-item'>
-            <p>Product ID: {$item['productID']}</p>
-            <p>Variation ID: {$item['variationID']}</p>
-            <p>Quantity: {$item['quantity']}</p>
-            <p>Price: {$item['price']}</p>
-        </div>
+        <article class='product-w gap-50 margin-100' style='margin-left:100px; display:flex; flex-direction: row; width:800px;'>
+        <img class='img-150 margin-30' src='{$item['imgUrl']}' style='margin-right:50px'>
+        <a class='text-decoration-none product-card' href=''>
+            <h2 class='h2-black margin-15'>{$item['productName']}</h2>
+            <h3 class='h2-black margin-15'>Quantity: {$item['quantity']}</h3>
+            <h3 class='font-weight-bold gap-50'>Price per item:{$item['price']} DKK </h3>
+        </a>
+        </article>
     ";
     }
 }

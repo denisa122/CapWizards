@@ -13,11 +13,13 @@ $action = $_GET['action'];
 if ($action == "addToCart")
 {
     $productId = $_POST['productId'];
+    $productName = $_POST['productName'];
     $variationId = $_POST['variationId'];
     $quantity = $_POST['quantity'];
     $price = $_POST['price'];
+    $imgUrl = $_POST['imgUrl'];
 
-    $shoppingCart->addToCart($productId, $variationId, $quantity, $price);
+    $shoppingCart->addToCart($productId, $productName, $variationId, $quantity, $price, $imgUrl);
 
     header("Location: http://denisaneagu.com/CapWizards/Products/?productID=$productId&variationID=$variationId");
     exit();

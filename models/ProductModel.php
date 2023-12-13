@@ -134,13 +134,13 @@ class ProductModel extends BaseModel
     }
 
     // Shopping cart related methods
-    function addToCart ($productID, $variationID, $quantity, $price)
+    function addToCart ($productID, $productName, $variationID, $quantity, $price, $imgUrl)
     {
         // Create an instance of ShoppingCart
         $cart = new ShoppingCart();
 
         // Call the necessary method to add product to the shopping cart
-        $cart -> addToCart($productID, $variationID, $quantity, $price);
+        $cart -> addToCart($productID, $productName, $variationID, $quantity, $price, $imgUrl);
     }
 
     function productTemplate($row)
@@ -148,11 +148,13 @@ class ProductModel extends BaseModel
         $baseURL = BASE_URL;
         
         return $template = "
-        
-      
+    
     <form method=POST action='{$baseURL}/views/shared/addToCartButton.php'>
     <input type='hidden' name='productID' value=" . $row->productID . ">
     <input type='hidden' name='variationID' value=" . $row->variationID . ">
+    <input type='hidden' name='productName' value=" . $row->productName . ">
+    <input type='hidden' name='price' value=" . $row->price . ">
+    <input type='hidden' name='imgUrl' value=" . $row->imgUrl . ">
         <article class='product-w gap-50 margin-100'>
             <a class='text-decoration-none product-card' href='/CapWizards/Products?productID=". $row -> productID."&variationID=".$row -> variationID."'>
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">

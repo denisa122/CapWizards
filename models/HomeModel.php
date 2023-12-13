@@ -39,11 +39,10 @@ class HomeModel extends BaseModel
         try {
             $cxn = parent::connectToDB();
 
-            $query = "SELECT *
-            FROM ProductVariations PV
-            JOIN Product P ON PV.productID = P.productID
-            JOIN Category C ON P.FK_categoryID = C.categoryID
-            WHERE isSpecialOffer = 1";
+            $query = "SELECT * FROM ProductVariations PV
+                        JOIN Product P ON PV.productID = P.productID
+                        JOIN Category C ON P.FK_categoryID = C.categoryID
+                        WHERE isSpecialOffer = 1";
             $stmt = $cxn -> prepare($query);
             $stmt -> execute();
             
@@ -65,7 +64,7 @@ class HomeModel extends BaseModel
             $cxn = parent::connectToDB();
 
             // Always get the 2 most recently added news
-            $query = "SELECT * FROM News order by newsDate desc limit 2";
+            $query = "SELECT * FROM NewsInViews";
             $stmt = $cxn -> prepare($query);
 
             $stmt -> execute();
@@ -95,7 +94,7 @@ class HomeModel extends BaseModel
         return $template = "
             <form method=POST action='././views/shared/addToCartButton.php'>
                 <article class='product-w'> 
-                <a class=text-decoration-none product-card href=' http://localhost/CapWizards/Products/?productID=". $row -> productID ."&variationID= ".$row->variationID."'>
+                <a class=text-decoration-none product-card href='/CapWizards/Products/?productID=". $row -> productID ."&variationID= ".$row -> variationID."'>
                     <input class='hidden' name='productID' value= ".$row -> productID.">
                     <input type='hidden' name='variationID' value='" . $row -> productName . "'>
                     <input type='hidden' name='productName' value='" . $row -> productName . "'>

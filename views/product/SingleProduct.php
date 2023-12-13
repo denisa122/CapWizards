@@ -7,7 +7,6 @@ require_once "./models/ProductModel.php";
 use models\ProductModel;
 
 $SingleProductModel = new ProductModel();
-$GetProductVariation = new ProductModel();
 ?>
 
 <!-- Main -->

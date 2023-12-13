@@ -18,18 +18,17 @@ session_start();
 // Check if the user is logged in
 if (isset($_SESSION['user'])) {
     // Access user information
-    $userId = $_SESSION['user']['customerID'];
-    $firstName = $_SESSION['user']['firstName'];
-    $lastName = $_SESSION['user']['lastName'];
-    $userName = $_SESSION['user']['userName'];
-
-   echo "<h1>You are already logged in.</h1>
-   <a href='http://localhost/CapWizards/controllers/LoginController.php?action=logout'>Log out</a>";
-
-    // You can add more fields as needed
+    $user = $_SESSION['user'];
+    ?>
+    <body>
+        <h1>Welcome, <?php echo $user['firstName'] . ' ' . $user['lastName']; ?>!</h1>
+        <p>Username: <?php echo $user['userName']; ?></p>
+        <p>Your role is: <?php echo $user['role']; ?></p>
+    </body>
+    <?php
 } else {
-    // Redirect to the login page if the user is not logged in
-    echo "<h1>You are not logged in.</h1>
-    <a href='http://localhost/CapWizards/Login'>Log in</a>";
+    // Redirect the user to the login page if not logged in
+    header("Location: http://denisaneagu.com/CapWizards/Login");
+    exit();
 }
 ?>

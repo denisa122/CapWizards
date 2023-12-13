@@ -94,7 +94,7 @@ class HomeModel extends BaseModel
         return $template = "
             <form method=POST action='././views/shared/addToCartButton.php'>
                 <article class='product-w'> 
-                <a class=text-decoration-none product-card href='/CapWizards/Products/?productID=". $row -> productID ."&variationID= ".$row -> variationID."'>
+                <a class=text-decoration-none product-card href='/CapWizards/Products?productID=". $row -> productID ."&variationID=".$row -> variationID."'>
                     <input class='hidden' name='productID' value= ".$row -> productID.">
                     <input type='hidden' name='variationID' value='" . $row -> variationID . "'>
                     <img class='img-150 margin-30' src = ".$row -> imgUrl." alt= ".$row -> altTxt.">

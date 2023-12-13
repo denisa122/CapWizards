@@ -26,12 +26,12 @@ $productModel = new ProductModel();
 
     <!--Categories-->
     <section class="d-flex justify-content-between categories-section text-center">
-        <a href="http://localhost/CapWizards/Products/Alcoholic" class="text-decoration-none">
+        <a href="http://denisaneagu.com/CapWizards/Products/Alcoholic" class="text-decoration-none">
             <img src="/CapWizards/assets/svg/beer.svg" alt="#">
             <h2>Alcoholic</h2>
         </a>
 
-        <a href="http://localhost/CapWizards/Products/Non-alcoholic" class="text-decoration-none">
+        <a href="http://denisaneagu.com/CapWizards/Products/Non-alcoholic" class="text-decoration-none">
             <img src="/CapWizards/assets/svg/nonAlcoholic.svg" alt="#">
             <h2>Non alcoholic</h2>
         </a>

@@ -7,14 +7,22 @@ require_once "./models/ProductModel.php";
 use models\ProductModel;
 
 $SingleProductModel = new ProductModel();
+
+// Retrieve productID and variationID from the query parameters
+$productID = isset($_GET['productID']) ? $_GET['productID'] : null;
+$variationID = isset($_GET['variationID']) ? $_GET['variationID'] : null;
+
 ?>
 
 <!-- Main -->
     <main>
         <section class='product-info-section'>
             <div class="side-padding">
+
                 <?php 
-                    $SingleProductModel -> getSingleProduct();
+                var_dump($_GET['productID']);
+                var_dump($_GET['variationID']);
+                    $SingleProductModel -> getSingleProduct($productID, $variationID);
                 ?>
                
             </div>

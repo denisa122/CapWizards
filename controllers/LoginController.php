@@ -32,19 +32,20 @@ if ($action == "login")
                 'firstName' => $customer['firstName'],
                 'lastName' => $customer['lastName'],
                 'userName' => $customer['userName'],
+                'role' => $customer['role'],
             ];
 
-            header("Location: http://localhost/CapWizards/");
+            header("Location: http://denisaneagu.com/CapWizards/");
         } else {
             //Authentication failed, redirect to login page with an error
             $_SESSION['loginError'] = "Invalid email or password";
-            header("Location: http://localhost/CapWizards/Login"); //TODO change to an appropriate error
+            header("Location: http://denisaneagu.com/CapWizards/Login"); //TODO change to an appropriate error
             exit();
         }
     } else
     {
         //Handle missing POST data
-        header("Location: http://localhost/CapWizards/Login"); //TODO change to an appropriate error
+        header("Location: http://denisaneagu.com/CapWizards/Login"); //TODO change to an appropriate error
         exit();
     }
 } 
@@ -56,7 +57,7 @@ else if ($action == "logout")
     // Destroy the session
     session_destroy();
 
-    header("Location:http://localhost/CapWizards");
+    header("Location:http://denisaneagu.com/CapWizards");
     exit();
 }
 else if ($action == "register") //add first name, last name here since we have it on the form
@@ -73,16 +74,16 @@ else if ($action == "register") //add first name, last name here since we have i
 
         if($registerSuccess)
         {
-            header("Location: http://localhost/CapWizards/Login");
+            header("Location: http://denisaneagu.com/CapWizards/Login");
             exit();
         } else {
             $_SESSION['registerError'] = "Failed to register user";
-            header("Location: http://localhost/CapWizards/Register"); //TODO change to an appropriate error
+            header("Location: http://denisaneagu.com/CapWizards/Register"); //TODO change to an appropriate error
             exit();
         }
     } else {
         //Handle missing POST data
-        header("Location: http://localhost/CapWizards/Register"); //TODO change to an appropriate error
+        header("Location: http://denisaneagu.com/CapWizards/Register"); //TODO change to an appropriate error
         exit();
     }
 }

@@ -34,7 +34,7 @@ $FooterInfoModel = new FooterModel();
     <!-- News -->
         <section class="margin-100">
         <h1 class="margin-50 text-center h1-black">News</h1>
-        <a class="btn btn-success" href="http://localhost/CapWizards/Admin/Add-news">Add news</a>
+        <a class="btn btn-success" href="http://denisaneagu.com/CapWizards/Admin/Add-news">Add news</a>
         <div class="d-flex justify-content-center">
             <div>
             <?php $adminModel -> getNews() ?>
@@ -47,7 +47,7 @@ $FooterInfoModel = new FooterModel();
     <!-- Daily offers -->
     <section class="dailyOffers-section text-center">
         <h1 class="h1-black margin-50">Special offers</h1>
-        <a class="btn btn-success" href="http://localhost/CapWizards/Admin/Add-special-offer" style="margin-bottom: 80px;">Add special offer</a>
+        <a class="btn btn-success" href="http://denisaneagu.com/CapWizards/Admin/Add-special-offer" style="margin-bottom: 80px;">Add special offer</a>
         <div class="d-flex justify-content-center justify-content-between">
             <article class="product-w container"> 
             <?php $adminModel -> getSpecialOffers(); ?>
@@ -59,7 +59,7 @@ $FooterInfoModel = new FooterModel();
     <section class="dailyOffers-section text-center">
         <h1 class="h1-black margin-50">Edit products</h1>
         <h3>In order to edit all products available on the web shop or add new products, you must go to the products page.</h3>
-        <a href="http://localhost/CapWizards/Admin/Products">Go to products page.</a>
+        <a href="http://denisaneagu.com/CapWizards/Admin/Products">Go to products page.</a>
     </section>
     </main>
 

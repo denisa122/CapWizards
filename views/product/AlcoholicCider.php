@@ -18,7 +18,7 @@ $productModel = new ProductModel();
 <!-- Product grid -->
 <section class='side-padding text-center'>
            <p>Unfortunately, we are currently sold out of cider bottle caps.</p>
-           <a href="http://localhost/CapWizards/Products/Alcoholic">Explore other products from the same category</a>
+           <a href="http://denisaneagu.com/CapWizards/Products/Alcoholic">Explore other products from the same category</a>
     </section>
 </main>
 

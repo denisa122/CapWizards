@@ -388,7 +388,7 @@ class AdminModel extends BaseModel
                </tr>
            </table>
            <div>
-           <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-extra-info?companyID=" . $row->companyID . "'>Edit</a>
+           <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-extra-info?companyID=" . urlencode($row->companyID) . "'>Edit</a>
            </div>
        </article> ";
     }

@@ -27,7 +27,7 @@ require("./views/shared/header.php");
         </div>
         <div class="d-flex justify-content-center">
           <p class="gap-15">Don't have an account?</p>
-          <a href="http://localhost/CapWizards/Register">Sign Up</a>
+          <a href="http://denisaneagu.com/CapWizards/Register">Sign Up</a>
         </div>
     
     </article>

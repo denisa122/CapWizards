@@ -42,6 +42,14 @@ class LoginModel extends BaseModel
             {
                 // Authentication successful
                 $_SESSION['customerID'] = $customer['customerID'];
+                $_SESSION['user'] = [
+                    'customerID' => $customer['customerID'],
+                    'firstName' => $customer['firstName'],
+                    'lastName' => $customer['firstName'],
+                    'userName' => $customer['userName'],
+                    'role' => $customer['role'],
+                ];
+
                 return $customer;
             } else {
                 // Invalid email or username

@@ -19,7 +19,7 @@ if ($action == "addNews")
     
     echo "<script>
     alert('News created successfully');
-    window.location.href='http://localhost/CapWizards/Admin';
+    window.location.href='http://denisaneagu.com/CapWizards/Admin';
     </script>";
 } 
 else if ($action == "deleteNews")
@@ -30,7 +30,7 @@ else if ($action == "deleteNews")
 
     echo "<script>
     alert('News deleted successfully');
-    window.location.href='http://localhost/CapWizards/Admin';
+    window.location.href='http://denisaneagu.com/CapWizards/Admin';
     </script>";
 } 
 else if ($action == "updateNews")
@@ -43,7 +43,7 @@ else if ($action == "updateNews")
 
     echo "<script>
     alert('News updated successfully');
-    window.location.href='http://localhost/CapWizards/Admin';
+    window.location.href='http://denisaneagu.com/CapWizards/Admin';
     </script>";
 } 
 // Methods for company description
@@ -56,7 +56,7 @@ else if ($action == "updateCompanyDescription")
 
     echo "<script>
     alert('Company description updated successfully');
-    window.location.href='http://localhost/CapWizards/Admin';
+    window.location.href='http://denisaneagu.com/CapWizards/Admin';
     </script>";
 }
 // Methods for extra company details
@@ -71,7 +71,7 @@ else if ($action == "updateExtraInfo")
 
     echo "<script>
     alert('Information updated successfully');
-    window.location.href='http://localhost/CapWizards/Admin';
+    window.location.href='http://denisaneagu.com/CapWizards/Admin';
     </script>";
 }
 // Methods for special offers
@@ -83,7 +83,7 @@ else if ($action == "removeProductFromSpecialOffers")
 
     echo "<script>
     alert('Product removed from special offers successfully');
-    window.location.href='http://localhost/CapWizards/Admin';
+    window.location.href='http://denisaneagu.com/CapWizards/Admin';
     </script>";
 }
 else if ($action == "addSpecialOffer")
@@ -94,7 +94,7 @@ else if ($action == "addSpecialOffer")
     
     echo "<script>
     alert('Special offer created successfully');
-    window.location.href='http://localhost/CapWizards/Admin';
+    window.location.href='http://denisaneagu.com/CapWizards/Admin';
     </script>";
 }
 else if ($action == "updateProduct")
@@ -108,7 +108,7 @@ else if ($action == "updateProduct")
 
     echo "<script>
     alert('Product updated successfully');
-    window.location.href='http://localhost/CapWizards/Admin';
+    window.location.href='http://denisaneagu.com/CapWizards/Admin';
     </script>";
 }
 // Methods for product from products page
@@ -120,7 +120,7 @@ else if ($action == "deleteProduct")
 
     echo "<script>
     alert('Product deleted successfully');
-    window.location.href='http://localhost/CapWizards/Admin/Products';
+    window.location.href='http://denisaneagu.com/CapWizards/Admin/Products';
     </script>";
 }
 else if ($action == "createProduct")
@@ -143,6 +143,6 @@ else if ($action == "createProduct")
     
     echo "<script>
     alert('Product created successfully');
-    window.location.href='http://localhost/CapWizards/Admin/Products';
+    window.location.href='http://denisaneagu.com/CapWizards/Admin/Products';
     </script>";
 }

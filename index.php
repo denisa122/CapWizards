@@ -1,7 +1,7 @@
 <?php 
 
 // modify the BASE_URL value to match your folder
-define("BASE_URL", "http://localhost/CapWizards"); 
+define("BASE_URL", "http://denisaneagu.com/CapWizards"); 
 
 require_once "router.php";
 

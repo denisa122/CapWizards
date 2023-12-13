@@ -18,19 +18,19 @@ $productModel = new ProductModel();
 
        <!-- Subcategories navigation -->
        <section class="d-flex subcategories-navigation text-center"> 
-        <a class="col subcategories-red text-decoration-none" href="http://localhost/CapWizards/Products/Alcoholic/Cider">
+        <a class="col subcategories-red text-decoration-none" href="http://denisaneagu.com/CapWizards/Products/Alcoholic/Cider">
             <img src="/CapWizards/assets/svg/cider.svg" alt="Cider bottle and glass icon">
             <h2 class="h2-bage">Cider</h2>
         </a>
-        <a class="col subcategories-yellow text-decoration-none" href="http://localhost/CapWizards/Products/Alcoholic/Beer">
+        <a class="col subcategories-yellow text-decoration-none" href="http://denisaneagu.com/CapWizards/Products/Alcoholic/Beer">
             <img src="/CapWizards/assets/svg/beer-bage.svg" alt="Beer glass icon">
             <h2 class="h2-bage">Beer</h2>
         </a>
-        <a class="col subcategories-blue text-decoration-none" href="http://localhost/CapWizards/Products/Alcoholic/Shaker">
+        <a class="col subcategories-blue text-decoration-none" href="http://denisaneagu.com/CapWizards/Products/Alcoholic/Shaker">
             <img src="/CapWizards/assets/svg/mixer.svg" alt="Shaker glass icon">
             <h2 class="h2-bage">Shaker</h2>
         </a>
-        <a class="col subcategories-pink text-decoration-none" href="http://localhost/CapWizards/Products/Alcoholic/Wine">
+        <a class="col subcategories-pink text-decoration-none" href="http://denisaneagu.com/CapWizards/Products/Alcoholic/Wine">
             <img src="/CapWizards/assets/svg/vine.svg" alt="Wine glass icon">
             <h2 class="h2-bage">Wine</h2>
         </a>

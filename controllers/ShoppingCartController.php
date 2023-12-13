@@ -19,7 +19,7 @@ if ($action == "addToCart")
 
     $shoppingCart->addToCart($productId, $variationId, $quantity, $price);
 
-    header("Location: http://localhost/CapWizards/Products/?productID=$productId&variationID=$variationId");
+    header("Location: http://denisaneagu.com/CapWizards/Products/?productID=$productId&variationID=$variationId");
     exit();
 } else if ($action == "updateQuantity")
 {
@@ -29,7 +29,7 @@ if ($action == "addToCart")
 
     $shoppingCart -> updateQuantity($productId, $variationId, $quantity);
 
-    header("Location: http://localhost/CapWizards/Products/?productID=$productId&variationID=$variationId");
+    header("Location: http://denisaneagu.com/CapWizards/Products/?productID=$productId&variationID=$variationId");
     exit();
 } else if ($action == "removeItem")
 {
@@ -38,6 +38,6 @@ if ($action == "addToCart")
 
     $shoppingCart -> removeItem($productId, $variationId);
 
-    header("Location: http://localhost/CapWizards/Products/?productID=$productId&variationID=$variationId");
+    header("Location: http://denisaneagu.com/CapWizards/Products/?productID=$productId&variationID=$variationId");
     exit();
 }

@@ -93,7 +93,7 @@ class ProductModel extends BaseModel
         }
     }
 
-    function getSingleProduct()
+    function getSingleProduct($productID, $variationID)
     {
         try {
             $cxn = parent::connectToDB();
@@ -103,21 +103,27 @@ class ProductModel extends BaseModel
                         JOIN Variations V ON PV.variationID = V.variationID
                         WHERE P.productID = :productID AND V.variationID = :variationID ";
             $stmt = $cxn->prepare($query);
-            $stmt -> bindParam(":productID", $_GET['productID']);
-            $stmt -> bindParam(":variationID", $_GET['variationID']);
+            $stmt -> bindParam(":productID", $productID);
+            $stmt -> bindParam(":variationID", $variationID);
             $stmt -> execute();
             $result= $stmt->fetchAll(\PDO::FETCH_OBJ);
 
-            foreach ($result as $row)
-                    {
-                        $row;
-                    }
+    // Handle if the product is not found
+    if (empty($result)) {
+        // Display an error message or redirect to an error page
+        echo "Product not found";
+        return;
+    }
+    $row = $result[0];
 
+           
+
+                // Fetch variations for the product
                 $queryVariations = "SELECT * FROM Variations V
                                     JOIN ProductVariations PV ON V.variationID = PV.variationID
                                     WHERE PV.variationID = :variationID";
                 $stmtVariations = $cxn->prepare($queryVariations);
-                $stmtVariations -> bindParam(":variationID", $_GET['variationID']);
+                $stmtVariations -> bindParam(":variationID", $variationID);
                 $stmtVariations -> execute();
                 $variations = $stmtVariations->fetchAll(\PDO::FETCH_OBJ);
 
@@ -143,7 +149,7 @@ class ProductModel extends BaseModel
       
     <form method=POST action='././views/shared/addToCartButton.php'>
         <article class='product-w gap-50 margin-100'>
-            <a class='text-decoration-none product-card' href='/CapWizards/Products/?productID= ". $row -> productID."&variationID= ".$row -> variationID."'>
+            <a class='text-decoration-none product-card' href='/CapWizards/Products?productID=". $row -> productID."&variationID=".$row -> variationID."'>
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
                 <p class='margin-15 p-black'>" . $row -> productDescription . " </p>
@@ -164,7 +170,7 @@ class ProductModel extends BaseModel
         return $template = "
         
         <article class='product-w gap-50 margin-100'>
-            <a class='text-decoration-none product-card' href=http://localhost/CapWizards/Products/?productID=". $row -> productID .">
+            <a class='text-decoration-none product-card' href=http://denisaneagu.com/CapWizards/Products?productID=". $row -> productID .">
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
                 <p class='margin-15 p-black'>" . $row -> productDescription . " </p>

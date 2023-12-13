@@ -38,8 +38,6 @@ if (isset($_POST['submit'])) {
     }
         if (empty($name) || empty($surname) || empty($email) || empty($subject) || empty($message)) {
           echo "<script>alert('All fields are required.');</script>";
-      } else {
-          echo "<script>alert('Message sent successfully!');</script>";
       }
 
     function test_input($data) {
@@ -49,14 +47,21 @@ if (isset($_POST['submit'])) {
       return $data;
     }
 
-$header = "From:".$name."<".$email.">\r\n";
-
-$recipient = "monika.sz320@gmail.com";
-
-mail($recipient, $subject, $message, $header, "From:" . $email) 
-or die("Error!");
-
-echo"<script>alert('Message sent successfully!');</script>";
+  
+    $headers = 'From: ".$name." <".$email.">' . "\r\n" .
+    'To: neagudenisa12@yahoo.com' .
+    'X-Mailer: PHP/' . phpversion();
+     
+    $to = "neagudenisa12@yahoo.com";
+     
+    $mailResult = mail($to, $subject, $message, $headers);
+     
+    if ($mailResult) {
+      echo "<script>alert('Message sent successfully!');</script>";
+    } else {
+      $lastError = error_get_last();
+      echo "<script>alert('Error sending the message: " . $lastError['message'] . "');</script>";
+    };
 
 // window.location.href='index.php';
 ?>

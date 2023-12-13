@@ -91,8 +91,12 @@ class HomeModel extends BaseModel
 
     function specialOffersTemplate($row)
     {
+        $baseURL = BASE_URL;
+        
         return $template = "
-            <form method=POST action='././views/shared/addToCartButton.php'>
+            <form method=POST action='{$baseURL}/views/shared/addToCartButton.php'>
+            <input type='hidden' name='productID' value=" . $row->productID . ">
+            <input type='hidden' name='variationID' value=" . $row->variationID . ">
                 <article class='product-w'> 
                 <a class=text-decoration-none product-card href='/CapWizards/Products?productID=". $row -> productID ."&variationID=".$row -> variationID."'>
                     <input class='hidden' name='productID' value= ".$row -> productID.">

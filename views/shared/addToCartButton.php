@@ -6,7 +6,7 @@ use models\ProductModel;
 
 $productModel = new ProductModel();
 
-if (isset($_POST['add_to_cart'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     $productID = $_POST['productID'];
     $variationID = $_POST['variationID'];
     $quantity = 1; // You can modify this based on the user input
@@ -17,5 +17,5 @@ if (isset($_POST['add_to_cart'])) {
 }
 
 // Redirect the user back to the product page or any other desired location
-header("Location: {$_SERVER['HTTP_REFERER']}");
+header("Location: https://denisaneagu.com/CapWizards/ShoppingCart");
 exit();

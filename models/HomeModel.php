@@ -97,7 +97,9 @@ class HomeModel extends BaseModel
                 <article class='product-w'> 
                 <a class=text-decoration-none product-card href=' http://localhost/CapWizards/Products/?productID=". $row -> productID ."&variationID= ".$row->variationID."'>
                     <input class='hidden' name='productID' value= ".$row -> productID.">
-                
+                    <input type='hidden' name='variationID' value='" . $row -> productName . "'>
+                    <input type='hidden' name='productName' value='" . $row -> productName . "'>
+                    <input type='hidden' name='imgUrl' value='" . $row -> imgUrl . "'>
                     <img class='img-150 margin-30' src = ".$row -> imgUrl." alt= ".$row -> altTxt.">
                     <h2 class='h2-black' margin-15>".$row -> productName."</h2>
                     <p class='margin-15 p-black'>

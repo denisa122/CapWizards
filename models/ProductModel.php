@@ -103,9 +103,9 @@ class ProductModel extends BaseModel
                         JOIN Variations V ON PV.variationID = V.variationID
                         WHERE P.productID = :productID AND V.variationID = :variationID ";
             $stmt = $cxn->prepare($query);
-            $stmt->bindParam(":productID", $_GET['productID']);
-            $stmt->bindParam(":variationID", $_GET['variationID']);
-            $stmt->execute();
+            $stmt -> bindParam(":productID", $_GET['productID']);
+            $stmt -> bindParam(":variationID", $_GET['variationID']);
+            $stmt -> execute();
             $result= $stmt->fetchAll(\PDO::FETCH_OBJ);
 
             foreach ($result as $row)
@@ -117,11 +117,11 @@ class ProductModel extends BaseModel
                                     JOIN ProductVariations PV ON V.variationID = PV.variationID
                                     WHERE PV.variationID = :variationID";
                 $stmtVariations = $cxn->prepare($queryVariations);
-                $stmtVariations->bindParam(":variationID", $_GET['variationID']);
-                $stmtVariations->execute();
+                $stmtVariations -> bindParam(":variationID", $_GET['variationID']);
+                $stmtVariations -> execute();
                 $variations = $stmtVariations->fetchAll(\PDO::FETCH_OBJ);
 
-            print($this->singleProductTemplate($row, $variations));
+            print($this -> singleProductTemplate($row, $variations));
         } catch(\PDOException $e) {
             echo $e -> getMessage();
         }
@@ -140,16 +140,15 @@ class ProductModel extends BaseModel
     {
         return $template = "
         
-        <input type='hidden' name='productID' value='" . $row->productID . "'>
-        <input type='hidden' name='variationID' value='" . $row->variationID . "'>
-
+      
+    <form method=POST action='././views/shared/addToCartButton.php'>
         <article class='product-w gap-50 margin-100'>
-            <a class='text-decoration-none product-card' href='http://localhost/CapWizards/Products/?productID= ". $row->productID."&variationID= ".$row->variationID."'>
+            <a class='text-decoration-none product-card' href='/CapWizards/Products/?productID= ". $row -> productID."&variationID= ".$row -> variationID."'>
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
                 <p class='margin-15 p-black'>" . $row -> productDescription . " </p>
             </a>
-            <form method=POST action='././views/shared/addToCartButton.php'>
+            
                 <div class='d-flex justify-content-center'>
                     <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>
 
@@ -174,8 +173,8 @@ class ProductModel extends BaseModel
             <div class='d-flex justify-content-center'>
                 <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>
 
-                <a href='" . BASE_URL . "/Admin/Update-product?productID=" . $row->productID . "' class='btn btn-secondary'>Edit</a>
-                <a href='" . BASE_URL . "/Controllers/AdminController.php?action=deleteProduct&productID=" . $row->productID . "' class='btn btn-danger'>Delete</a>
+                <a href='" . BASE_URL . "/Admin/Update-product?productID=" . $row -> productID . "' class='btn btn-secondary'>Edit</a>
+                <a href='" . BASE_URL . "/Controllers/AdminController.php?action=deleteProduct&productID=" . $row -> productID . "' class='btn btn-danger'>Delete</a>
             </div>
         </article>";
     }
@@ -264,7 +263,7 @@ class ProductModel extends BaseModel
     $buttons = '';
 
     foreach ($variations as $variation) {
-        $buttons .= "<a class='c-variations' href='http://localhost/CapWizards/Products/?productID=".$variation -> productID."&variationID=".$variation -> variationID."'>C</a>";
+        $buttons .= "<a class='c-variations' href='/CapWizards/Products/?productID=".$variation -> productID."&variationID=".$variation -> variationID."'>C</a>";
     }
 
     return $buttons;

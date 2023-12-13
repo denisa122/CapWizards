@@ -24,7 +24,12 @@ require("./views/shared/header.php");
             <?= $cartItem ?>
         <?php endforeach; ?>
     </section>
+    <div style="display:flex; flex-direction:row; justify-content:center;">
     <div class="row text-center form-button-wrapper"><a href="http://denisaneagu.com/CapWizards/views/order/CheckOut" class="big-button form-button">Go to checkout</a></div>
+    <form method="POST" action="<?php echo BASE_URL ?>/controllers/ShoppingCartController.php?action=clearCart" style="margin-left:20px;">
+        <button type="submit" class="big-button form-button" style=" background-color:red; color:white;">Empty shopping cart</button>
+    </form>
+    </div>
 </main>
 
 <?php

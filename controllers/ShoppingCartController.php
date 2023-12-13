@@ -40,6 +40,11 @@ if ($action == "addToCart")
 
     $shoppingCart -> removeItem($productId, $variationId);
 
-    header("Location: http://denisaneagu.com/CapWizards/Products/?productID=$productId&variationID=$variationId");
+    header("Location: https://denisaneagu.com/CapWizards/ShoppingCart");
+    exit();
+} else if ($action == "clearCart")
+{
+    $_SESSION['cart'] = [];
+    header("Location: https://denisaneagu.com/CapWizards/ShoppingCart");
     exit();
 }

@@ -92,6 +92,8 @@ class ShoppingCart extends BaseModel
 
     public function cartItemTemplate($item)
     {
+        $baseURL = BASE_URL;
+        
         return "
         <article class='product-w gap-50 margin-100' style='margin-left:100px; display:flex; flex-direction: row; width:800px;'>
         <img class='img-150 margin-30' src='{$item['imgUrl']}' style='margin-right:50px'>

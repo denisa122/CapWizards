@@ -97,6 +97,9 @@ class HomeModel extends BaseModel
             <form method=POST action='{$baseURL}/views/shared/addToCartButton.php'>
             <input type='hidden' name='productID' value=" . $row->productID . ">
             <input type='hidden' name='variationID' value=" . $row->variationID . ">
+            <input type='hidden' name='productName' value=" . $row->productName . ">
+    <input type='hidden' name='price' value=" . $row->price . ">
+    <input type='hidden' name='imgUrl' value=" . $row->imgUrl . ">
                 <article class='product-w'> 
                 <a class=text-decoration-none product-card href='/CapWizards/Products?productID=". $row -> productID ."&variationID=".$row -> variationID."'>
                     <input class='hidden' name='productID' value= ".$row -> productID.">

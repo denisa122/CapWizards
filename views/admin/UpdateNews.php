@@ -12,7 +12,7 @@ if ($newsID === null) {
 ?>
 
 <div style="width:800px; margin:0 auto; padding-top:200px; padding-left:200px;">
-  <form method="POST" id="updateNewsForm" action="<?php echo BASE_URL ?>/Controllers/AdminController.php?action=updateNews">
+  <form method="POST" id="updateNewsForm" action="<?php echo BASE_URL ?>/controllers/AdminController.php?action=updateNews">
     <!-- Hidden input to pass newsID to the updateNews action -->
     <input type="hidden" name="newsID" value="<?php echo $newsID; ?>">            
     <input type="text" name="newsTitle" class="row input-color input-size-b margin-15 text-center" placeholder="Title" required>

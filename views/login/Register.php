@@ -9,7 +9,7 @@ require("./views/shared/header.php");
     <article class="text-center top-padding">
         <h1 class="h1-yellow margin-30">Create an account</h1>
         <div class="d-flex justify-content-center">
-        <form id="registerForm" method="POST" action="<?php echo BASE_URL ?>/Controllers/LoginController.php?action=register">
+        <form id="registerForm" method="POST" action="<?php echo BASE_URL ?>/controllers/LoginController.php?action=register">
             <!--To distinguish this post request from other post requests sent to the same file-->
             <input type="hidden" name="type" value="register">
           <div class="row margin-15"> 

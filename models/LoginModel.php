@@ -20,8 +20,8 @@ class LoginModel extends BaseModel
             $cxn = parent::connectToDB();
 
             //Prepare and execute a query to check if the user exists
-            $query = "SELECT * FROM account a 
-                    JOIN customer c ON a.accountID = c.FK_accountID
+            $query = "SELECT * FROM Account a 
+                    JOIN Customer c ON a.accountID = c.FK_accountID
                     WHERE a.userName = :userName";
 
 
@@ -68,7 +68,7 @@ class LoginModel extends BaseModel
             $cxn = parent::connectToDB();
 
             //Prepare and execute a statement to check that the email is not used already
-            $query = "SELECT * FROM customer WHERE email = :email";
+            $query = "SELECT * FROM Customer WHERE email = :email";
             $stmt = $cxn -> prepare($query);
             $stmt -> bindParam(':email', $userEmail);
 
@@ -90,7 +90,7 @@ class LoginModel extends BaseModel
 
                 try {
                     // Insert data into the account table
-                    $query = "INSERT INTO account (userName, password, role) VALUES (:userName, :password, 'customer')";
+                    $query = "INSERT INTO Account (userName, password, role) VALUES (:userName, :password, 'customer')";
                     $stmt = $cxn -> prepare($query);
                     $stmt -> bindParam(':userName', $userName);
                     $stmt -> bindParam(':password', $passwordHashed);
@@ -100,7 +100,7 @@ class LoginModel extends BaseModel
                     $accountID = $cxn -> lastInsertId();
 
                     // Insert data into the customer table
-                    $query = "INSERT INTO customer (firstName, lastName, email, userName, FK_accountID) VALUES (:first, :last, :email, :userName, :accountID)";
+                    $query = "INSERT INTO Customer (firstName, lastName, email, userName, FK_accountID) VALUES (:first, :last, :email, :userName, :accountID)";
                     $stmt = $cxn -> prepare($query);
                     $stmt -> bindParam(':first', $firstName);
                     $stmt -> bindParam(':last', $lastName);

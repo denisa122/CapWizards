@@ -20,8 +20,8 @@ $variationID = isset($_GET['variationID']) ? $_GET['variationID'] : null;
             <div class="side-padding">
 
                 <?php 
-                var_dump($_GET['productID']);
-                var_dump($_GET['variationID']);
+                echo "Product ID: " . $productID . "<br>";
+                echo "Variation ID: " . $variationID;
                     $SingleProductModel -> getSingleProduct($productID, $variationID);
                 ?>
                

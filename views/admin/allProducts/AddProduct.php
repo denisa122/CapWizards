@@ -3,7 +3,7 @@ require("./views/shared/header.php")
 ?>
 
 <div style="width:800px; margin:0 auto; padding-top:20px; padding-left:200px;">
-    <form method="POST" id="createProductForm" action="<?php echo BASE_URL ?>/Controllers/AdminController.php?action=createProduct">
+    <form method="POST" id="createProductForm" action="<?php echo BASE_URL ?>/controllers/AdminController.php?action=createProduct">
         <input type="text" name="productName" class="row input-color input-size-b margin-15 text-center" placeholder="Product name">
         <input type="text" name="productDescription" class="row input-color input-size-b margin-15 text-center" placeholder="Description">
         <input type="number" name="price" class="row input-color input-size-b margin-15 text-center" placeholder="Price">

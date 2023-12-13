@@ -12,7 +12,7 @@ if ($productID === null) {
 ?>
 
 <div style="width:800px; margin:0 auto; padding-top:200px; padding-left:200px;">
-  <form method="POST" id="updateProductForm" action="<?php echo BASE_URL ?>/Controllers/AdminController.php?action=updateProduct">
+  <form method="POST" id="updateProductForm" action="<?php echo BASE_URL ?>/controllers/AdminController.php?action=updateProduct">
     <!-- Hidden input to pass productID to the updateProduct action -->
     <input type="hidden" name="productID" value="<?php echo $productID; ?>">            
     <input type="text" name="productName" class="row input-color input-size-b margin-15 text-center" placeholder="Product name">

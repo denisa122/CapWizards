@@ -14,14 +14,13 @@ class AdminModel extends BaseModel
     }
 
     // Company description 
-    function getDescription($companyID)
+    function getDescription()
     {
         try {
             $cxn = parent::connectToDB();
 
-            $query = "SELECT * FROM Company WHERE companyID = :companyID";
+            $query = "SELECT * FROM DescriptionOfCompany";
             $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":companyID", $companyID);
 
             $stmt -> execute();
             $result =  $stmt -> fetchAll(\PDO::FETCH_OBJ);
@@ -116,7 +115,7 @@ class AdminModel extends BaseModel
             $cxn = parent::connectToDB();
 
             // Always get the 2 most recently added news
-            $query = "SELECT * FROM News order by newsID desc limit 2";
+            $query = "SELECT * FROM NewsInViews";
             $stmt = $cxn -> prepare($query);
 
             $stmt -> execute();
@@ -388,7 +387,7 @@ class AdminModel extends BaseModel
                </tr>
            </table>
            <div>
-           <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-extra-info?companyID=" . urlencode($row->companyID) . "'>Edit</a>
+           <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-extra-info?companyID=" . $row->companyID . "'>Edit</a>
            </div>
        </article> ";
     }
@@ -408,7 +407,7 @@ class AdminModel extends BaseModel
         <p class ='p-pink'> ".$row -> newsText ."</p> 
         <div>
         <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-news?newsID=" . $row->newsID . "'>Edit</a>
-        <a class='btn btn-danger' href='" . BASE_URL . "/Controllers/AdminController.php?action=deleteNews&newsID=" . $row->newsID . "'>Delete</a>
+        <a class='btn btn-danger' href='" . BASE_URL . "/controllers/AdminController.php?action=deleteNews&newsID=" . $row->newsID . "'>Delete</a>
         </div>";
     }
 
@@ -429,7 +428,7 @@ class AdminModel extends BaseModel
                     </div> 
                     <div style='margin-bottom:60px'>
                     <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-product?productID=" . $row->productID . "'>Edit</a>
-                        <a class='btn btn-danger' href='" . BASE_URL . "/Controllers/AdminController.php?action=removeProductFromSpecialOffers&productID=" . $row->productID . "'>Remove from special offers</a>
+                        <a class='btn btn-danger' href='" . BASE_URL . "/controllers/AdminController.php?action=removeProductFromSpecialOffers&productID=" . $row->productID . "'>Remove from special offers</a>
                     </div>";
     }
 }

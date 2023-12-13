@@ -48,7 +48,7 @@ class ProductModel extends BaseModel
         try {
             $cxn = parent::connectToDB();
 
-            $query = "SELECT * FROM product WHERE FK_categoryID = :categoryID";
+            $query = "SELECT * FROM Product WHERE FK_categoryID = :categoryID";
             $stmt = $cxn -> prepare($query);
             $stmt -> bindParam(":categoryID", $categoryID);
 
@@ -180,7 +180,7 @@ class ProductModel extends BaseModel
                 <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>
 
                 <a href='" . BASE_URL . "/Admin/Update-product?productID=" . $row -> productID . "' class='btn btn-secondary'>Edit</a>
-                <a href='" . BASE_URL . "/Controllers/AdminController.php?action=deleteProduct&productID=" . $row -> productID . "' class='btn btn-danger'>Delete</a>
+                <a href='" . BASE_URL . "/controllers/AdminController.php?action=deleteProduct&productID=" . $row -> productID . "' class='btn btn-danger'>Delete</a>
             </div>
         </article>";
     }

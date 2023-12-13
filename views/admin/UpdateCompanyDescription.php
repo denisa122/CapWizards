@@ -11,7 +11,7 @@ if ($companyID === null) {
 ?>
 
 <div style="width:800px; margin:0 auto; padding-top:200px; padding-left:200px;">
-  <form method="POST" id="updateCompanyDescriptionForm" action="<?php echo BASE_URL ?>/Controllers/AdminController.php?action=updateCompanyDescription">
+  <form method="POST" id="updateCompanyDescriptionForm" action="<?php echo BASE_URL ?>/controllers/AdminController.php?action=updateCompanyDescription">
     <!-- Hidden input to pass companyID to the updateCompanyDescription action -->
     <input type="hidden" name="companyID" value="<?php echo $companyID; ?>">       
               

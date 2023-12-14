@@ -12,9 +12,8 @@ $checkoutModel = new CheckOutModel();
 $shoppingCart = new ShoppingCart();
 
 // Check if the form is submitted
-if ($action == "Checkout") 
-{
-    // Get user input for customer, address and payment information
+if ($action == "Checkout") {
+    // Get user input for customer and address information
     $customerData = [
         'firstName' => $_POST['firstName'],
         'lastName' => $_POST['lastName'],
@@ -32,11 +31,10 @@ if ($action == "Checkout")
     ];
 
     // Get cart items
-    $cartItems = $shoppingCart -> getCartContents();
+    $cartItems = $shoppingCart->getCartContents();
 
-    // Place the order using CheckOutModel
-    if ($checkoutModel -> placeOrder($customerData, $addressData, $cartItems))
-    {
+    // Place the order
+    if ($checkoutModel->placeOrder($customerData, $addressData, $cartItems)) {
         // Order placed successfully
         // Generate the invoice HTML
         $invoiceHTML = "
@@ -60,9 +58,8 @@ if ($action == "Checkout")
                     <th>Price per item</th>
                 </tr>";
 
-        // Loop through items and add them to the table
-        foreach ($cartItems as $item)
-        {
+        // Add items to the invoice table
+        foreach ($cartItems as $item) {
             $itemName = $item['productName'];
             $quantity = $item['quantity'];
             $price = $item['price'];
@@ -74,11 +71,9 @@ if ($action == "Checkout")
                     <td>$price</td>
                 </tr";
         }
-
-        // Add total price and other details
         $invoiceHTML .= "
             </table><br>
-            <p>Final price: {$checkoutModel -> calculateFinalPrice($cartItems)}</p><br>
+            <p>Final price: {$checkoutModel->calculateFinalPrice($cartItems)}</p><br>
             <h3>Delivery address</h3>
             <p>Country: {$addressData['country']}</p><br>
             <p>City: {$addressData['city']}</p><br>
@@ -91,12 +86,8 @@ if ($action == "Checkout")
         </html>
         ";
 
-        // Save the invoice to a file
-        $invoiceFileName = 'invoice.html';
-        file_put_contents($invoiceFileName, $invoiceHTML);
-
         // Display the invoice to the user
-        $shoppingCart -> clearCart();
+        $shoppingCart->clearCart();
         session_unset();
         echo $invoiceHTML;
     } else {
@@ -107,4 +98,4 @@ if ($action == "Checkout")
         </script>";
         exit();
     }
-} 
+}

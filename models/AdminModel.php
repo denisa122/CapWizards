@@ -291,7 +291,7 @@ class AdminModel extends BaseModel
         try {
             $cxn = parent::connectToDB();
 
-            // Start a transaction
+            // Start transaction
             $cxn -> beginTransaction();
             // First, delete related rows from ProductVariations
             $deleteVariationsQuery = "DELETE FROM ProductVariations WHERE productID = :productID";
@@ -362,11 +362,9 @@ class AdminModel extends BaseModel
             // Commit the transaction
             $cxn->commit();
 
-            $cxn = null;
-
         } catch (\PDOException $e){
-             // Rollback the transaction on error
-            $cxn->rollBack();
+            // Rollback the transaction on error
+            $cxn -> rollBack();
             echo $e -> getMessage();
         }
     }
@@ -456,13 +454,13 @@ class AdminModel extends BaseModel
 
         return $template = "
 
-                <a class=text-decoration-none product-card href=>
+                <p class=text-decoration-none product-card href=>
                     <img class=img-150 margin-30 src = ".$row -> imgUrl." alt= ".$row -> altTxt.">
                     <h2 class=h2-black margin-15>".$row -> productName."</h2>
                     <p class=margin-15>
                         ".$row -> productDescription."
                     </p>
-                </a>
+                </p>
                     <div class=d-flex justify-content-center>
                         <p class=font-weight-bold gap-50>".$row -> price." DKK</p>
                     </div> 

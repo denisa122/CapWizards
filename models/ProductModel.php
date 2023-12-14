@@ -226,11 +226,11 @@ class ProductModel extends BaseModel
         return $template = "
         
         <article class='product-w gap-50 margin-100'>
-            <a class='text-decoration-none product-card' href='http://denisaneagu.com/CapWizards/Products?productID=". $row -> productID ."'>
+            <p class='text-decoration-none product-card'>
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
                 <p class='margin-15 p-black'>" . $row -> productDescription . " </p>
-            </a>
+            </p>
 
             <div class='d-flex justify-content-center'>
                 <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>

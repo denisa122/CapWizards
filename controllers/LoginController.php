@@ -14,22 +14,18 @@ session_start();
 
 $action = $_GET["action"];
 
-if ($action == "login")
-{
+if ($action == "login") {
     $userName = $_POST["userName"];
     $password = $_POST["password"];
-    
-    if(isset($userName) && isset($password))
-    {
+
+    if (isset($userName) && isset($password)) {
         $userName = $_POST["userName"];
         $password = $_POST["password"];
 
-        $customer = $loginModel -> login($userName, $password);
+        $customer = $loginModel->login($userName, $password);
 
-        if ($customer)
-        {
+        if ($customer) {
             //Authentication successful
-
             $_SESSION['customerID'] = $customer['customerID'];
             $_SESSION['user'] = [
                 'customerID' => $customer['customerID'],
@@ -41,20 +37,17 @@ if ($action == "login")
 
             header("Location: http://denisaneagu.com/CapWizards/");
         } else {
-            //Authentication failed, redirect to login page with an error
+            //Authentication failed
             $_SESSION['loginError'] = "Invalid email or password";
-            header("Location: http://denisaneagu.com/CapWizards/Login"); //TODO change to an appropriate error
+            header("Location: http://denisaneagu.com/CapWizards/Login");
             exit();
         }
-    } else
-    {
+    } else {
         //Handle missing POST data
-        header("Location: http://denisaneagu.com/CapWizards/Login"); //TODO change to an appropriate error
+        header("Location: http://denisaneagu.com/CapWizards/Login");
         exit();
     }
-} 
-else if ($action == "logout")
-{
+} else if ($action == "logout") {
     unset($_SESSION['customerID']);
     unset($_SESSION['user']);
 
@@ -63,31 +56,27 @@ else if ($action == "logout")
 
     header("Location:http://denisaneagu.com/CapWizards");
     exit();
-}
-else if ($action == "register") //add first name, last name here since we have it on the form
-{
+} else if ($action == "register") {
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];
     $userName = $_POST["userName"];
     $userEmail = $_POST["userEmail"];
     $password = $_POST["password"];
 
-    if(isset($firstName) && isset($lastName) && isset($userName) && isset($userEmail) && isset($password))
-    {
-        $registerSuccess = $loginModel -> register($firstName, $lastName, $userName, $userEmail, $password);
+    if (isset($firstName) && isset($lastName) && isset($userName) && isset($userEmail) && isset($password)) {
+        $registerSuccess = $loginModel->register($firstName, $lastName, $userName, $userEmail, $password);
 
-        if($registerSuccess)
-        {
+        if ($registerSuccess) {
             header("Location: http://denisaneagu.com/CapWizards/Login");
             exit();
         } else {
             $_SESSION['registerError'] = "Failed to register user";
-            header("Location: http://denisaneagu.com/CapWizards/Register"); //TODO change to an appropriate error
+            header("Location: http://denisaneagu.com/CapWizards/Register");
             exit();
         }
     } else {
         //Handle missing POST data
-        header("Location: http://denisaneagu.com/CapWizards/Register"); //TODO change to an appropriate error
+        header("Location: http://denisaneagu.com/CapWizards/Register");
         exit();
     }
 }

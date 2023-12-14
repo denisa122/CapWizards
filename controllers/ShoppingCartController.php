@@ -4,14 +4,11 @@ use models\ShoppingCart;
 
 require_once __DIR__ . '/../models/ShoppingCart.php';
 
-// Create an instance of the ShoppingCart class
 $shoppingCart = new ShoppingCart();
 
-// Handle actions like adding to cart, updating quantity, etc.
 $action = $_GET['action'];
 
-if ($action == "addToCart")
-{
+if ($action == "addToCart") {
     $productId = $_POST['productId'];
     $productName = $_POST['productName'];
     $variationId = $_POST['variationId'];
@@ -21,29 +18,26 @@ if ($action == "addToCart")
 
     $shoppingCart->addToCart($productId, $productName, $variationId, $quantity, $price, $imgUrl);
 
-    header("Location: http://denisaneagu.com/CapWizards/Products/?productID=$productId&variationID=$variationId");
+    header("Location: https://denisaneagu.com/CapWizards/ShoppingCart");
     exit();
-} else if ($action == "updateQuantity")
-{
+} else if ($action == "updateQuantity") {
     $productId = $_POST['productId'];
     $variationId = $_POST['variationId'];
     $quantity = $_POST['quantity'];
 
-    $shoppingCart -> updateQuantity($productId, $variationId, $quantity);
-
-    header("Location: http://denisaneagu.com/CapWizards/Products/?productID=$productId&variationID=$variationId");
-    exit();
-} else if ($action == "removeItem")
-{
-    $productId = $_POST['productId'];
-    $variationId = $_POST['variationId'];
-
-    $shoppingCart -> removeItem($productId, $variationId);
+    $shoppingCart->updateQuantity($productId, $variationId, $quantity);
 
     header("Location: https://denisaneagu.com/CapWizards/ShoppingCart");
     exit();
-} else if ($action == "clearCart")
-{
+} else if ($action == "removeItem") {
+    $productId = $_POST['productId'];
+    $variationId = $_POST['variationId'];
+
+    $shoppingCart->removeItem($productId, $variationId);
+
+    header("Location: https://denisaneagu.com/CapWizards/ShoppingCart");
+    exit();
+} else if ($action == "clearCart") {
     $_SESSION['cart'] = [];
     header("Location: https://denisaneagu.com/CapWizards/ShoppingCart");
     exit();

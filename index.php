@@ -1,7 +1,6 @@
-<?php 
+<?php
 
-// modify the BASE_URL value to match your folder
-define("BASE_URL", "http://denisaneagu.com/CapWizards"); 
+define("BASE_URL", "http://denisaneagu.com/CapWizards");
 
 require_once "router.php";
 
@@ -50,7 +49,7 @@ route('/CapWizards/Products/Alcoholic/Shaker', function () {
 });
 
 route('/CapWizards/Products/Alcoholic/Wine', function () {
-    require "views/product/AlcoholicWine.php"; 
+    require "views/product/AlcoholicWine.php";
 });
 
 // Non-alcoholic products
@@ -72,6 +71,7 @@ route('/CapWizards/Products/Non-alcoholic/Water', function () {
 });
 
 //Single page
+
 route('/CapWizards/Products/', function () {
     require "views/product/SingleProduct.php";
 });
@@ -89,21 +89,21 @@ route('/CapWizards/Admin/Add-news', function () {
 route('/CapWizards/Admin/Update-news', function () {
     // Extract the newsID from the query parameters
     $newsID = isset($_GET['newsID']) ? $_GET['newsID'] : null;
-    
+
     require "views/admin/UpdateNews.php";
 });
 
 route('/CapWizards/Admin/Update-description', function () {
     // Extract the newsID from the query parameters
     $companyID = isset($_GET['companyID']) ? $_GET['companyID'] : null;
-    
+
     require "views/admin/UpdateCompanyDescription.php";
 });
 
 route('/CapWizards/Admin/Update-extra-info', function () {
     // Extract the newsID from the query parameters
     $companyID = isset($_GET['companyID']) ? $_GET['companyID'] : null;
-    
+
     require "views/admin/UpdateExtraCompanyInfo.php";
 });
 
@@ -114,7 +114,7 @@ route('/CapWizards/Admin/Add-special-offer', function () {
 route('/CapWizards/Admin/Update-product', function () {
     // Extract the newsID from the query parameters
     $productID = isset($_GET['productID']) ? $_GET['productID'] : null;
-    
+
     require "views/admin/UpdateProduct.php";
 });
 
@@ -139,15 +139,10 @@ route('CapWizards/contactForm.php', function () {
         $email = $_POST["email"];
         $subject = $_POST["subject"];
         $message = $_POST["Message"];
-    } 
+    }
     include './views/shared/contactForm.php';
 });
 
-
-
-
 $action = $_SERVER['REQUEST_URI'];
-//echo $action;
 
 dispatch($action);
-

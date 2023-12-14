@@ -245,6 +245,8 @@ class ProductModel extends BaseModel
 
     function singleProductTemplate($row, $variations)
     {        
+        $baseURL = BASE_URL;
+        
         return $template = "
 
         <form method=POST action='././views/shared/addToCartButton.php'>
@@ -308,14 +310,17 @@ class ProductModel extends BaseModel
                         <div class='row margin-15'>
                         " . $this -> generateVariationsButtons($variations) . "
                              
-                        </div>
-                        <div class='row margin-30'>
-                            <button class='minus' id='minus'>-</button>
-                                <input class='amount text-center rounded-0' id='amount' type='text' value='1' input[type=number]>
-                            <button class='plus' id='plus'>+</button>
-                        </div>
-                         
-                            <div class='row'><input value=Add type=submit name=add_to_cart></div>
+                        </div>                         
+                        <form method=POST action='{$baseURL}/views/shared/addToCartButton.php'>
+                        <input type='hidden' name='productID' value=" . $row->productID . ">
+                        <input type='hidden' name='variationID' value=" . $row->variationID . ">
+                        <input type='hidden' name='productName' value=" . $row->productName . ">
+                        <input type='hidden' name='price' value=" . $row->price . ">
+                        <input type='hidden' name='imgUrl' value=" . $row->imgUrl . ">    
+                        <div class='d-flex justify-content-center' style='margin-top:20px'>
+                                <input value=Add type=submit name=add_to_cart class='big-button' style='margin-left:-120px'>
+                            </div>
+                        </form>
                         
                     </div>
                     

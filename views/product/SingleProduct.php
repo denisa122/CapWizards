@@ -9,8 +9,8 @@ use models\ProductModel;
 $SingleProductModel = new ProductModel();
 
 
-$productID = $_GET['productID'];
-$variationID = $_GET['variationID']
+$productID = isset($_POST['productID']) ? $_POST['productID'] : null;
+$variationID = isset($_POST['variationID']) ? $_POST['variationID'] : null;
 
 ?>
 

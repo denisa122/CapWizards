@@ -108,22 +108,20 @@ class ProductModel extends BaseModel
             $stmt -> execute();
             $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
 
-            foreach ($result as $row) {
-
-                $row;
-
-            }
-        
-                // Fetch variations for the product
+              // Fetch variations for the product
                 $queryVariations = "SELECT * FROM Variations V
                                     INNER JOIN ProductVariations PV ON V.variationID = PV.variationID
-                                    WHERE PV.variationID != :variationID";
+                                    WHERE PV.productID = :productID";
                 $stmtVariations = $cxn->prepare($queryVariations);
-                $stmtVariations -> bindParam(":variationID", $variationID);
+                $stmtVariations -> bindParam(":productID", $productID);
                 $stmtVariations -> execute();
                 $variations = $stmtVariations->fetchAll(\PDO::FETCH_OBJ);
 
-            print($this -> singleProductTemplate($row, $variations));
+                foreach ($result as $row)
+                {
+                    print($this -> singleProductTemplate($row, $variations));
+                }
+
         } catch(\PDOException $e) {
             echo $e -> getMessage();
         }
@@ -145,23 +143,29 @@ class ProductModel extends BaseModel
         
         return $template = "
         <article class='product-w gap-50 margin-100'>
+            
+        
+        <form method=POST action='{$baseURL}/Products?productID=". $row -> productID."&variationID=".$row -> variationID."'>
+        <input type='hidden' name='productID' value=" . $row->productID . ">
+            <input type='hidden' name='variationID' value=" . $row->variationID . ">    
+        <div class='text-decoration-none product-card'>
+                <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
+                <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
+                <p class='margin-15 p-black'>" . $row -> productDescription . " </p>
+                <input type='submit' value='See more' name='See more' class='btn btn-outline-secondary'>
+            </div>
+        </form>
+            
             <form method=POST action='{$baseURL}/views/shared/addToCartButton.php'>
             <input type='hidden' name='productID' value=" . $row->productID . ">
             <input type='hidden' name='variationID' value=" . $row->variationID . ">
             <input type='hidden' name='productName' value=" . $row->productName . ">
             <input type='hidden' name='price' value=" . $row->price . ">
-            <input type='hidden' name='imgUrl' value=" . $row->imgUrl . ">
-        
-            <a class='text-decoration-none product-card' href='http://denisaneagu.com/CapWizards/Products?productID=". $row -> productID."&variationID=".$row -> variationID."'>
-                <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
-                <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
-                <p class='margin-15 p-black'>" . $row -> productDescription . " </p>
-            </a>
-            
-                <div class='d-flex justify-content-center'>
-                    <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>
+            <input type='hidden' name='imgUrl' value=" . $row->imgUrl . ">    
+            <div class='d-flex justify-content-center' style='margin-top:20px'>
+                    <p class='font-weight-bold gap-50' style='margin-top:15px'>" . $row -> price . " DKK </p>
 
-                    <input value=Add type=submit name=add_to_cart>
+                    <input value=Add type=submit name=add_to_cart class='btn btn-success'>
                 </div>
             </form>
         </article>";
@@ -194,10 +198,12 @@ class ProductModel extends BaseModel
     }
 
     function singleProductTemplate($row, $variations)
-    {
+    {        
         return $template = "
 
         <form method=POST action='././views/shared/addToCartButton.php'>
+        <input type='hidden' name='productID' value=" . $row -> productID . ">
+        <input type='hidden' name='variationID' value=" . $row -> variationID . ">
                 <div class='text-center'>
                     <img class='img-350 margin-30' src = ". $row -> imgUrl." alt= " .  $row -> altTxt.">
                     <h1 class='h1-black margin-50'>".  $row -> productName ."</h1>

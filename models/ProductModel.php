@@ -24,8 +24,8 @@ class ProductModel extends BaseModel
 
             $query = "SELECT *
             FROM ProductVariations PV
-            JOIN Product P ON PV.productID = P.productID
-            JOIN Category C ON P.FK_categoryID = C.categoryID
+            INNER JOIN Product P ON PV.productID = P.productID
+            INNER JOIN Category C ON P.FK_categoryID = C.categoryID
             WHERE C.categoryID = :categoryID";
             $stmt = $cxn -> prepare($query);
             $stmt -> bindParam(":categoryID", $categoryID);
@@ -73,8 +73,8 @@ class ProductModel extends BaseModel
             // $query = "SELECT * FROM product WHERE FK_categoryID = :categoryID AND FK_subcategoryID = :subcategoryID";
             $query = "SELECT *
             FROM ProductVariations PV
-            JOIN Product P ON PV.productID = P.productID
-            JOIN Category C ON P.FK_categoryID = C.categoryID
+            INNER JOIN Product P ON PV.productID = P.productID
+            INNER JOIN Category C ON P.FK_categoryID = C.categoryID
             WHERE C.categoryID = :categoryID AND FK_subcategoryID = :subcategoryID";
             $stmt = $cxn -> prepare($query);
             $stmt -> bindParam(":categoryID", $categoryID);
@@ -99,8 +99,8 @@ class ProductModel extends BaseModel
             $cxn = parent::connectToDB();
              
             $query = "SELECT * FROM Product P
-                        JOIN ProductVariations PV ON P.productID = PV.productID
-                        JOIN Variations V ON PV.variationID = V.variationID
+                        INNER JOIN ProductVariations PV ON P.productID = PV.productID
+                        INNER JOIN Variations V ON PV.variationID = V.variationID
                         WHERE P.productID = :productID AND V.variationID = :variationID ";
             $stmt = $cxn->prepare($query);
             $stmt -> bindParam(":productID", $productID);
@@ -108,18 +108,15 @@ class ProductModel extends BaseModel
             $stmt -> execute();
             $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
 
-    // Handle if the product is not found
-    if (empty($result)) {
-        // Display an error message or redirect to an error page
-        echo "Product not found";
-        return;
-    }
-    $row = $result[0];
-        
+            foreach ($result as $row) {
 
+                $row;
+
+            }
+        
                 // Fetch variations for the product
                 $queryVariations = "SELECT * FROM Variations V
-                                    JOIN ProductVariations PV ON V.variationID = PV.variationID
+                                    INNER JOIN ProductVariations PV ON V.variationID = PV.variationID
                                     WHERE PV.variationID != :variationID";
                 $stmtVariations = $cxn->prepare($queryVariations);
                 $stmtVariations -> bindParam(":variationID", $variationID);
@@ -176,7 +173,7 @@ class ProductModel extends BaseModel
         return $template = "
         
         <article class='product-w gap-50 margin-100'>
-            <a class='text-decoration-none product-card' href=http://denisaneagu.com/CapWizards/Products?productID=". $row -> productID .">
+            <a class='text-decoration-none product-card' href='http://denisaneagu.com/CapWizards/Products?productID=". $row -> productID ."'>
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
                 <p class='margin-15 p-black'>" . $row -> productDescription . " </p>
@@ -275,7 +272,7 @@ class ProductModel extends BaseModel
     $buttons = '';
 
     foreach ($variations as $variation) {
-        $buttons .= "<a class='c-variations' href='/CapWizards/Products/?productID=".$variation -> productID."&variationID=".$variation -> variationID."'>C</a>";
+        $buttons .= "<a class='c-variations' href='http://denisaneagu.com/CapWizards/Products?productID=".$variation->productID."&variationID=".$variation->variationID."'>C</a>";
     }
 
     return $buttons;

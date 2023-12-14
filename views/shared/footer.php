@@ -9,7 +9,7 @@ $FooterInfoModel = new FooterModel();
 <footer>
     <div class="row footer-grid">
     <section class="col section-padding "> 
-        <?php $FooterInfoModel -> getFooterInfo(1) ?>
+        <?php $FooterInfoModel -> getFooterInfo() ?>
     </section> 
     <!-- Contact us form -->
     <section class="col">

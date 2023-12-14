@@ -15,14 +15,13 @@ class FooterModel extends BaseModel
         
     }
 
-    function getFooterInfo($companyID)
+    function getFooterInfo()
     {
         try {
             $cxn = parent::connectToDB();
 
-            $query = "SELECT * FROM Company WHERE companyID = :companyID";
+            $query = "SELECT openingHours, email, phoneNumber FROM Company WHERE companyID = 1";
             $stmt = $cxn -> prepare($query);
-            $stmt -> bindParam(":companyID", $companyID);
 
             $stmt -> execute();
             $result =  $stmt -> fetchAll(\PDO::FETCH_OBJ);

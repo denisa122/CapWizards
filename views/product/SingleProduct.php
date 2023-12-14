@@ -9,8 +9,8 @@ use models\ProductModel;
 $SingleProductModel = new ProductModel();
 
 // Retrieve productID and variationID from the query parameters
-// $productID = isset($_GET['productID']) ? $_GET['productID'] : null;
-// $variationID = isset($_GET['variationID']) ? $_GET['variationID'] : null;
+$productID = isset($_GET['productID']) ? $_GET['productID'] : null;
+$variationID = isset($_GET['variationID']) ? $_GET['variationID'] : null;
 
 ?>
 
@@ -20,9 +20,9 @@ $SingleProductModel = new ProductModel();
             <div class="side-padding">
 
                 <?php 
-                // echo "Product ID: " . $productID . "<br>";
-                // echo "Variation ID: " . $variationID;
-                    $SingleProductModel -> getSingleProduct();
+                echo "Product ID: " . $productID . "<br>";
+                echo "Variation ID: " . $variationID;
+                    $SingleProductModel -> getSingleProduct($productID, $variationID);
                 ?>
                
             </div>

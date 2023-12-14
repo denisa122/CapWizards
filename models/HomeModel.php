@@ -40,8 +40,8 @@ class HomeModel extends BaseModel
             $cxn = parent::connectToDB();
 
             $query = "SELECT * FROM ProductVariations PV
-                        JOIN Product P ON PV.productID = P.productID
-                        JOIN Category C ON P.FK_categoryID = C.categoryID
+                        INNER JOIN Product P ON PV.productID = P.productID
+                        INNER JOIN Category C ON P.FK_categoryID = C.categoryID 
                         WHERE isSpecialOffer = 1";
             $stmt = $cxn -> prepare($query);
             $stmt -> execute();

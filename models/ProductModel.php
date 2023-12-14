@@ -106,7 +106,7 @@ class ProductModel extends BaseModel
             $stmt -> bindParam(":productID", $productID);
             $stmt -> bindParam(":variationID", $variationID);
             $stmt -> execute();
-            $result= $stmt->fetchAll(\PDO::FETCH_OBJ);
+            $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
 
     // Handle if the product is not found
     if (empty($result)) {
@@ -156,7 +156,7 @@ class ProductModel extends BaseModel
             <input type='hidden' name='price' value=" . $row->price . ">
             <input type='hidden' name='imgUrl' value=" . $row->imgUrl . ">
         
-            <a class='text-decoration-none product-card' href='/CapWizards/Products?productID=". $row -> productID."&variationID=".$row -> variationID."'>
+            <a class='text-decoration-none product-card' href='http://denisaneagu.com/CapWizards/Products?productID=". $row -> productID."&variationID=".$row -> variationID."'>
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
                 <p class='margin-15 p-black'>" . $row -> productDescription . " </p>

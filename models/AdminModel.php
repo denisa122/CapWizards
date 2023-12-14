@@ -99,7 +99,7 @@ class AdminModel extends BaseModel
             $sanitized_opening_hours = htmlspecialchars($openingHours);
             $sanitized_phone_number = htmlspecialchars($phoneNumber);
             $stmt -> bindParam("openingHours", $sanitized_opening_hours);
-            $stmt -> bindParam("openingHours", $sanitized_phone_number);
+            $stmt -> bindParam("phoneNumber", $sanitized_phone_number);
 
             $stmt -> execute();
 
@@ -372,6 +372,8 @@ class AdminModel extends BaseModel
     // Extra company details
     function extraCompanyInfo($row)
     {
+        $baseURL = BASE_URL;
+        
         return $template = "
 
         <article>
@@ -394,7 +396,10 @@ class AdminModel extends BaseModel
                </tr>
            </table>
            <div>
-           <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-extra-info?companyID=" . $row->companyID . "'>Edit</a>
+           <form method='POST' action='{$baseURL}/Admin/Update-extra-info'>
+           <input type='hidden' name='companyID' value=". $row -> companyID .">
+           <input value=Edit type=submit name=Edit>
+           </form>
            </div>
        </article> ";
     }

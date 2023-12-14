@@ -2,7 +2,7 @@
 require("./views/shared/header.php");
 
 // Get companyID from the URL
-$companyID = isset($_GET['companyID']) ? $_GET['companyID'] : null;
+$companyID = isset($_POST['companyID']) ? $_POST['companyID'] : null;
 if ($companyID === null) {
     // Handle the case when newsID is not provided
     echo "Error: Company ID not provided";
@@ -16,8 +16,7 @@ if ($companyID === null) {
     <input type="hidden" name="companyID" value="<?php echo $companyID; ?>">       
               
     <input type="email" name="email" class="row input-color input-size-b margin-15 text-center" placeholder="Email" required>
-    <label for="openingHours">New opening hours</label>
-    <textarea name="openingHours" id='openingHours' required></textarea>
+    <textarea name="openingHours" id='openingHours' required placeholder="Opening hours"></textarea>
     <input type="text" name="phoneNumber" class="row input-color input-size-b margin-15 text-center" placeholder="Phone number" required>
               
     <button type="submit" name="updateExtraInfo" class="row text-center form-button-wrapper margin-30 big-button form-button">Update</button>

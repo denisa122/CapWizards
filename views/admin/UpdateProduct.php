@@ -2,7 +2,7 @@
 require("./views/shared/header.php");
 
 // Get productID from the URL
-$productID = isset($_GET['productID']) ? $_GET['productID'] : null;
+$productID = isset($_POST['productID']) ? $_POST['productID'] : null;
 if ($productID === null) {
     // Handle the case when newsID is not provided
     echo "Error: Product ID not provided";

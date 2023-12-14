@@ -430,6 +430,8 @@ class AdminModel extends BaseModel
     // Special offers
     function specialOffersTemplate($row)
     {
+        $baseURL = BASE_URL;
+
         return $template = "
 
                 <a class=text-decoration-none product-card href=>
@@ -442,8 +444,11 @@ class AdminModel extends BaseModel
                     <div class=d-flex justify-content-center>
                         <p class=font-weight-bold gap-50>".$row -> price." DKK</p>
                     </div> 
-                    <div style='margin-bottom:60px'>
-                    <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-product?productID=" . $row->productID . "'>Edit</a>
+                    <div style='margin-bottom:60px; display:flex; justify-content:center'>
+                    <form method='POST' action='{$baseURL}/Admin/Update-product'>
+                    <input type='hidden' name='productID' value=". $row -> productID .">
+                    <input value=Edit type=submit name=Edit class='btn btn-primary' style='height:35px; margin-right:15px'>
+                    </form>
                         <a class='btn btn-danger' href='" . BASE_URL . "/controllers/AdminController.php?action=removeProductFromSpecialOffers&productID=" . $row->productID . "'>Remove from special offers</a>
                     </div>";
     }

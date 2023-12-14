@@ -308,13 +308,7 @@ class ProductModel extends BaseModel
                         <div class='row margin-15'>
                         " . $this -> generateVariationsButtons($variations) . "
                              
-                        </div>
-                        <div class='row margin-30'>
-                            <button class='minus' id='minus'>-</button>
-                                <input class='amount text-center rounded-0' id='amount' type='text' value='1' input[type=number]>
-                            <button class='plus' id='plus'>+</button>
-                        </div>
-                         
+                        </div>                         
                             <div class='row'><input value=Add type=submit name=add_to_cart></div>
                         
                     </div>

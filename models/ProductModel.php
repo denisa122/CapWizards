@@ -93,7 +93,7 @@ class ProductModel extends BaseModel
         }
     }
 
-    function getSingleProduct($productID, $variationID)
+    function getSingleProduct()
     {
         try {
             $cxn = parent::connectToDB();
@@ -103,27 +103,29 @@ class ProductModel extends BaseModel
                         JOIN Variations V ON PV.variationID = V.variationID
                         WHERE P.productID = :productID AND V.variationID = :variationID ";
             $stmt = $cxn->prepare($query);
-            $stmt -> bindParam(":productID", $productID);
-            $stmt -> bindParam(":variationID", $variationID);
+            $stmt -> bindParam(":productID", $_GET['productID']);
+            $stmt -> bindParam(":variationID", $_GET['variationID']);
             $stmt -> execute();
             $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
 
-    // Handle if the product is not found
-    if (empty($result)) {
-        // Display an error message or redirect to an error page
-        echo "Product not found";
-        return;
-    }
-    $row = $result[0];
-
-           
+    // // Handle if the product is not found
+    // if (empty($result)) {
+    //     // Display an error message or redirect to an error page
+    //     echo "Product not found";
+    //     return;
+    // }
+    // $row = $result[0];
+                     foreach ($result as $row)
+                    {
+                        $row;
+                    }
 
                 // Fetch variations for the product
                 $queryVariations = "SELECT * FROM Variations V
                                     JOIN ProductVariations PV ON V.variationID = PV.variationID
-                                    WHERE PV.variationID = :variationID";
+                                    WHERE PV.variationID != :variationID";
                 $stmtVariations = $cxn->prepare($queryVariations);
-                $stmtVariations -> bindParam(":variationID", $variationID);
+                $stmtVariations -> bindParam(":variationID", $_GET['variationID']);
                 $stmtVariations -> execute();
                 $variations = $stmtVariations->fetchAll(\PDO::FETCH_OBJ);
 

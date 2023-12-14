@@ -12,7 +12,7 @@ $productModel = new ProductModel();
 
 ?>
 
-    <main class="pt-0">
+<main class="pt-0">
     <!--banner-->
     <section class="banner text-center">
         <img src="/CapWizards/assets/svg/Intro section.svg" alt="">
@@ -21,7 +21,7 @@ $productModel = new ProductModel();
     <!--About us-->
     <section class="text-center about-section">
         <h2 class="h1-green margin-50">About Us</h2>
-        <?php $homeModel -> getDescription(); ?>
+        <?php $homeModel->getDescription(); ?>
     </section>
 
     <!--Categories-->
@@ -41,17 +41,17 @@ $productModel = new ProductModel();
     <section class="dailyOffers-section text-center">
         <h1 class="h1-black margin-50">Special offers</h1>
         <div class="d-flex justify-content-center justify-content-between">
-                <?php 
-                    $homeModel -> getSpecialOffers();
-                ?>
+            <?php
+            $homeModel->getSpecialOffers();
+            ?>
         </div>
     </section>
-    
+
     <!--News feed-->
     <article class="text-center">
         <h1 class="h1-black margin-50">News</h1>
         <div class="d-flex justify-content-center">
-            <?php $homeModel -> getNews() ?>
+            <?php $homeModel->getNews() ?>
         </div>
     </article>
 </main>

@@ -117,7 +117,7 @@ class AdminModel extends BaseModel
             $cxn = parent::connectToDB();
 
             // Always get the 2 most recently added news
-            $query = "SELECT * FROM NewsInViews";
+            $query = "SELECT * FROM News ORDER BY newsDate DESC LIMIT 2";
             $stmt = $cxn -> prepare($query);
 
             $stmt -> execute();
@@ -364,7 +364,7 @@ class AdminModel extends BaseModel
         <div>
         <form method='POST' action='{$baseURL}/Admin/Update-description'>
         <input type='hidden' name='companyID' value=". $row -> companyID .">
-        <input value=Edit type=submit name=Edit>
+        <input value=Edit type=submit name=Edit class='btn btn-primary' style='height:35px'>
         </form>
         </div>";
     }
@@ -398,7 +398,7 @@ class AdminModel extends BaseModel
            <div>
            <form method='POST' action='{$baseURL}/Admin/Update-extra-info'>
            <input type='hidden' name='companyID' value=". $row -> companyID .">
-           <input value=Edit type=submit name=Edit>
+           <input value=Edit type=submit name=Edit class='btn btn-primary' style='height:35px'>
            </form>
            </div>
        </article> ";
@@ -410,15 +410,19 @@ class AdminModel extends BaseModel
     {
         /**
          * We can't delete the news when we have just 2 in the db, since we are displaying the last 2 entries from the db;
-         * TODO: Show error message when the user tries to delete news and there are only 2 in the db
          */
+
+         $baseURL = BASE_URL;
         
         return $template = "
 
         <h2 class = h2-pink margin-15>".$row -> newsTitle ."</h2>
         <p class ='p-pink'> ".$row -> newsText ."</p> 
-        <div>
-        <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-news?newsID=" . $row->newsID . "'>Edit</a>
+        <div style='display:flex'>
+        <form method='POST' action='{$baseURL}/Admin/Update-news'>
+        <input type='hidden' name='newsID' value=". $row -> newsID .">
+        <input value=Edit type=submit name=Edit class='btn btn-primary' style='height:35px; margin-right:15px'>
+        </form>
         <a class='btn btn-danger' href='" . BASE_URL . "/controllers/AdminController.php?action=deleteNews&newsID=" . $row->newsID . "'>Delete</a>
         </div>";
     }

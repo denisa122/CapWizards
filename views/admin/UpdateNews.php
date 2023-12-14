@@ -2,7 +2,7 @@
 require("./views/shared/header.php");
 
 // Get newsID from the URL
-$newsID = isset($_GET['newsID']) ? $_GET['newsID'] : null;
+$newsID = isset($_POST['newsID']) ? $_POST['newsID'] : null;
 if ($newsID === null) {
     // Handle the case when newsID is not provided
     echo "Error: News ID not provided";

@@ -11,6 +11,8 @@ $adminModel = new AdminModel();
 $FooterInfoModel = new FooterModel();
 ?>
 
+<?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') { ?>
+
 <!-- Main -->
 <main>
     <div class="side-padding input-rounded">
@@ -62,6 +64,10 @@ $FooterInfoModel = new FooterModel();
         <a href="http://denisaneagu.com/CapWizards/Admin/Products">Go to products page.</a>
     </section>
     </main>
+
+    <?php } else {
+        echo "Page not found";
+        }?>
 
     
 <?php

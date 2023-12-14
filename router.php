@@ -40,12 +40,3 @@ function dispatch($action)
         echo "Page not found";
     }
 }
-//     if ($callback) {
-//         echo call_user_func($callback);
-//     } else {
-//         // Handle 404 or not found case
-//         echo "Page not found";
-//     }
-// }
-
-// dispatch($_SERVER['REQUEST_URI']);

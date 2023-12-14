@@ -316,35 +316,57 @@ class AdminModel extends BaseModel
         }
     }
 
-    function createProduct($productName, $productDescription, $price, $size, $brand, $color, $availability, $imgUrl, $altTxt, $material, $isSpecialOffer, $FK_categoryID, $FK_subcategoryID)
+    function createProduct($productName, $productDescription, $price, $size, $brand, $color, $availability, $imgUrl, $altTxt, $material, $isSpecialOffer, $FK_categoryID, $FK_subcategoryID, $variations)
     {
         try {
             $cxn = parent::connectToDB();
 
-            $query = "INSERT INTO Product (productName, productDescription, price, size, brand, color, availability, imgUrl, altTxt, material, isSpecialOffer, FK_categoryID, FK_subcategoryID)
+            // Start transaction
+            $cxn -> beginTransaction();
+
+            // Insert into Product table
+            $queryProduct = "INSERT INTO Product (productName, productDescription, price, size, brand, color, availability, imgUrl, altTxt, material, isSpecialOffer, FK_categoryID, FK_subcategoryID)
              VALUES (:productName, :productDescription, :price, :size, :brand, :color, :availability, :imgUrl, :altTxt, :material, :isSpecialOffer, :FK_categoryID, :FK_subcategoryID)";
-            $stmt = $cxn -> prepare($query);
+            $stmtProduct = $cxn -> prepare($queryProduct);
 
-            $stmt -> bindParam(":productName", $productName);
-            $stmt -> bindParam(":productDescription", $productDescription);
-            $stmt -> bindParam(":price", $price);
-            $stmt -> bindParam(":size", $size);
-            $stmt -> bindParam(":brand", $brand);
-            $stmt -> bindParam(":color", $color);
-            $stmt -> bindParam(":availability", $availability);
-            $stmt -> bindParam(":imgUrl", $imgUrl);
-            $stmt -> bindParam(":altTxt", $altTxt);
-            $stmt -> bindParam(":material", $material);
-            $stmt -> bindParam(":isSpecialOffer", $isSpecialOffer);
-            $stmt -> bindParam(":FK_categoryID", $FK_categoryID);
-            $stmt -> bindParam(":FK_subcategoryID", $FK_subcategoryID);
+            $stmtProduct -> bindParam(":productName", $productName);
+            $stmtProduct -> bindParam(":productDescription", $productDescription);
+            $stmtProduct -> bindParam(":price", $price);
+            $stmtProduct -> bindParam(":size", $size);
+            $stmtProduct -> bindParam(":brand", $brand);
+            $stmtProduct -> bindParam(":color", $color);
+            $stmtProduct -> bindParam(":availability", $availability);
+            $stmtProduct -> bindParam(":imgUrl", $imgUrl);
+            $stmtProduct -> bindParam(":altTxt", $altTxt);
+            $stmtProduct -> bindParam(":material", $material);
+            $stmtProduct -> bindParam(":isSpecialOffer", $isSpecialOffer);
+            $stmtProduct -> bindParam(":FK_categoryID", $FK_categoryID);
+            $stmtProduct -> bindParam(":FK_subcategoryID", $FK_subcategoryID);
 
+            $stmtProduct -> execute();
 
-            $stmt -> execute();
+            // Get the last inserted productID
+            $productID = $cxn -> lastInsertId();
+
+            // Insert into ProductVariations table
+            foreach ($variations as $variationID) {
+                $queryProductVariations = "INSERT INTO ProductVariations (variationID, productID) VALUES (:variationID, :productID)";
+                $stmtProductVariations = $cxn->prepare($queryProductVariations);
+    
+                $stmtProductVariations->bindParam(":variationID", $variationID);
+                $stmtProductVariations->bindParam(":productID", $productID);
+    
+                $stmtProductVariations->execute();
+            }
+
+            // Commit the transaction
+            $cxn->commit();
 
             $cxn = null;
 
         } catch (\PDOException $e){
+             // Rollback the transaction on error
+            $cxn->rollBack();
             echo $e -> getMessage();
         }
     }

@@ -76,7 +76,7 @@ require_once("././dataaccess/db/DBConnector.php");
                             </a>
                             <a class="dropdown-item text-center p-0" href="http://denisaneagu.com/CapWizards/Products/Non-alcoholic/Water">
                                 <div class="menu-blue">
-                                    <img src="/CapWizards/assets/svg/Water.svg" alt="Water icon">
+                                    <img src="/CapWizards/assets/svg/water.svg" alt="Water icon">
                                     <h2 class="h2-small h2-bage">Water</h2>
                                 </div>
                             </a>

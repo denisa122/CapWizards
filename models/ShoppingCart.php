@@ -10,28 +10,25 @@ class ShoppingCart extends BaseModel
 {
     public function __construct()
     {
-        if (session_status() == PHP_SESSION_NONE)
-        {
+        if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
 
         // Initialize the cart 
-        if (!isset($_SESSION['cart']))
-        {
+        if (!isset($_SESSION['cart'])) {
             $_SESSION['cart'] = [];
         }
     }
 
-    public function addToCart ($productID, $productName, $variationID, $quantity, $price, $imgUrl)
+    public function addToCart($productID, $productName, $variationID, $quantity, $price, $imgUrl)
     {
         $key = $productID . '_' . $variationID;
 
-        if (isset($_SESSION['cart'][$key]))
-        {
-            // Product already exists in the cart, update quantity
+        if (isset($_SESSION['cart'][$key])) {
+            // Product already exists in cart, update quantity
             $_SESSION['cart'][$key]['quantity'] += $quantity;
         } else {
-            // Add a new item to the cart
+            // Add new item to the cart
             $_SESSION['cart'][$key] = [
                 'productID' => $productID,
                 'productName' => $productName,
@@ -43,24 +40,21 @@ class ShoppingCart extends BaseModel
         }
     }
 
-    public function updateQuantity ($productID, $variationID, $quantity)
+    public function updateQuantity($productID, $variationID, $quantity)
     {
         $key = $productID . '_' . $variationID;
 
-        if (isset($_SESSION['cart'][$key]))
-        {
+        if (isset($_SESSION['cart'][$key])) {
             // Update the quantity for an existing item in the cart
             $_SESSION['cart'][$key]['quantity'] = $quantity;
         }
     }
 
-    public function removeItem ($productID, $variationID)
+    public function removeItem($productID, $variationID)
     {
         $key = $productID . '_' . $variationID;
 
-        if (isset($_SESSION['cart'][$key]))
-        {
-            // Remove an item from the cart
+        if (isset($_SESSION['cart'][$key])) {
             unset($_SESSION['cart'][$key]);
         }
     }
@@ -68,17 +62,15 @@ class ShoppingCart extends BaseModel
     public function getCartContents()
     {
         return isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-   
     }
 
     public function getCartItemsForDisplay()
     {
-        $cartItems = $this -> getCartContents();
+        $cartItems = $this->getCartContents();
         $displayItems = [];
 
-        foreach ($cartItems as $item)
-        {
-            $displayItems[] = $this -> cartItemTemplate($item);
+        foreach ($cartItems as $item) {
+            $displayItems[] = $this->cartItemTemplate($item);
         }
 
         return $displayItems;
@@ -86,14 +78,13 @@ class ShoppingCart extends BaseModel
 
     public function clearCart()
     {
-        // C;ear the entire cart
         $_SESSION['cart'] = [];
     }
 
     public function cartItemTemplate($item)
     {
         $baseURL = BASE_URL;
-        
+
         return "
         <article class='product-w gap-50 margin-100' style='margin-left:100px; display:flex; flex-direction: row; width:800px;'>
         <img class='img-150 margin-30' src='{$item['imgUrl']}' style='margin-right:50px'>
@@ -106,4 +97,3 @@ class ShoppingCart extends BaseModel
     ";
     }
 }
-?>

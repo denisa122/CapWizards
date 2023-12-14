@@ -18,8 +18,8 @@ class RecommendationModel extends BaseModel
         try {
             $cxn = parent::connectToDB();
             $query = "SELECT * FROM Product P
-            JOIN ProductVariations PV ON P.productID = PV.productID
-            JOIN Variations V ON PV.variationID = V.variationID
+            INNER JOIN ProductVariations PV ON P.productID = PV.productID
+            INNER JOIN Variations V ON PV.variationID = V.variationID
             WHERE P.color = 'green' AND  P.productID != :productID
             ORDER BY RAND()
             LIMIT 3"; 

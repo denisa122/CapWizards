@@ -94,7 +94,6 @@ CREATE TABLE Customer (
     lastName VARCHAR(100) NULL,
     email VARCHAR(80),
     phoneNumber varchar(20) NULL,
-    userName VARCHAR(50),
     FK_accountID INT,
     FOREIGN KEY (FK_accountID) REFERENCES Account (accountID)
 )ENGINE = InnoDB;
@@ -277,27 +276,27 @@ INSERT INTO ProductVariations (variationID, productID) VALUES
 (8, 19);
 
 
-INSERT INTO Customer (customerID, firstName, lastName, email, phoneNumber, userName) VALUES
-(NULL, 'Haskell', 'Llop', 'hllop0@live.com', '+850 249 585 2080', 'hllop0'),
-(NULL, 'Rriocard', 'Darrell', 'rdarrell1@feedburner.com', '+380 569 999 7483', 'rdarrell1'),
-(NULL, 'Jeth', 'Goldhill', 'jgoldhill2@illinois.edu', '+420 235 220 1526', 'jgoldhill2'),
-(NULL, 'George', 'Dowthwaite', 'gdowthwaite3@biglobe.ne.jp', '+62 404 663 8402', 'gdowthwaite3'),
-(NULL, 'Duky', 'Dundredge', 'ddundredge4@gmpg.org', '+52 581 379 1949', 'ddundredge4'),
-(NULL, 'Delmar', 'Dring', 'ddring5@businesswire.com', '+62 881 251 6422', 'ddring5'),
-(NULL, 'Alfonse', 'Colcutt', 'acolcutt6@ezinearticles.com', '+1 804 411 8923', 'acolcutt6'),
-(NULL, 'Gerick', 'Camois', 'gcamois7@squarespace.com', '+60 479 302 0574', 'gcamois7'),
-(NULL, 'Zsazsa', 'Scoggin', 'zscoggin8@google.co.uk', '+86 362 276 3956', 'zscoggin8'),
-(NULL, 'Esme', 'Canepe', 'ecanepe9@w3.org', '+995 731 521 6482', 'ecanepe9'),
-(NULL, 'Maurie', 'Brusby', 'mbrusbya@cnbc.com', '+31 639 367 0460', 'mbrusbya'),
-(NULL, 'Lonnie', 'Benedidick', 'lbenedidickb@artisteer.com', '+852 135 168 3759', 'lbenedidickb'),
-(NULL, 'Sanders', 'Vlasenkov', 'svlasenkovc@narod.ru', '+86 833 792 0653', 'svlasenkovc'),
-(NULL, 'Kathleen', 'McClymond', 'kmcclymondd@reverbnation.com', '+57 409 152 4398', 'kmcclymondd'),
-(NULL, 'Danya', 'Emnoney', 'demnoneye@bigcartel.com', '+98 177 144 1009', 'demnoneye'),
-(NULL, 'Natassia', 'Hars', 'nharsf@angelfire.com', '+86 506 692 9612', 'nharsf'),
-(NULL, 'Robena', 'Herkess', 'rherkessg@census.gov', '+62 281 348 3079', 'rherkessg'),
-(NULL, 'Cameron', 'Blaymires', 'cblaymiresh@sakura.ne.jp', '+86 620 754 9461', 'cblaymiresh'),
-(NULL, 'Josey', 'Lusk', 'jluski@wp.com', '+687 542 476 5739', 'jluski'),
-(NULL, 'Guillaume', 'Flaonier', 'gflaonierj@nature.com', '+62 932 714 0352', 'gflaonierj');
+INSERT INTO Customer (customerID, firstName, lastName, email, phoneNumber) VALUES
+(NULL, 'Haskell', 'Llop', 'hllop0@live.com', '+850 249 585 2080'),
+(NULL, 'Rriocard', 'Darrell', 'rdarrell1@feedburner.com', '+380 569 999 7483'),
+(NULL, 'Jeth', 'Goldhill', 'jgoldhill2@illinois.edu', '+420 235 220 1526'),
+(NULL, 'George', 'Dowthwaite', 'gdowthwaite3@biglobe.ne.jp', '+62 404 663 8402'),
+(NULL, 'Duky', 'Dundredge', 'ddundredge4@gmpg.org', '+52 581 379 1949'),
+(NULL, 'Delmar', 'Dring', 'ddring5@businesswire.com', '+62 881 251 6422'),
+(NULL, 'Alfonse', 'Colcutt', 'acolcutt6@ezinearticles.com', '+1 804 411 8923'),
+(NULL, 'Gerick', 'Camois', 'gcamois7@squarespace.com', '+60 479 302 0574'),
+(NULL, 'Zsazsa', 'Scoggin', 'zscoggin8@google.co.uk', '+86 362 276 3956'),
+(NULL, 'Esme', 'Canepe', 'ecanepe9@w3.org', '+995 731 521 6482'),
+(NULL, 'Maurie', 'Brusby', 'mbrusbya@cnbc.com', '+31 639 367 0460'),
+(NULL, 'Lonnie', 'Benedidick', 'lbenedidickb@artisteer.com', '+852 135 168 3759'),
+(NULL, 'Sanders', 'Vlasenkov', 'svlasenkovc@narod.ru', '+86 833 792 0653'),
+(NULL, 'Kathleen', 'McClymond', 'kmcclymondd@reverbnation.com', '+57 409 152 4398'),
+(NULL, 'Danya', 'Emnoney', 'demnoneye@bigcartel.com', '+98 177 144 1009'),
+(NULL, 'Natassia', 'Hars', 'nharsf@angelfire.com', '+86 506 692 9612'),
+(NULL, 'Robena', 'Herkess', 'rherkessg@census.gov', '+62 281 348 3079'),
+(NULL, 'Cameron', 'Blaymires', 'cblaymiresh@sakura.ne.jp', '+86 620 754 9461'),
+(NULL, 'Josey', 'Lusk', 'jluski@wp.com', '+687 542 476 5739'),
+(NULL, 'Guillaume', 'Flaonier', 'gflaonierj@nature.com', '+62 932 714 0352');
 
 INSERT INTO Address (addressID, country, city, zipcode, street, houseNumber, apartmentNumber) values 
 (NULL, 'Tanzania', 'Kondoa', "089", 'Jenifer', 471, 159),

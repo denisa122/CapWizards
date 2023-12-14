@@ -100,12 +100,11 @@ class LoginModel extends BaseModel
                     $accountID = $cxn -> lastInsertId();
 
                     // Insert data into the customer table
-                    $query = "INSERT INTO Customer (firstName, lastName, email, userName, FK_accountID) VALUES (:first, :last, :email, :userName, :accountID)";
+                    $query = "INSERT INTO Customer (firstName, lastName, email, FK_accountID) VALUES (:first, :last, :email, :accountID)";
                     $stmt = $cxn -> prepare($query);
                     $stmt -> bindParam(':first', $firstName);
                     $stmt -> bindParam(':last', $lastName);
                     $stmt -> bindParam(':email', $userEmail);
-                    $stmt -> bindParam(':userName', $userName);
                     $stmt -> bindParam(':accountID', $accountID);
                     $stmt -> execute();
 
@@ -119,16 +118,6 @@ class LoginModel extends BaseModel
                     echo $e -> getMessage();
                     return false;
                 }
-
-                // $query = "INSERT INTO customer (firstName, lastName, email, userName, password) VALUES (:first, :last, :email, :userName, :password)";
-                // $stmt = $cxn -> prepare($query);
-                // $stmt -> bindParam(':first', $firstName);
-                // $stmt -> bindParam(':last', $lastName);
-                // $stmt -> bindParam(':email', $userEmail);
-                // $stmt -> bindParam(':userName', $userName);
-                // $stmt -> bindParam(':password', $passwordHashed);
-
-                // return $stmt -> execute();
             }
         }  catch (\PDOException $e) {
             echo $e->getMessage();

@@ -170,6 +170,8 @@ class ProductModel extends BaseModel
 
     function productTemplateAdmin($row)
     {
+        $baseURL = BASE_URL;
+        
         return $template = "
         
         <article class='product-w gap-50 margin-100'>
@@ -182,7 +184,10 @@ class ProductModel extends BaseModel
             <div class='d-flex justify-content-center'>
                 <p class='font-weight-bold gap-50'>" . $row -> price . " DKK </p>
 
-                <a href='" . BASE_URL . "/Admin/Update-product?productID=" . $row -> productID . "' class='btn btn-secondary'>Edit</a>
+                <form method='POST' action='{$baseURL}/Admin/Update-product'>
+                <input type='hidden' name='productID' value=". $row -> productID .">
+                <input value=Edit type=submit name=Edit class='btn btn-primary' style='height:35px; margin-right:15px'>
+                </form>
                 <a href='" . BASE_URL . "/controllers/AdminController.php?action=deleteProduct&productID=" . $row -> productID . "' class='btn btn-danger'>Delete</a>
             </div>
         </article>";

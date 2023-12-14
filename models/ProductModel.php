@@ -111,7 +111,7 @@ class ProductModel extends BaseModel
               // Fetch variations for the product
                 $queryVariations = "SELECT * FROM Variations V
                                     INNER JOIN ProductVariations PV ON V.variationID = PV.variationID
-                                    WHERE PV.productID = :productID";
+                                    WHERE PV.productID != :productID AND PV.variationID = variationID";
                 $stmtVariations = $cxn->prepare($queryVariations);
                 $stmtVariations -> bindParam(":productID", $productID);
                 $stmtVariations -> execute();

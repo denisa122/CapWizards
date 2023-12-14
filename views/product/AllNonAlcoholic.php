@@ -1,6 +1,6 @@
 <?php
 
-require("./views/shared/header.php"); 
+require("./views/shared/header.php");
 require_once "./models/ProductModel.php";
 
 use models\ProductModel;
@@ -16,8 +16,8 @@ $productModel = new ProductModel();
         <h1 class="h1-black">Non alcoholic</h1>
     </section>
 
-       <!-- Subcategories navigation -->
-       <section class="d-flex subcategories-navigation text-center"> 
+    <!-- Subcategories navigation -->
+    <section class="d-flex subcategories-navigation text-center">
         <a class="col subcategories-red text-decoration-none" href="http://denisaneagu.com/CapWizards/Products/Non-alcoholic/Soda">
             <img src="/CapWizards/assets/svg/soda-drink.svg" alt="Soda icon">
             <h2 class="h2-bage">Soda</h2>
@@ -30,18 +30,18 @@ $productModel = new ProductModel();
             <img src="/CapWizards/assets/svg/water.svg" alt="Water icon">
             <h2 class="h2-bage">Water</h2> <!-- We don;t have an icon for this -->
         </a>
-        </section>
+    </section>
 
-         <!-- Product grid -->
+    <!-- Product grid -->
     <section class='side-padding text-center'>
         <div class='d-flex justify-content-center justify-content-between container'>
             <div class='row'>
-                 <?php $productModel -> getProductsByCategory(2); ?>
-             </div>
+                <?php $productModel->getProductsByCategory(2); ?>
+            </div>
         </div>
     </section>
 </main>
 
 <?php
-require("./views/shared/footer.php") 
+require("./views/shared/footer.php")
 ?>

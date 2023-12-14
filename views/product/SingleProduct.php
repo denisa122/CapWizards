@@ -38,7 +38,8 @@ $brand = $SingleProductModel -> getProductBrand($productID);
             // Get recommended products based on brand
             $recommendedProducts = $SingleProductModel -> getRecommendedProducts($brand, $productID);
 
-            // Display the recommended products
+            if ($recommendedProducts) {
+                // Display the recommended products
             foreach($recommendedProducts as $recommendedProduct)
             {
                 echo "
@@ -70,6 +71,13 @@ $brand = $SingleProductModel -> getProductBrand($productID);
                 </article>
                 ";
             }
+            } else {
+                echo "<div style='display:flex; flex-direction:column'>
+                <h2>It seem like you are looking at a product that is unique within its brand.Don't miss out on more of our bottle cap brands!</h2>
+                <a href='https://denisaneagu.com/CapWizards/Products/Alcoholic'>Explore more products from this category</a>
+                </div>";
+            }
+            
 
 
 ?>

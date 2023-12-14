@@ -385,11 +385,6 @@ input::-webkit-outer-spin-button {
 }
 
 /* PRODUCT PAGES style */
-.p-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
 .product-info-section {
     padding:  150px 0;
  }

@@ -148,14 +148,14 @@ class ProductModel extends BaseModel
         $baseURL = BASE_URL;
         
         return $template = "
-    
-    <form method=POST action='{$baseURL}/views/shared/addToCartButton.php'>
-    <input type='hidden' name='productID' value=" . $row->productID . ">
-    <input type='hidden' name='variationID' value=" . $row->variationID . ">
-    <input type='hidden' name='productName' value=" . $row->productName . ">
-    <input type='hidden' name='price' value=" . $row->price . ">
-    <input type='hidden' name='imgUrl' value=" . $row->imgUrl . ">
         <article class='product-w gap-50 margin-100'>
+            <form method=POST action='{$baseURL}/views/shared/addToCartButton.php'>
+            <input type='hidden' name='productID' value=" . $row->productID . ">
+            <input type='hidden' name='variationID' value=" . $row->variationID . ">
+            <input type='hidden' name='productName' value=" . $row->productName . ">
+            <input type='hidden' name='price' value=" . $row->price . ">
+            <input type='hidden' name='imgUrl' value=" . $row->imgUrl . ">
+        
             <a class='text-decoration-none product-card' href='/CapWizards/Products?productID=". $row -> productID."&variationID=".$row -> variationID."'>
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>

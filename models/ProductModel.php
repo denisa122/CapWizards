@@ -309,7 +309,6 @@ class ProductModel extends BaseModel
                             <h2>".$row -> price." DKK</h2>
                         </div>
                         <div class='row margin-15'>
-                        " . $this -> generateVariationsButtons($variations) . "
                              
                         </div>                         
                         <form method=POST action='{$baseURL}/views/shared/addToCartButton.php'>
@@ -329,17 +328,5 @@ class ProductModel extends BaseModel
             </div>
             </form>";
     }
-
-    function generateVariationsButtons($variations)
-{
-    $buttons = '';
-
-    foreach ($variations as $variation) {
-        $buttons .= "<a class='c-variations' href='http://denisaneagu.com/CapWizards/Products?productID=".$variation->productID."&variationID=".$variation->variationID."'>C</a>";
-    }
-
-    return $buttons;
-}
-
 
 }

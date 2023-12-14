@@ -127,6 +127,52 @@ class ProductModel extends BaseModel
         }
     }
 
+    function getProductBrand($productID)
+    {
+        try {
+            $cxn = parent::connectToDB();
+
+            $query = "SELECT V.brand FROM ProductVariations PV
+                  INNER JOIN Variations V ON PV.variationID = V.variationID
+                  WHERE PV.productID = :productID";
+            $stmt = $cxn->prepare($query);
+            $stmt->bindParam(":productID", $productID);
+            $stmt->execute();
+
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+            return $result['brand'] ?? null;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return null;
+        }
+    }
+
+    function getRecommendedProducts($brand, $currentProductID)
+    {
+        try {
+            $cxn = parent::connectToDB();
+
+            $query = "SELECT * FROM Product P
+                      INNER JOIN ProductVariations PV ON P.productID = PV.productID
+                      INNER JOIN Variations V ON PV.variationID = V.variationID
+                      WHERE V.brand = :brand AND P.productID <> :currentProductID
+                      LIMIT 3";
+
+            $stmt = $cxn->prepare($query);
+            $stmt->bindParam(":brand", $brand);
+            $stmt->bindParam(":currentProductID", $currentProductID);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
+
+            return $result;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return [];
+        }
+    }
+
     // Shopping cart related methods
     function addToCart ($productID, $productName, $variationID, $quantity, $price, $imgUrl)
     {
@@ -147,7 +193,7 @@ class ProductModel extends BaseModel
         
         <form method=POST action='{$baseURL}/Products?productID=". $row -> productID."&variationID=".$row -> variationID."'>
         <input type='hidden' name='productID' value=" . $row->productID . ">
-            <input type='hidden' name='variationID' value=" . $row->variationID . ">    
+        <input type='hidden' name='variationID' value=" . $row->variationID . ">    
         <div class='text-decoration-none product-card'>
                 <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
                 <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>

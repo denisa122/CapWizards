@@ -17,11 +17,8 @@ $productModel = new ProductModel();
 
 <!-- Product grid -->
 <section class='side-padding text-center'>
-        <div class='d-flex justify-content-center justify-content-between container'>
-            <div class='row'>
-                <?php $productModel -> getProductsBySubcategory(1, 3); ?>
-            </div>
-        </div>
+            <p>Unfortunately, we are currently sold out of cider bottle caps.</p>
+           <a href="http://denisaneagu.com/CapWizards/Products/Alcoholic">Explore other products from the same category</a>
     </section>
 </main>
 

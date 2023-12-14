@@ -138,8 +138,9 @@ else if ($action == "createProduct")
     $isSpecialOffer = $_POST["isSpecialOffer"];
     $FK_categoryID = $_POST["FK_categoryID"];
     $FK_subcategoryID = $_POST["FK_subcategoryID"];
+    $variations = $_POST['variations'];
 
-    $adminModel-> createProduct($productName, $productDescription, $price, $size, $brand, $color, $availability, $imgUrl, $altTxt, $material, $isSpecialOffer, $FK_categoryID, $FK_subcategoryID);
+    $adminModel-> createProduct($productName, $productDescription, $price, $size, $brand, $color, $availability, $imgUrl, $altTxt, $material, $isSpecialOffer, $FK_categoryID, $FK_subcategoryID, $variations);
     
     echo "<script>
     alert('Product created successfully');

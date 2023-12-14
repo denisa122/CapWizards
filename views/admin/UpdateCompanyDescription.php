@@ -2,7 +2,7 @@
 require("./views/shared/header.php");
 
 // Get companyID from the URL
-$companyID = isset($_GET['companyID']) ? $_GET['companyID'] : null;
+$companyID = isset($_POST['companyID']) ? $_POST['companyID'] : null;
 if ($companyID === null) {
     // Handle the case when companyID is not provided
     echo "Error: Company ID not provided";

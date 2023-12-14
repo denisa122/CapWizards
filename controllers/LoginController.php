@@ -6,6 +6,10 @@ use models\LoginModel;
 
 $loginModel = new LoginModel();
 
+// Set session lifetime to 30 minutes
+ini_set('session.gc_maxlifetime', 1800);
+
+// Start the session
 session_start();
 
 $action = $_GET["action"];

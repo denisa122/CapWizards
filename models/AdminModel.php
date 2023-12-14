@@ -14,13 +14,15 @@ class AdminModel extends BaseModel
     }
 
     // Company description 
-    function getDescription()
+    function getDescription($companyID)
     {
         try {
             $cxn = parent::connectToDB();
 
-            $query = "SELECT * FROM DescriptionOfCompany";
+            $query = "SELECT * FROM Company WHERE companyID = :companyID";
             $stmt = $cxn -> prepare($query);
+
+            $stmt -> bindParam("companyID", $companyID);
 
             $stmt -> execute();
             $result =  $stmt -> fetchAll(\PDO::FETCH_OBJ);
@@ -354,11 +356,16 @@ class AdminModel extends BaseModel
     // Company description
     function companyDescriptionTemplate($row)
     {
+        $baseURL = BASE_URL;
+
         return $template = "
 
         <p class ='p-pink'> ".$row -> compDescription."</p> 
         <div>
-        <a class='btn btn-secondary' href='" . BASE_URL . "/Admin/Update-description?companyID=" . $row->companyID . "'>Edit</a>
+        <form method='POST' action='{$baseURL}/Admin/Update-description'>
+        <input type='hidden' name='companyID' value=". $row -> companyID .">
+        <input value=Edit type=submit name=Edit>
+        </form>
         </div>";
     }
 

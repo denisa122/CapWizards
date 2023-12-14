@@ -245,6 +245,8 @@ class ProductModel extends BaseModel
 
     function singleProductTemplate($row, $variations)
     {        
+        $baseURL = BASE_URL;
+        
         return $template = "
 
         <form method=POST action='././views/shared/addToCartButton.php'>
@@ -309,7 +311,16 @@ class ProductModel extends BaseModel
                         " . $this -> generateVariationsButtons($variations) . "
                              
                         </div>                         
-                            <div class='row'><input value=Add type=submit name=add_to_cart></div>
+                        <form method=POST action='{$baseURL}/views/shared/addToCartButton.php'>
+                        <input type='hidden' name='productID' value=" . $row->productID . ">
+                        <input type='hidden' name='variationID' value=" . $row->variationID . ">
+                        <input type='hidden' name='productName' value=" . $row->productName . ">
+                        <input type='hidden' name='price' value=" . $row->price . ">
+                        <input type='hidden' name='imgUrl' value=" . $row->imgUrl . ">    
+                        <div class='d-flex justify-content-center' style='margin-top:20px'>
+                                <input value=Add type=submit name=add_to_cart class='big-button' style='margin-left:-120px'>
+                            </div>
+                        </form>
                         
                     </div>
                     

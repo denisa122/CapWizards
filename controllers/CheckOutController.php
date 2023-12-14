@@ -3,70 +3,108 @@
 use models\CheckOutModel;
 use models\ShoppingCart;
 
-$action = $_GET["action"];
-
 require_once __DIR__ . '/../models/CheckOutModel.php';
 require_once __DIR__ . '/../models/ShoppingCart.php';
 
+$action = $_GET["action"];
+
+$checkoutModel = new CheckOutModel();
+$shoppingCart = new ShoppingCart();
+
 // Check if the form is submitted
-if ($action == "Checkout") {
-    $shoppingCart = new ShoppingCart();
-    $cartItems = $shoppingCart->getCartContents();
+if ($action == "Checkout") 
+{
+    // Get user input for customer, address and payment information
+    $customerData = [
+        'firstName' => $_POST['firstName'],
+        'lastName' => $_POST['lastName'],
+        'email' => $_POST['email'],
+        'phoneNumber' => $_POST['phoneNumber']
+    ];
 
-    // Iterate through cart items to get product IDs
-    foreach ($cartItems as $cartItem) {
-        $productID = $cartItem['productID'];
-        $variationID = $cartItem['variationID'];
-        $quantity = $cartItem['quantity'];
-        $price = $cartItem['price'];
-    
-        // Retrieve form data
-        $customerID = $_POST['price'];
-        $firstName = $_POST['firstName']; 
-        $lastName = $_POST['lastName']; 
-        $email = $_POST['userEmail'];
-        $phoneNumber = $_POST['phoneNumber'];
-        $country = $_POST['country']; 
-        $city = $_POST['city']; 
-        $zipcode = $_POST['zipcode']; 
-        $street = $_POST['street']; 
-        $houseNumber = $_POST['houseNumber']; 
-        $apartmentNumber = $_POST['apartmentNumber'];
+    $addressData = [
+        'country' => $_POST['country'],
+        'city' => $_POST['city'],
+        'zipcode' => $_POST['zipcode'],
+        'street' => $_POST['street'],
+        'houseNumber' => $_POST['houseNumber'],
+        'apartmentNumber' => $_POST['apartmentNumber']
+    ];
 
-        // Create an instance of CheckOutModel
-        $checkoutModel = new CheckOutModel();
+    // Get cart items
+    $cartItems = $shoppingCart -> getCartContents();
 
-        // Call the Checkout method from CheckOutModel
-        $checkoutResult = $checkoutModel->Checkout($productID, $variationID, $quantity, $price, $customerID, $firstName, $lastName, $email, $phoneNumber, $country, $city, $zipcode, $street, $houseNumber, $apartmentNumber);
+    // Place the order using CheckOutModel
+    if ($checkoutModel -> placeOrder($customerData, $addressData, $cartItems))
+    {
+        // Order placed successfully
+        // Generate the invoice HTML
+        $invoiceHTML = "
+        <html>
+        <body>
+        <div style='display:flex; flex-orientation:row;'>
+        <div>
+        <a href='https://denisaneagu.com/CapWizards/'>Go back to the main page</a>
+        </div>
+        <div>
 
-        // Handle the result, e.g., redirect or display a success message
-        if ($checkoutResult) {
-            // Display the data after a successful checkout
-            echo "<h2>Checkout Successful</h2>";
-            echo "<p>Name: $name</p>";
-            echo "<p>Surname: $surname</p>";
-            echo "<p>Email: $email</p>";
-            echo "<p>Phone Number: $phoneNumber</p>";
-            echo "<p>Country: $country</p>";
-            echo "<p>City: $city</p>";
-            echo "<p>Zip-Code: $zipcode</p>";
-            echo "<p>Street: $street</p>";
-            echo "<p>House Number: $houseNumber</p>";
-            echo "<p>Apartment Number: $apartmentNumber</p>";
+            <h1>Invoice</h1>
+            <h3>Customer information</h3><br>
+            <p>First name: {$customerData['firstName']}</p><br>
+            <p>Last name: {$customerData['lastName']}</p><br>
+            <h3>Order summary</h3>
+            <table style='border-style:solid; border-spacing:25px; text-align:center;'>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price per item</th>
+                </tr>";
 
-        
-            // Display cart items
-            echo "<h3>Cart Items</h3>";
-            foreach ($products as $product) {
-                echo "<p>Product ID: {$product['productID']}</p>";
-                echo "<p>Variation ID: {$product['variationID']}</p>";
-                echo "<p>Quantity: {$product['quantity']}</p>";
-                echo "<p>Price: {$product['price']}</p>";
-          
-            }
-        } else {
-            // Handle checkout failure
-            echo 'Checkout failed. Please try again.';
+        // Loop through items and add them to the table
+        foreach ($cartItems as $item)
+        {
+            $itemName = $item['productName'];
+            $quantity = $item['quantity'];
+            $price = $item['price'];
+
+            $invoiceHTML .= " 
+                <tr>
+                    <td>$itemName</td>
+                    <td>$quantity</td>
+                    <td>$price</td>
+                </tr";
         }
-    } 
-}
+
+        // Add total price and other details
+        $invoiceHTML .= "
+            </table><br>
+            <p>Final price: {$checkoutModel -> calculateFinalPrice($cartItems)}</p><br>
+            <h3>Delivery address</h3>
+            <p>Country: {$addressData['country']}</p><br>
+            <p>City: {$addressData['city']}</p><br>
+            <p>Street: {$addressData['street']}</p><br>
+            <p>Number: {$addressData['houseNumber']}, {$addressData['apartmentNumber']} </p><br>
+            <p>Zip code: {$addressData['zipcode']}</p><br>
+            </div>
+            </div>
+        </body>
+        </html>
+        ";
+
+        // Save the invoice to a file
+        $invoiceFileName = 'invoice.html';
+        file_put_contents($invoiceFileName, $invoiceHTML);
+
+        // Display the invoice to the user
+        $shoppingCart -> clearCart();
+        session_unset();
+        echo $invoiceHTML;
+    } else {
+        // Failed to place the order
+        echo "<script>
+        alert('Order could not be placed :(');
+    
+        </script>";
+        exit();
+    }
+} 

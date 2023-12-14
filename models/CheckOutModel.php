@@ -14,80 +14,89 @@ class CheckOutModel extends BaseModel
         
     }
 
-    public function Checkout($productID, $variationID, $quantity, $price, $customerID, $firstName, $lastName, $email, $phoneNumber, $country, $city, $zipcode, $street, $houseNumber, $apartmentNumber){
-        $cxn = parent::connectToDB();
-        $cxn->beginTransaction();
-    
-        try {
-            // Insert customer details
-            $query = "INSERT INTO Customer (firstName, lastName, email, phoneNumber) VALUES (:firstName, :lastName, :userEmail, :phoneNumber)";
-            $stmt = $cxn->prepare($query);
-            $stmt->bindParam(':firstName', $firstName);
-            $stmt->bindParam(':lastName', $lastName);
-            $stmt->bindParam(':userEmail', $email);
-            $stmt->bindParam(':phoneNumber', $phoneNumber);
-            $stmt->execute();
-    
-            $customerID = $cxn->lastInsertId();
-    
-            // Insert address details
-            $query = "INSERT INTO Address (country, city, zipcode, street, houseNumber, apartmentNumber) VALUES (:country, :city, :zipcode, :street, :houseNumber, :apartmentNumber)";
-            $stmt = $cxn->prepare($query);
-            $stmt->bindParam(':country', $country);
-            $stmt->bindParam(':city', $city);
-            $stmt->bindParam(':zipcode', $zipcode);
-            $stmt->bindParam(':street', $street);
-            $stmt->bindParam(':houseNumber', $houseNumber);
-            $stmt->bindParam(':apartmentNumber', $apartmentNumber);
-            $stmt->execute();
-    
-            $addressID = $cxn->lastInsertId();
-    
-            // Insert order details
-            $query = "INSERT INTO `Order` (FK_customerID, FK_addressID) VALUES (:customerID, :addressID)";
-            $stmt = $cxn->prepare($query);
-            $stmt->bindParam(':customerID', $customerID);
-            $stmt->bindParam(':addressID', $addressID);
-            $stmt->execute();
-    
-            $orderID = $cxn->lastInsertId();
-    
-            // Insert product order details
-            $query = "INSERT INTO ProductOrder (orderID, productID, quantity) VALUES (:orderID, :productID, :quantity)";
-            $stmt = $cxn->prepare($query);
-            $stmt->bindParam(':orderID', $orderID);
-            $stmt->bindParam(':productID', $productID);
-            $stmt->bindParam(':quantity', $quantity);
-            $stmt->execute();
-    
-            $cxn->commit();
-            return true;
-            
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-            $cxn->rollback();
-            return false;
-        }
-        
-    } 
-
-    function InvoiceTemplate($item){
-        return $template = "
-            <h2>Order completed!</h2>
-
-            <h3>User Information</h3>
-            <p>Name: {$item['firstName']} {$item['lastName']}</p>
-            <p>Email: {$item['email']}</p>
-            <p>Phone Number: {$item['phoneNumber']}</p>
-            <p>Address: {$item['houseNumber']} {$item['street']}, Apartment: {$item['apartmentNumber']}, {$item['city']}, {$item['country']}, {$item['zipcode']}</p>
-
-
-            <h2>Order Details</h2>
-            <p>Order ID: {$item['orderID']}</p>
-            <p>Product ID: {$item['productID']}</p>
-            <p>Quantity: {$item['quantity']}</p>
-        ";
+    public function calculateFinalPrice($cartItems)
+    {
+        // Insert code here
+        $finalPrice = 500;
+        return $finalPrice;
     }
 
+    public function placeOrder($customerData, $addressData, $cartItems)
+    {
+        try {
+            $cxn = parent::connectToDB();
+
+            $cxn -> beginTransaction();
+
+            // Insert customer details into Customer table
+            $queryCustomer = "INSERT INTO Customer (firstName, lastName, email, phoneNumber) 
+                            VALUES (:firstName, :lastName, :email, :phoneNumber)";
+            $stmtCustomer = $cxn -> prepare($queryCustomer);
+            $stmtCustomer -> bindParam(":firstName", $customerData['firstName']);
+            $stmtCustomer -> bindParam(":lastName", $customerData['lastName']);
+            $stmtCustomer -> bindParam(":email", $customerData['email']);
+            $stmtCustomer -> bindParam(":phoneNumber", $customerData['phoneNumber']);
+            $stmtCustomer -> execute();
+
+            // Retrieve the last inserted customerID
+            $customerID = $cxn -> lastInsertId();
+
+            // Insert address details into the Address table
+            $queryAddress = "INSERT INTO Address (country, city, zipcode, street, houseNumber, apartmentNumber)
+                            VALUES (:country, :city, :zipcode, :street, :houseNumber, :apartmentNumber)";
+            $stmtAddress = $cxn -> prepare($queryAddress);
+            $stmtAddress -> bindParam(":country", $addressData['country']);
+            $stmtAddress -> bindParam(":city", $addressData['city']);
+            $stmtAddress -> bindParam(":zipcode", $addressData['zipcode']);
+            $stmtAddress -> bindParam(":street", $addressData['street']);
+            $stmtAddress -> bindParam(":houseNumber", $addressData['houseNumber']);
+            $stmtAddress -> bindParam(":apartmentNumber", $addressData['apartmentNumber']);
+            $stmtAddress -> execute();
+
+            // Retrieve the last inserted addressID
+            $addressID = $cxn -> lastInsertId();
+
+            // Delivery method and paymentID are hardcoded
+            $deliveryMethod = "PostNord";
+            $paymentID = 1;
+
+            // Insert order information into the `Order` table
+            $queryOrder = "INSERT INTO `Order` (deliveryMethod, finalPrice, FK_customerID, FK_addressID, FK_paymentID)
+                        VALUES (:deliveryMethod, :finalPrice, :customerID, :addressID, :paymentID)";
+            $stmtOrder = $cxn -> prepare($queryOrder);
+            $stmtOrder -> bindParam(":deliveryMethod", $deliveryMethod);
+            $stmtOrder -> bindParam(":finalPrice", $this -> calculateFinalPrice($cartItems));
+            $stmtOrder -> bindParam(":customerID", $customerID);
+            $stmtOrder -> bindParam(":addressID", $addressID);
+            $stmtOrder -> bindParam(":paymentID", $paymentID);
+            $stmtOrder -> execute();
+
+            // Retrieve the last inserted orderID
+            $orderID = $cxn -> lastInsertId();
+
+            // Insert individual products into the ProductOrder table
+            foreach($cartItems as $item)
+            {
+            $queryProductOrder = "INSERT INTO ProductOrder (quantity, price, productID, orderID)
+                                VALUES (:quantity, NULL, :productID, :orderID)";
+            $stmtProductOrder = $cxn->prepare($queryProductOrder);
+            $stmtProductOrder->bindParam(":quantity", $item['quantity']);
+            $stmtProductOrder->bindParam(":productID", $item['productID']);
+            $stmtProductOrder->bindParam(":orderID", $orderID);
+            $stmtProductOrder->execute();
+            }
+
+            // Commit the transaction
+            $cxn -> commit();
+
+            return true;
+        } catch (\PDOException $e) {
+            // Rollback the transaction in case of an error
+            $cxn->rollBack();
+    
+            echo $e->getMessage();
+            return false; // Failed order placement
+        }
+    }
 
 }

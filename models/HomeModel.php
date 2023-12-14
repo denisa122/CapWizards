@@ -94,29 +94,33 @@ class HomeModel extends BaseModel
         $baseURL = BASE_URL;
         
         return $template = "
+        <article class='product-w gap-50 margin-100'>
+            
+        
+        <form method=POST action='{$baseURL}/Products?productID=". $row -> productID."&variationID=".$row -> variationID."'>
+        <input type='hidden' name='productID' value=" . $row->productID . ">
+            <input type='hidden' name='variationID' value=" . $row->variationID . ">    
+        <div class='text-decoration-none product-card'>
+                <img class='img-150 margin-30' src=" . $row -> imgUrl . ">
+                <h2 class='h2-black margin-15'>" . $row-> productName . "</h2>
+                <p class='margin-15 p-black'>" . $row -> productDescription . " </p>
+                <input type='submit' value='See more' name='See more' class='btn btn-outline-secondary'>
+            </div>
+        </form>
+            
             <form method=POST action='{$baseURL}/views/shared/addToCartButton.php'>
             <input type='hidden' name='productID' value=" . $row->productID . ">
             <input type='hidden' name='variationID' value=" . $row->variationID . ">
             <input type='hidden' name='productName' value=" . $row->productName . ">
-    <input type='hidden' name='price' value=" . $row->price . ">
-    <input type='hidden' name='imgUrl' value=" . $row->imgUrl . ">
-                <article class='product-w'> 
-                <a class=text-decoration-none product-card href='http://denisaneagu.com/CapWizards/Products?productID=". $row -> productID ."&variationID=".$row -> variationID."'>
-                    <input class='hidden' name='productID' value= ".$row -> productID.">
-                    <input type='hidden' name='variationID' value='" . $row -> variationID . "'>
-                    <img class='img-150 margin-30' src = ".$row -> imgUrl." alt= ".$row -> altTxt.">
-                    <h2 class='h2-black' margin-15>".$row -> productName."</h2>
-                    <p class='margin-15 p-black'>
-                        ".$row -> productDescription."
-                    </p>
-                </a>
-                    <div class='d-flex justify-content-center'>
-                        <p class='font-weight-bold gap-50'>".$row -> price." DKK</p>
-                 
-                        <input value=Add type=submit name=add_to_cart>
-                    </div>
-                </article>
-            </form>";
+            <input type='hidden' name='price' value=" . $row->price . ">
+            <input type='hidden' name='imgUrl' value=" . $row->imgUrl . ">    
+            <div class='d-flex justify-content-center' style='margin-top:20px'>
+                    <p class='font-weight-bold gap-50' style='margin-top:15px'>" . $row -> price . " DKK </p>
+
+                    <input value=Add type=submit name=add_to_cart class='btn btn-success'>
+                </div>
+            </form>
+        </article>";
     }
 
 

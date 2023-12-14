@@ -31,7 +31,7 @@ $variations = [
         <input type="number" name="FK_subcategoryID" class="row input-color input-size-b margin-15 text-center" placeholder="Subcategory ID">
         <!-- Variation selection -->
         <label for="variations">Select variation:</label>
-        <?php foreach ($variations as $variation): ?>
+        <?php foreach ($variations as $variation) : ?>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" name="variations[]" value="<?php echo $variation['id']; ?>">
                 <label class="form-check-label"><?php echo $variation['name']; ?></label>

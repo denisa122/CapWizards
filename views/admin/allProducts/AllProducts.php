@@ -1,6 +1,6 @@
 <?php
 
-require("./views/shared/header.php"); 
+require("./views/shared/header.php");
 require_once "./models/ProductModel.php";
 
 use models\ProductModel;
@@ -16,17 +16,17 @@ $productModel = new ProductModel();
         <a class="btn btn-success" href="http://denisaneagu.com/CapWizards/Admin/Add-product">Add product</a>
     </section>
 
-<!-- Product grid -->
+    <!-- Product grid -->
     <section class='side-padding text-center'>
         <div class='d-flex justify-content-center justify-content-between container'>
             <div class='row'>
-                <?php $productModel -> getProductsByCategoryAdmin(1); ?>
-                <?php $productModel -> getProductsByCategoryAdmin(2); ?>
+                <?php $productModel->getProductsByCategoryAdmin(1); ?>
+                <?php $productModel->getProductsByCategoryAdmin(2); ?>
             </div>
         </div>
     </section>
 </main>
 
 <?php
-require("./views/shared/footer.php") 
+require("./views/shared/footer.php")
 ?>

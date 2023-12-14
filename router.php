@@ -1,31 +1,17 @@
 <?php
 
-/**
- * Holds the registered routes
- *
- * @var array $routes
- */
+// Holds the registered routes
 $routes = [];
 
-/**
- * Register a new route
- *
- * @param $action string
- * @param \Closure $callback Called when current URL matches provided action
- */
+// Register a new route
 function route($action, Closure $callback)
 {
     global $routes;
     $action = trim($action, '/');
-    //$action = preg_replace('/{[^]+}/' , '(.+)' , $action);
     $routes[$action] = $callback;
 }
 
-/**
- * Dispatch the router
- *
- * @param $action string
- */
+// Dispatch the router
 function dispatch($action)
 {
     global $routes;
